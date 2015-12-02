@@ -21,7 +21,7 @@ switch ($categoria) {
         break;
 }
 
-        require_once('json/Services_JSON.php');
+        require_once('../lib/json/Services_JSON.php');
         $oJson = new Services_JSON();
         echo $oJson->encode($articulos);
 

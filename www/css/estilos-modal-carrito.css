@@ -1,0 +1,44 @@
+#modal-carrito .modal-header i {
+    margin-right: 20px;
+}
+
+.celda-imagen {
+    width: 15%;
+}
+
+.celda-detalles-articulo {
+    width: 35%;
+}
+
+.celda-cantidad {
+    width: 15%;
+}
+
+.celda-precio, .celda-subtotal {
+    width: 10%;
+}
+
+.celda-accion {
+    width: 15%;
+}
+
+.celda-accion button {
+    background-color: #B30000;
+    border-color: #B30000;
+}
+
+.celda-total {
+    font-weight: bold;
+}
+
+.imagen-carrito {
+    max-height: 67px;
+}
+
+#modal-carrito .btn-primary {
+    background-color: #2E2E2E;
+}
+
+#modal-carrito .btn-default {
+    background-color: #D9D9D9;
+}

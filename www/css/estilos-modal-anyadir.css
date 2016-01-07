@@ -1,0 +1,54 @@
+.modal-header {
+    background-color: #CCBD9E;
+    border-bottom: 1px solid #A6A6A6;
+}
+
+.modal-title {
+    color: #463B25;
+    margin-left: 15px;
+}
+
+#descripcion-articulo-modal {
+    font-weight: bold;
+}
+
+.modal hr {
+    border-color: #B3B3B3;
+}
+
+.reserva-label-modal {
+    padding-top: 5px;
+}
+
+.fechaHora-modal {
+    padding-top: 20px;
+}
+
+.alert {
+    display: none;
+    margin-top: 20px;
+    margin-bottom: -5px;
+    font-weight: bold;
+}
+
+#num-entradas-modal {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+#precio-total-modal, #parrafo-num-noches-modal {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.modal #boton-anyadir {
+    background-color: #2E2E2E;
+}
+
+.modal #boton-cancelar {
+    background-color: #D9D9D9;
+}
+
+.modal-footer {
+    border-top: 1px solid #CCCCCC;
+}

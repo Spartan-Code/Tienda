@@ -11,6 +11,7 @@
         <link href="css/estilos-index.css" rel="stylesheet">
         <link href="css/estilos-modal-anyadir.css" rel="stylesheet">
         <link href="css/estilos-modal-carrito.css" rel="stylesheet">
+        <link href="css/estilos-modal-login.css" rel="stylesheet">
         <link href="css/bootstrap-datepicker.min.css" rel="stylesheet">
         <link href="css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
         <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
@@ -73,6 +74,97 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        
+        
+        
+<!---------------------------------------------Modal Login-------------------------------------------->
+
+     <div class="modal fade" role="dialog" id="modal-login">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Login<span id="categoria-modal"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row>">
+                                <div class="col-md-6 col-xs-12">
+                                    <h3>Bienvenido</h3>
+                                    <span class="texto-descriptivo">Entra en tu perfil</span>
+                                    
+                                    <div class="well">
+                                      <form id="formularioLogin" method="POST" data-toggle="validator">
+                                          <div class="form-group">
+                                              <label for="nombreUsuario" class="control-label">Usuario</label>
+                                              <input type="text" class="form-control" id="nombresUario" name="nombresUario" value="" required="" title="Por favor, introduzca su nombre de usuario." placeholder="Usuario">
+                                              <span class="help-block"></span>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="contrasenaUsuario" class="control-label">Contraseña</label>
+                                              <input type="password" class="form-control" id="contrasenaUsuario" name="contrasenaUsuario" value="" required="" title="Por favor, introduzca su contraseña." placeholder="Contraseña">
+                                              <span class="help-block"></span>
+                                          </div>
+                                          <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
+                                          <button id="logear" class="btn btn-success btn-block">Entrar</button>
+                                      </form>
+                                  </div>
+
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <h3>Nuevo Usuario</h3>
+                                    <span class="texto-descriptivo">Si aún no lo eres, date de alta aquí</span>
+                                    
+                                    <div class="well">
+                              <form id="formularioRegistro" method="POST" data-toggle="validator">
+                                  <div class="form-group">
+                                      <label for="nombreUsuario" class="control-label">Usuario</label>
+                                      <input type="text" class="form-control" id="nombreUario" name="nombreUario" value="" required="" title="Por favor, introduzca su nombre de usuario." placeholder="Usuario">
+                                      <span class="help-block"></span>
+                                  </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="emailUsuario" class="control-label">Email</label>
+                                      <input type="email" class="form-control" id="emailUario" name="emailUario" value="" required="" title="Por favor, introduzca un email válido." placeholder="Email">
+                                      <span class="help-block"></span>
+                                  </div>
+                                  
+                                  
+                                  <div class="form-group">
+                                      <label for="contrasenaUsuario" class="control-label">Contraseña</label>
+                                      <input type="password" class="form-control" id="contrasenaUsuario" name="contrasenaUsuario" value="" required="" title="Por favor, introduzca su contraseña." placeholder="Contraseña">
+                                      <span class="help-block"></span>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="repetirContrasenaUsuario" class="control-label">Repita la Contraseña</label>
+                                      <input type="password" class="form-control" id="repetirContrasenaUsuario" name="repetirContrasenaUsuario" value="" required="" title="Por favor, introduzca su contraseña." placeholder="Repita la Contraseña">
+                                      <span class="help-block"></span>
+                                  </div>
+                                  
+                                  <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
+                                  <button type="submit" class="btn btn-success btn-block">Registrarse</button>
+                              </form>
+                          </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="boton-anyadir">Confirmar reserva</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="boton-cancelar">Cancelar</button>
+                    </div>
+                    -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        
+        
+        
+        
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -89,10 +181,8 @@
                     <ul class="nav navbar-nav" id="menu-horizontal">
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" id="icono-registrarse"><i class="fa fa-user-plus"></i></a></li>
-                        <li><a href="#" id="enlace-registrarse">Registrarse</a></li>
-                        <li><a href="#" id="icono-login"><i class="fa fa-sign-in"></i></a></li>
-                        <li><a href="#" id="enlace-login">Login</a></li>
+                        <li><a href="#" id="icono-login" class="login" data-toggle="modal" data-target="#modal-login"><i class="fa fa-sign-in"></i></a></li>
+                        <li><a href="#" id="enlace-login" class="login" data-toggle="modal" data-target="#modal-login">Login</a></li>
                         <li><a href="#" id="icono-carrito"><i class="fa fa-shopping-cart fa-1x"></i><span class="badge">0</span></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->

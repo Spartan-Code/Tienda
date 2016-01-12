@@ -9,6 +9,9 @@ $(document).ready(function() {
     $('#icono-carrito').click(mostrarModalCarrito);
     $('#modal-carrito').on('click', '.celda-accion button', eliminarDeCarrito);
     
+    $('#logear').click(logearUsuario);
+
+    
 });
 
 $carrusel = $('section').html();
@@ -320,4 +323,19 @@ function eliminarDeCarrito() {
     $numReservas--;
     $('#icono-carrito .badge').text($numReservas);
     mostrarModalCarrito();
+}
+
+function logearUsuario(){
+    
+    
+      $.ajax({                  
+        type: 'POST',
+        data: $("#formularioLogin").serialize(),
+        url: './php/usuarios.php',
+        success: function(data) {
+            alert(data);
+
+        }
+    });
+    
 }

@@ -327,15 +327,21 @@ function eliminarDeCarrito() {
 
 function logearUsuario(){
     
+    var nombreUsuario = document.getElementById("nombreUsuario");   
+    var contrasenaUsuario = document.getElementById("contrasenaUsuario");
     
-      $.ajax({                  
-        type: 'POST',
-        data: $("#formularioLogin").serialize(),
-        url: './php/usuarios.php',
-        success: function(data) {
-            alert(data);
+    if(nombreUsuario.validity.valid && contrasenaUsuario.validity.valid){
+        $.ajax({                  
+            type: 'POST',
+            data: $("#formularioLogin").serialize(),
+            url: './php/usuarios.php',
+            success: function(data) {
+                alert(data);
+            }
+        });
+    }
+    else{
+        //No pasa la validacion.
+    }
 
-        }
-    });
-    
 }

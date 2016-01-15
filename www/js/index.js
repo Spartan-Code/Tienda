@@ -10,6 +10,10 @@ $(document).ready(function() {
     $('#modal-carrito').on('click', '.celda-accion button', eliminarDeCarrito);
     
     $('#logear').click(logearUsuario);
+    
+    $('#finalizarCompra').click(finalizarCompra);
+    
+    
 
     
 });
@@ -330,11 +334,15 @@ function logearUsuario(){
     var nombreUsuario = document.getElementById("nombreUsuario");   
     var contrasenaUsuario = document.getElementById("contrasenaUsuario");
     
+    var dataString = 'nombreUsuario='+nombreUsuario.value+'&contrasenaUsuario='+contrasenaUsuario.value;
+    
+    alert(dataString);
+      
     if(nombreUsuario.validity.valid && contrasenaUsuario.validity.valid){
         $.ajax({                  
-            type: 'POST',
-            data: $("#formularioLogin").serialize(),
-            url: './php/usuarios.php',
+            type: "POST",
+            url: "./php/usuarios.php",
+            data: dataString,
             success: function(data) {
                 alert(data);
             }
@@ -343,5 +351,17 @@ function logearUsuario(){
     else{
         //No pasa la validacion.
     }
+}
 
+function finalizarCompra(){
+    var recogeCarrito = JSON.stringify(carrito)
+    
+    $.ajax({                  
+        type: "POST",
+        url: "./php/finalizar_compra.php",
+        data: 'datos'+recogeCarrito,
+        success: function(data) {
+            alert(data);
+        }
+    });
 }

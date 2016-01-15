@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Finalizar compra</button>
+                        <button id="finalizarCompra" type="button" class="btn btn-primary pull-right" data-dismiss="modal">Finalizar compra</button>
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Seguir comprando</button>
                     </div>
                 </div><!-- /.modal-content -->
@@ -94,7 +94,7 @@
                                     <span class="texto-descriptivo">Entra en tu perfil</span>
                                     
                                     <div class="well">
-                                      <form id="formularioLogin" data-toggle="validator">
+                                      <form id="formularioLogin" action="" method="post">
                                           <div class="form-group">
                                               <label for="nombreUsuario" class="control-label">Usuario</label>
                                               <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" value="" required="" title="Por favor, introduzca su nombre de usuario." placeholder="Usuario">

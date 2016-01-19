@@ -5,10 +5,11 @@ $carrito = $_POST['datos'];
 $objetoCarrito = new stdClass();
 $objetoCarrito = json_decode($carrito);
 
+
 //echo var_dump($objetoCarrito);
 
 //echo $objetoCarrito[0]['precio'];
-//echo $objetoCarrito->reservas[0]->precio;
+echo $objetoCarrito->reservas[0]->nombre;
 //echo 'Datos recogidos :'.$carrito;
 
 $nombreUsuario = 'Cristian';
@@ -23,6 +24,8 @@ foreach($objetoCarrito->reservas as $miReserva)
     $unidadesArticulo = $miReserva->unidades;
     $precioTotal += $miReserva->precio*$unidadesArticulo;
 }
+
+
 
 
     $connection = mysql_connect('localhost', 'root', '')
@@ -50,7 +53,9 @@ foreach($objetoCarrito->reservas as $miReserva)
     if(!empty($objetoCarrito->reservas)){
         $insertLineaPedido="INSERT INTO pedidos (idUsuario, fechaPedido, precioTotal) VALUES ('$idUsuario', '$fechaPedido', '$precioTotal')";
         $resultInsertPedido = mysql_query($insertLineaPedido) or die('Insert fallida: ' . mysql_error());
+        
         mysql_free_result($resultInsertPedido);
+        
         echo "¡Pago realizado con éxito!";
     } 
     else
@@ -58,12 +63,32 @@ foreach($objetoCarrito->reservas as $miReserva)
         echo "¡No hay artículos seleccionados!";
     }
 
-    $queryUltimoPedido='SELECT MAX(idPedido) FROM pedidos';
-    $resultUltimoPedido = mysql_query($queryUltimoPedido) or die('Insert fallida: ' . mysql_error());
-    $numero_filas = mysql_num_rows($resultUltimoPedido);
+/*    $queryUltimoPedido='SELECT MAX(idPedido) FROM pedidos';
+    $numero_filas = mysql_query($queryUltimoPedido) or die('Insert fallida: ' . mysql_error());*/
 
-    echo $numero_filas;
 
+/*
+foreach($objetoCarrito->articulo as $miArticulo)
+{
+    $articulo = $miArticulo;
+    echo $articulo;
+}
+*/
+
+foreach($objetoCarrito->reservas as $miReserva)
+{
+    $idArticulo = $miReserva->idArticulo;
+    
+    //echo $idArticulo;
+    
+   /* $insertarLineaPedido = "INSERT INTO lineaPedidos (idPedido, idArticulo, unidades, precio) VALUES ((SELECT MAX(idPedido) FROM pedidos), '$idArticulo', 2, 2)";
+    $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert fallida: ' . mysql_error());
+        
+        mysql_free_result($resultInsertLineaPedido);*/
+}
+
+
+        
     // Cerrar la conexión
     mysql_close($connection);
 

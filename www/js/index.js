@@ -356,12 +356,10 @@ function logearUsuario(){
 function finalizarCompra(){
     var recogeCarrito = JSON.stringify(carrito)
     
-    alert(recogeCarrito);
-    
     $.ajax({                  
-        type: "POST",
-        url: "./php/finalizar_compra.php",
-        data: 'datos'+recogeCarrito,
+        type: 'POST',
+        url: './php/finalizar_compra.php',
+        data: 'datos='+recogeCarrito,
         success: function(data) {
             alert(data);
         }

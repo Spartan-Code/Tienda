@@ -1,21 +1,28 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
     
-$carrito = $_POST["datos"];
-$objetoCarrito =new stdClass();
-$objetoCarrito=json_decode($carrito, true);
+$carrito = $_POST['datos'];
+$objetoCarrito = new stdClass();
+$objetoCarrito = json_decode($carrito);
 
-$nombreUsuario = "Cristian";
+//echo var_dump($objetoCarrito);
+
+//echo $objetoCarrito[0]['precio'];
+//echo $objetoCarrito->reservas[0]->precio;
+//echo 'Datos recogidos :'.$carrito;
+
+$nombreUsuario = 'Cristian';
 date_default_timezone_set('UTC');
 $fechaPedido = date('Y/m/d');
 $timezone = $fechaPedido.date_default_timezone_get(); 
-$precioTotal = 125;
+$precioTotal = 0;
 
-foreach($fechaPedido as $f){
-    $precioTotal += $f->precio;
+
+foreach($objetoCarrito->reservas as $miReserva)
+{
+    $unidadesArticulo = $miReserva->unidades;
+    $precioTotal += $miReserva->precio*$unidadesArticulo;
 }
-
-
 
 
     $connection = mysql_connect('localhost', 'root', '')
@@ -40,16 +47,25 @@ foreach($fechaPedido as $f){
         echo "No hay ningun usuario logeado.";
     }
 
+    if(!empty($objetoCarrito->reservas)){
+        $insertLineaPedido="INSERT INTO pedidos (idUsuario, fechaPedido, precioTotal) VALUES ('$idUsuario', '$fechaPedido', '$precioTotal')";
+        $resultInsertPedido = mysql_query($insertLineaPedido) or die('Insert fallida: ' . mysql_error());
+        mysql_free_result($resultInsertPedido);
+        echo "¡Pago realizado con éxito!";
+    } 
+    else
+    {
+        echo "¡No hay artículos seleccionados!";
+    }
 
+    $queryUltimoPedido='SELECT MAX(idPedido) FROM pedidos';
+    $resultUltimoPedido = mysql_query($queryUltimoPedido) or die('Insert fallida: ' . mysql_error());
+    $numero_filas = mysql_num_rows($resultUltimoPedido);
 
-    $insertLineaPedido="INSERT INTO pedidos (idUsuario, fechaPedido, precioTotal) VALUES ('$idUsuario', '$fechaPedido', '$precioTotal')";
-    $resultInsertPedido = mysql_query($insertLineaPedido) or die('Insert fallida: ' . mysql_error());
-    // Liberar resultados
-    mysql_free_result($resultInsertPedido);
+    echo $numero_filas;
 
     // Cerrar la conexión
     mysql_close($connection);
-
 
 
 ?>

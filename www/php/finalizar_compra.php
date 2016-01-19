@@ -5,11 +5,8 @@ $carrito = $_POST['datos'];
 $objetoCarrito = new stdClass();
 $objetoCarrito = json_decode($carrito);
 
-
-
-//echo $objetoCarrito[0]['precio'];
 //echo $objetoCarrito->reservas[0]->nombre;
-//echo 'Datos recogidos :'.$carrito;
+
 
 $nombreUsuario = 'Cristian';
 date_default_timezone_set('UTC');
@@ -63,22 +60,22 @@ foreach($objetoCarrito->reservas as $miReserva)
     }
 
 
-foreach($objetoCarrito->reservas as $miReserva)
-{
-    $nombreArticulo = $miReserva->nombre;
-    $idPedido='(SELECT MAX(idPedido) FROM pedidos)';
-    $idArticulo='(SELECT idArticulo FROM articulos WHERE nombreArticulo = "'.$nombreArticulo.'")';
-    $unidadesArticulo = $miReserva->unidades;
-    $precioTotalArticulos = $miReserva->precio*$unidadesArticulo;
-    
-    $insertarLineaPedido = "INSERT INTO lineaPedidos (idPedido, idArticulo, unidades, precio) VALUES ($idPedido, $idArticulo, $unidadesArticulo, $precioTotalArticulos)";
-    $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert en linea de pedidos fallida: ' . mysql_error());
-        
-    mysql_free_result($resultInsertLineaPedido);
-}
- 
-    // Cerrar la conexión
-    mysql_close($connection);
+    foreach($objetoCarrito->reservas as $miReserva)
+    {
+        $nombreArticulo = $miReserva->nombre;
+        $idPedido='(SELECT MAX(idPedido) FROM pedidos)';
+        $idArticulo='(SELECT idArticulo FROM articulos WHERE nombreArticulo = "'.$nombreArticulo.'")';
+        $unidadesArticulo = $miReserva->unidades;
+        $precioTotalArticulos = $miReserva->precio*$unidadesArticulo;
+
+        $insertarLineaPedido = "INSERT INTO lineaPedidos (idPedido, idArticulo, unidades, precio) VALUES ($idPedido, $idArticulo, $unidadesArticulo, $precioTotalArticulos)";
+        $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert en linea de pedidos fallida: ' . mysql_error());
+
+        mysql_free_result($resultInsertLineaPedido);
+    }
+
+        // Cerrar la conexión
+        mysql_close($connection);
 
 
 ?>

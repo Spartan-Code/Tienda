@@ -355,7 +355,7 @@ function logearUsuario(){
 
 function finalizarCompra(){
     var recogeCarrito = JSON.stringify(carrito)
-    
+
     $.ajax({                  
         type: 'POST',
         url: './php/finalizar_compra.php',

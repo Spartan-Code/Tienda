@@ -6,10 +6,9 @@ $objetoCarrito = new stdClass();
 $objetoCarrito = json_decode($carrito);
 
 
-//echo var_dump($objetoCarrito);
 
 //echo $objetoCarrito[0]['precio'];
-echo $objetoCarrito->reservas[0]->nombre;
+//echo $objetoCarrito->reservas[0]->nombre;
 //echo 'Datos recogidos :'.$carrito;
 
 $nombreUsuario = 'Cristian';
@@ -63,32 +62,21 @@ foreach($objetoCarrito->reservas as $miReserva)
         echo "¡No hay artículos seleccionados!";
     }
 
-/*    $queryUltimoPedido='SELECT MAX(idPedido) FROM pedidos';
-    $numero_filas = mysql_query($queryUltimoPedido) or die('Insert fallida: ' . mysql_error());*/
-
-
-/*
-foreach($objetoCarrito->articulo as $miArticulo)
-{
-    $articulo = $miArticulo;
-    echo $articulo;
-}
-*/
 
 foreach($objetoCarrito->reservas as $miReserva)
 {
-    $idArticulo = $miReserva->idArticulo;
+    $nombreArticulo = $miReserva->nombre;
+    $idPedido='(SELECT MAX(idPedido) FROM pedidos)';
+    $idArticulo='(SELECT idArticulo FROM articulos WHERE nombreArticulo = "'.$nombreArticulo.'")';
+    $unidadesArticulo = $miReserva->unidades;
+    $precioTotalArticulos = $miReserva->precio*$unidadesArticulo;
     
-    //echo $idArticulo;
-    
-   /* $insertarLineaPedido = "INSERT INTO lineaPedidos (idPedido, idArticulo, unidades, precio) VALUES ((SELECT MAX(idPedido) FROM pedidos), '$idArticulo', 2, 2)";
-    $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert fallida: ' . mysql_error());
+    $insertarLineaPedido = "INSERT INTO lineaPedidos (idPedido, idArticulo, unidades, precio) VALUES ($idPedido, $idArticulo, $unidadesArticulo, $precioTotalArticulos)";
+    $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert en linea de pedidos fallida: ' . mysql_error());
         
-        mysql_free_result($resultInsertLineaPedido);*/
+    mysql_free_result($resultInsertLineaPedido);
 }
-
-
-        
+ 
     // Cerrar la conexión
     mysql_close($connection);
 

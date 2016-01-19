@@ -14,28 +14,26 @@ $fechaPedido = date('Y/m/d');
 $timezone = $fechaPedido.date_default_timezone_get(); 
 $precioTotal = 0;
 
+    //Precio total del carrito.
+    foreach($objetoCarrito->reservas as $miReserva)
+    {
+        $unidadesArticulo = $miReserva->unidades;
+        $precioTotal += $miReserva->precio*$unidadesArticulo;
+    }
 
-foreach($objetoCarrito->reservas as $miReserva)
-{
-    $unidadesArticulo = $miReserva->unidades;
-    $precioTotal += $miReserva->precio*$unidadesArticulo;
-}
-
-
-
-
+    //Conexion a la BD
     $connection = mysql_connect('localhost', 'root', '')
         or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
 
-    // Realizar una consulta MySQL
+
     $queryIdUsuario = 'SELECT * FROM usuarios WHERE nombreUsuario = "'.$nombreUsuario.'"';
     $resultIdUsuario = mysql_query($queryIdUsuario) or die('Consulta fallida: ' . mysql_error());
     while ($line = mysql_fetch_array($resultIdUsuario, MYSQL_ASSOC)) {
             $usuarios[] = $line;
     }
-    // Liberar resultados
     mysql_free_result($resultIdUsuario);
+
 
     if(count($usuarios)==1)
     {
@@ -70,6 +68,10 @@ foreach($objetoCarrito->reservas as $miReserva)
 
         $insertarLineaPedido = "INSERT INTO lineaPedidos (idPedido, idArticulo, unidades, precio) VALUES ($idPedido, $idArticulo, $unidadesArticulo, $precioTotalArticulos)";
         $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert en linea de pedidos fallida: ' . mysql_error());
+        
+        if(mysql_query){
+            echo "Exito";
+        }
 
         mysql_free_result($resultInsertLineaPedido);
     }

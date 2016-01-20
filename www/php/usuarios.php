@@ -1,7 +1,29 @@
 <?php
     error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
 
-    define('DB_SERVER', 'localhost');
+    $nombreUsuario=$_POST['nombreUsuario']; 
+    //$nombreUsuario='Cristian';
+    //$contrasenaUsuario=$_POST['contrasenaUsuario']; 
+
+
+    // Conectando, seleccionando la base de datos
+    $connection = mysql_connect('localhost', 'root', '')
+        or die('No se pudo conectar: ' . mysql_error());
+    mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
+
+    // Realizar una consulta MySQL
+    $query = 'SELECT * FROM usuarios WHERE nombreUsuario = "'.$nombreUsuario.'"';
+    $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+    while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+            $articulos[] = $line;
+    }
+
+    // Liberar resultados
+    mysql_free_result($result);
+    mysql_close($connection);
+
+
+/*    define('DB_SERVER', 'localhost');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');
     define('DB_DATABASE', 'tienda');
@@ -27,6 +49,6 @@
         {
             echo 'No hay datos';
         }
-    }
+    }*/
 
 ?>

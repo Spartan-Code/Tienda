@@ -10,6 +10,7 @@ $(document).ready(function() {
     $('#modal-carrito').on('click', '.celda-accion button', eliminarDeCarrito);
     
     $('#logear').click(logearUsuario);
+    $('#nuevoUsuario').click(nuevoUsuario);
     
     $('#finalizarCompra').click(finalizarCompra);
     
@@ -194,8 +195,9 @@ function calcularDiasDiferencia(fechaEntradaString, fechaSalidaString) {
     mesSalida = parseInt(fechaSalidaString.substring(3,5));
     anyoSalida = parseInt(fechaSalidaString.substring(6,10));
     
-    fechaEntrada = new Date("" + mesEntrada + "-" + diaEntrada + "-" + anyoEntrada + "");
-    fechaSalida = new Date("" + mesSalida + "-" + diaSalida + "-" + anyoSalida + "");
+    fechaEntrada = new Date(mesEntrada, diaEntrada, anyoEntrada);
+    fechaSalida = new Date(mesSalida, diaSalida,anyoSalida);
+
     
     tiempoDif = fechaSalida.getTime() - fechaEntrada.getTime();
     return Math.ceil(tiempoDif / (1000 * 3600 * 24));
@@ -335,7 +337,6 @@ function logearUsuario(){
     var contrasenaUsuario = document.getElementById("contrasenaUsuario");
     
     var dataString = 'nombreUsuario='+nombreUsuario.value+'&contrasenaUsuario='+contrasenaUsuario.value;
-    
     alert(dataString);
       
     if(nombreUsuario.validity.valid && contrasenaUsuario.validity.valid){
@@ -350,6 +351,37 @@ function logearUsuario(){
     }
     else{
         //No pasa la validacion.
+    }
+}
+
+function nuevoUsuario(){
+    var nombreUsuarioNuevo = document.getElementById("nombreUsuarioNuevo");  
+    var emailUarioNuevo = document.getElementById("emailUarioNuevo");  
+    var contrasenaUsuarioNuevo = document.getElementById("contrasenaUsuarioNuevo");
+    var repetirContrasenaUsuarioNuevo = document.getElementById("repetirContrasenaUsuarioNuevo");
+    
+    var dataString = 'nombreUsuarioNuevo='+nombreUsuarioNuevo.value+'&emailUarioNuevo='+emailUarioNuevo.value+'&contrasenaUsuarioNuevo='+contrasenaUsuarioNuevo.value;
+    alert(dataString);
+      
+    if(nombreUsuarioNuevo.validity.valid && nombreUsuarioNuevo.validity.valid && contrasenaUsuarioNuevo.validity.valid && repetirContrasenaUsuarioNuevo.validity.valid){
+        if(contrasenaUsuarioNuevo.value!=repetirContrasenaUsuarioNuevo.value){
+            alert("Las contraseñas no coinciden");
+        }
+        else{
+            alert("Validado correctamente");  
+            $.ajax({                  
+                type: "POST",
+                url: "./php/nuevo_usuario.php",
+                data: dataString,
+                success: function(data) {
+                    alert(data);
+                }
+            });
+        }
+    }
+    else{
+        //No pasa la validacion.
+        alert("No validado");
     }
 }
 

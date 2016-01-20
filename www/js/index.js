@@ -362,19 +362,30 @@ function nuevoUsuario(){
     
     var dataString = 'nombreUsuarioNuevo='+nombreUsuarioNuevo.value+'&emailUarioNuevo='+emailUarioNuevo.value+'&contrasenaUsuarioNuevo='+contrasenaUsuarioNuevo.value;
     alert(dataString);
+    
+    if(nombreUsuarioNuevo.validity.valid){
+        alert("esta validado");
+    }
       
     if(nombreUsuarioNuevo.validity.valid && nombreUsuarioNuevo.validity.valid && contrasenaUsuarioNuevo.validity.valid && repetirContrasenaUsuarioNuevo.validity.valid){
         if(contrasenaUsuarioNuevo.value!=repetirContrasenaUsuarioNuevo.value){
             alert("Las contraseñas no coinciden");
         }
         else{
-            alert("Validado correctamente");  
+            //alert("Validado correctamente");  
             $.ajax({                  
                 type: "POST",
                 url: "./php/nuevo_usuario.php",
                 data: dataString,
                 success: function(data) {
                     alert(data);
+                        
+                        
+/*                    if(data==1){
+                        $('#modal-login').modal('hide');
+                    }else{
+                        $('#modal-login').modal('show');
+                    }*/
                 }
             });
         }

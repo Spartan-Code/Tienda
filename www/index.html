@@ -83,7 +83,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Login<span id="categoria-modal"></span></h4>
                     </div>
                     <div class="modal-body">
@@ -118,6 +118,9 @@
                                     <div class="well">
                               <form id="formularioRegistro" method="POST" data-toggle="validator">
                                   <div class="form-group">
+                                      <div>
+                                          <h4 id="validacionNuevoUsuario" for="validacionNuevoUsuario" class="validacionNuevoUsuario">Validación.</h4>
+                                      </div>
                                       <label for="nombreUsuarioNuevo" class="control-label">Usuario</label>
                                       <input type="text" class="form-control" id="nombreUsuarioNuevo" name="nombreUsuarioNuevo" value="" required="" title="Por favor, introduzca su nombre de usuario." placeholder="Usuario">
                                       <span class="help-block"></span>
@@ -142,7 +145,7 @@
                                   </div>
                                   
                                   <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
-                                  <button id="nuevoUsuario" class="btn btn-success btn-block">Registrarse</button>
+                                  <input id="nuevoUsuario" class="btn btn-success btn-block" value="Registrarse"></input>
                               </form>
                           </div>
 

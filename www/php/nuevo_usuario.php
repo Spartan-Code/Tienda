@@ -23,12 +23,14 @@
     }
     else
     {
-        $insertNuevoUsuario = "INSERT INTO pedidos (idUsuario, fechaPedido, precioTotal) VALUES ('$idUsuario', '$fechaPedido', '$precioTotal')";
+        $insertNuevoUsuario = "INSERT INTO usuarios (nombreUsuario, emailUsuario, contrasenaUsuario) VALUES ('$nombreUsuarioNuevo', '$emailUarioNuevo', '$contrasenaUsuarioNuevo')";
         $resultNuevoUsuario = mysql_query($insertNuevoUsuario) or die('Consulta fallida: ' . mysql_error());
-        while ($line = mysql_fetch_array(NuevoUsuario, MYSQL_ASSOC)) {
+/*        while ($line = mysql_fetch_array(NuevoUsuario, MYSQL_ASSOC)) {
                 $usuarios[] = $line;
-        }
+        }*/
         mysql_free_result($resultNuevoUsuario);
+        
+        echo 1;
     }
 
     mysql_close($connection);

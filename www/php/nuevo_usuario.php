@@ -19,7 +19,7 @@
 
     if(count($usuarios)>0)
     {
-        echo "El nombre de usuario ya existe. Elija otro por favor.";
+        echo "UsuarioExiste";
     }
     else
     {
@@ -30,7 +30,7 @@
         }*/
         mysql_free_result($resultNuevoUsuario);
         
-        echo 1;
+        echo "UsuarioNoExiste";
     }
 
     mysql_close($connection);

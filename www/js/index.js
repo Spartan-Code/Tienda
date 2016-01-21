@@ -12,6 +12,7 @@ $(document).ready(function() {
     $('#logear').click(logearUsuario);
     $('#nuevoUsuario').click(nuevoUsuario);
     
+    $('#vaciarCarrito').click(vaciarCarrito);
     $('#finalizarCompra').click(finalizarCompra);
     
     
@@ -117,7 +118,7 @@ function mostrarModalAnyadir() {
     
     htmlNumUnidades = '<div class="row" id="num-entradas-modal"><div class="col-sm-4"><p class="reserva-label-modal">Numero de personas</p></div><div class="col-sm-4 col-sm-offset-4"><div class="input-group number-spinner"><span class="input-group-btn"><button class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button></span><input type="text" class="form-control text-center" value="1" readonly><span class="input-group-btn"><button class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button></span></div></div></div>';
     
-    htmlPrecioTotal = '<hr /><div class="row" id="fila-precio-total"><div class="col-sm-4 col-sm-offset-8"><p id="precio-total-modal">Precio Total: ' + $precioArticulo + ' €</p></div></div></div>';
+    htmlPrecioTotal = '<hr /><div class="row" id="fila-precio-total"><div class="col-sm-6 col-sm-offset-6 text-right"><p id="precio-total-modal">Precio Total: ' + $precioArticulo + ' €</p></div></div></div>';
     
     if ($categoria === 'Alojamiento') {
         $('#modal-anyadir .modal-body').html(htmlDatosProducto + htmlImagenProducto + htmlFechaReservaEntrada + htmlFechaReservaSalida + htmlAlert1 + htmlAlert2 + htmlPrecioTotal);
@@ -195,8 +196,8 @@ function calcularDiasDiferencia(fechaEntradaString, fechaSalidaString) {
     mesSalida = parseInt(fechaSalidaString.substring(3,5));
     anyoSalida = parseInt(fechaSalidaString.substring(6,10));
     
-    fechaEntrada = new Date(mesEntrada, diaEntrada, anyoEntrada);
-    fechaSalida = new Date(mesSalida, diaSalida,anyoSalida);
+    fechaEntrada = new Date(anyoEntrada, mesEntrada, diaEntrada);
+    fechaSalida = new Date(anyoSalida, mesSalida, diaSalida);
 
     
     tiempoDif = fechaSalida.getTime() - fechaEntrada.getTime();
@@ -261,7 +262,7 @@ function mostrarModalCarrito() {
         total = total + subtotal;
     }
     
-    $('<tr><td colspan="5" class="text-right"></td><td class="text-center celda-total">Total: ' + total + ' €</td></tr>').appendTo('#modal-carrito tfoot');
+    $('<tr><td class="text-right"></td><td colspan="5" class="text-right celda-total">Total: ' + total + ' €</td></tr>').appendTo('#modal-carrito tfoot');
     $('#modal-carrito').modal('show');
 }
 
@@ -337,7 +338,7 @@ function logearUsuario(){
     var contrasenaUsuario = document.getElementById("contrasenaUsuario");
     
     var dataString = 'nombreUsuario='+nombreUsuario.value+'&contrasenaUsuario='+contrasenaUsuario.value;
-    alert(dataString);
+    //alert(dataString);
       
     if(nombreUsuario.validity.valid && contrasenaUsuario.validity.valid){
         $.ajax({                  
@@ -354,22 +355,22 @@ function logearUsuario(){
     }
 }
 
-function nuevoUsuario(){
+function nuevoUsuario(event){
+    
     var nombreUsuarioNuevo = document.getElementById("nombreUsuarioNuevo");  
     var emailUarioNuevo = document.getElementById("emailUarioNuevo");  
     var contrasenaUsuarioNuevo = document.getElementById("contrasenaUsuarioNuevo");
     var repetirContrasenaUsuarioNuevo = document.getElementById("repetirContrasenaUsuarioNuevo");
     
     var dataString = 'nombreUsuarioNuevo='+nombreUsuarioNuevo.value+'&emailUarioNuevo='+emailUarioNuevo.value+'&contrasenaUsuarioNuevo='+contrasenaUsuarioNuevo.value;
-    alert(dataString);
-    
-    if(nombreUsuarioNuevo.validity.valid){
-        alert("esta validado");
-    }
+    //alert(dataString);
       
     if(nombreUsuarioNuevo.validity.valid && nombreUsuarioNuevo.validity.valid && contrasenaUsuarioNuevo.validity.valid && repetirContrasenaUsuarioNuevo.validity.valid){
+        
+        event.preventDefault();
+        
         if(contrasenaUsuarioNuevo.value!=repetirContrasenaUsuarioNuevo.value){
-            alert("Las contraseñas no coinciden");
+            //alert("Las contraseñas no coinciden");
         }
         else{
             //alert("Validado correctamente");  
@@ -378,21 +379,28 @@ function nuevoUsuario(){
                 url: "./php/nuevo_usuario.php",
                 data: dataString,
                 success: function(data) {
-                    alert(data);
+                    //alert(data);
+                    if(data=="UsuarioExiste")
+                    {
+                        $('#nombreUsuarioNuevo').val('');
                         
+                        if(!nombreUsuarioNuevo.validity.valid){
+                            nombreUsuarioNuevo.setCustomValidity('El usuario ya existe');  
+                        }
+                    }
                         
-/*                    if(data==1){
+                    if(data=="1"){
                         $('#modal-login').modal('hide');
                     }else{
                         $('#modal-login').modal('show');
-                    }*/
+                    }
                 }
             });
         }
     }
     else{
         //No pasa la validacion.
-        alert("No validado");
+        //alert("No validado");
     }
 }
 
@@ -405,6 +413,13 @@ function finalizarCompra(){
         data: 'datos='+recogeCarrito,
         success: function(data) {
             alert(data);
+            vaciarCarrito();
         }
     });
+}
+
+function vaciarCarrito(){
+    
+    carrito.reservas=[];
+    $('#icono-carrito .badge').text(0);
 }

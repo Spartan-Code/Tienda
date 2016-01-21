@@ -68,6 +68,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="vaciarCarrito" type="button" class="btn btn-danger pull-center" data-dismiss="modal">Vaciar Carrito</button>
                         <button id="finalizarCompra" type="button" class="btn btn-primary pull-right" data-dismiss="modal">Finalizar compra</button>
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Seguir comprando</button>
                     </div>
@@ -118,11 +119,8 @@
                                     <div class="well">
                               <form id="formularioRegistro" method="POST" data-toggle="validator">
                                   <div class="form-group">
-                                      <div class="bordeValidacionNuevoUsuario">
-                                          <p id="validacionNuevoUsuario" for="validacionNuevoUsuario" class="validacionNuevoUsuario">Validación. Validación Validación Validación Validación</p>
-                                      </div>
                                       <label for="nombreUsuarioNuevo" class="control-label">Usuario</label>
-                                      <input type="text" class="form-control" id="nombreUsuarioNuevo" name="nombreUsuarioNuevo" value="" required="" title="Por favor, introduzca su nombre de usuario." placeholder="Usuario">
+                                      <input type="text" class="form-control" id="nombreUsuarioNuevo" name="nombreUsuarioNuevo" value="" required title="Por favor, introduzca su nombre de usuario." placeholder="Usuario">
                                       <span class="help-block"></span>
                                   </div>
                                   
@@ -145,7 +143,7 @@
                                   </div>
                                   
                                   <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
-                                  <input id="nuevoUsuario" class="btn btn-success btn-block" value="Registrarse"></input>
+                                  <button id="nuevoUsuario" class="btn btn-success btn-block">Registrarse</button>
                               </form>
                           </div>
 

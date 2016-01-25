@@ -1,7 +1,7 @@
 .texto-descriptivo{
     font-size: 12px;
 }
-.modal-dialog{
+.modal-login{
     max-width: 400px !important;
 }
 #modal-login .btn-success {

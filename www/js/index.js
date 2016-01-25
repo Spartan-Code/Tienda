@@ -340,7 +340,6 @@ function logearUsuario(){
     var validacionLogin = document.getElementById("validacionLogin");   
     
     var dataString = 'nombreUsuario='+nombreUsuario.value+'&contrasenaUsuario='+contrasenaUsuario.value;
-    //alert(dataString);
       
     if(nombreUsuario.validity.valid && contrasenaUsuario.validity.valid){
         $.ajax({                  
@@ -354,7 +353,6 @@ function logearUsuario(){
                     $('.bordeValidacionLogin').css("display", "none");
                 }
                 else{
-                    alert("Usuario o contraseña incorrectos");
                     $('#validacionLogin').css("display", "block");
                     $('.bordeValidacionLogin').css("display", "block");
                     $('#validacionLogin').text('Usuario o contraseña incorrectos.');

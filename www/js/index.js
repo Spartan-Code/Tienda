@@ -10,14 +10,11 @@ $(document).ready(function() {
     $('#modal-carrito').on('click', '.celda-accion button', eliminarDeCarrito);
     
     $('#logear').click(logearUsuario);
+    $('#deslogear').click(deslogearUsuario);
     $('#nuevoUsuario').click(nuevoUsuario);
     
     $('#vaciarCarrito').click(vaciarCarrito);
     $('#finalizarCompra').click(finalizarCompra);
-    
-    
-
-    
 });
 
 $carrusel = $('section').html();
@@ -337,7 +334,7 @@ function logearUsuario(){
     var nombreUsuario = document.getElementById("nombreUsuario");   
     var contrasenaUsuario = document.getElementById("contrasenaUsuario");
     var bordeValidacionLogin = document.getElementById("bordeValidacionLogin");   
-    var validacionLogin = document.getElementById("validacionLogin");   
+    var validacionLogin = document.getElementById("validacionLogin");    
     
     var dataString = 'nombreUsuario='+nombreUsuario.value+'&contrasenaUsuario='+contrasenaUsuario.value;
       
@@ -348,9 +345,11 @@ function logearUsuario(){
             data: dataString,
             success: function(data) {
                 if(data==1){
-                    alert("Logeado con exito");
                     $('#validacionLogin').css("display", "none");
                     $('.bordeValidacionLogin').css("display", "none");
+                    $('#enlace-login').text(nombreUsuario.value+' está logeado');
+                    $('#modal-login').modal('toggle');
+                    $('#deslogear').css("display", "block");
                 }
                 else{
                     $('#validacionLogin').css("display", "block");
@@ -378,6 +377,20 @@ function logearUsuario(){
         $('.bordeValidacionLogin').css("display", "block");
 
     }
+}
+
+function deslogearUsuario(){
+            $.ajax({                  
+                type: "POST",
+                url: "./php/logout.php",
+                data: 'asdf',
+                success: function(data) {
+                    $('#nombreUsuario').val('');
+                    $('#contrasenaUsuario').val('');
+                    $('#enlace-login').text('Login');
+                    $('#deslogear').css("display", "none");
+                }
+            });
 }
 
 

@@ -84,7 +84,7 @@
             <div class="modal-dialog modal-login">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Login<span id="categoria-modal"></span></h4>
                     </div>
                     <div class="modal-body">
@@ -113,7 +113,8 @@
                                           </div>
 
                                           <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
-                                          <button type="button" id="logear" class="btn btn-success btn-block">Entrar</button>
+                                          <button type="button" id="logear" class="btn btn-success btn-block">Log in</button>
+                                          <button type="button" id="deslogear" class="btn btn-danger btn-block">Log out</button>
                                       </form>
                                   </div>
 

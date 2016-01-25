@@ -7,8 +7,8 @@ $objetoCarrito = json_decode($carrito);
 
 //echo $objetoCarrito->reservas[0]->nombre;
 
-
-$nombreUsuario = 'Cristian';
+session_start();
+$nombreUsuario = $_SESSION["sesionNombreUsuario"];
 date_default_timezone_set('UTC');
 $fechaPedido = date('Y/m/d');
 $timezone = $fechaPedido.date_default_timezone_get(); 

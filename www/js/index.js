@@ -336,6 +336,8 @@ function logearUsuario(){
     
     var nombreUsuario = document.getElementById("nombreUsuario");   
     var contrasenaUsuario = document.getElementById("contrasenaUsuario");
+    var bordeValidacionLogin = document.getElementById("bordeValidacionLogin");   
+    var validacionLogin = document.getElementById("validacionLogin");   
     
     var dataString = 'nombreUsuario='+nombreUsuario.value+'&contrasenaUsuario='+contrasenaUsuario.value;
     //alert(dataString);
@@ -346,14 +348,40 @@ function logearUsuario(){
             url: "./php/usuarios.php",
             data: dataString,
             success: function(data) {
-                alert(data);
+                if(data==1){
+                    alert("Logeado con exito");
+                    $('#validacionLogin').css("display", "none");
+                    $('.bordeValidacionLogin').css("display", "none");
+                }
+                else{
+                    alert("Usuario o contraseña incorrectos");
+                    $('#validacionLogin').css("display", "block");
+                    $('.bordeValidacionLogin').css("display", "block");
+                    $('#validacionLogin').text('Usuario o contraseña incorrectos.');
+                }
             }
         });
     }
     else{
-        //No pasa la validacion.
+        if(!nombreUsuario.validity.valid && contrasenaUsuario.validity.valid)
+        {
+            $('#validacionLogin').text('Por favor, introduzca un nombre de usuario.');
+        }
+        else if(!contrasenaUsuario.validity.valid && nombreUsuario.validity.valid)
+        {
+            $('#validacionLogin').text('Por favor, introduzca una constraseña.');
+        }
+        else
+        {
+            $('#validacionLogin').text('Por favor, introduzca unusuario y contraseña.'); 
+        }
+        
+        $('#validacionLogin').css("display", "block");
+        $('.bordeValidacionLogin').css("display", "block");
+
     }
 }
+
 
 function nuevoUsuario(event){
     
@@ -367,7 +395,7 @@ function nuevoUsuario(event){
       
     if(nombreUsuarioNuevo.validity.valid && nombreUsuarioNuevo.validity.valid && contrasenaUsuarioNuevo.validity.valid && repetirContrasenaUsuarioNuevo.validity.valid){
         
-        event.preventDefault();
+        //event.preventDefault();
         
         if(contrasenaUsuarioNuevo.value!=repetirContrasenaUsuarioNuevo.value){
             //alert("Las contraseñas no coinciden");

@@ -87,15 +87,6 @@ section .boton-reservar {
 section .boton-mas-info {
     background-color: #D9D9D9;
 }
-.bordeValidacionNuevoUsuario{
-    color: red;
-    border: solid 1px;
-    border-radius: 5px;
-    padding: 5px;
-}
-.validacionNuevoUsuario{
-    color: red;
-}
 
 
 /*Estilos pies*/

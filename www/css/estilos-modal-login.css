@@ -1,6 +1,25 @@
 .texto-descriptivo{
     font-size: 12px;
 }
+.modal-dialog{
+    max-width: 400px !important;
+}
 #modal-login .btn-success {
     background-color: #2E2E2E;
+}
+.bordeValidacionLogin{
+    color: red;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    
+}
+.bordeValidacionLogin p{
+    margin: 0px;
+}
+#validacionLogin{
+    color: red;
+    display: none;
+   
 }

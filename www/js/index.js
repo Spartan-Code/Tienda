@@ -11,7 +11,7 @@ $(document).ready(function() {
     
     $('#logear').click(logearUsuario);
     $('#deslogear').click(deslogearUsuario);
-    $('#nuevoUsuario').click(nuevoUsuario);
+    //$('#nuevoUsuario').click(nuevoUsuario);
     
     $('#vaciarCarrito').click(vaciarCarrito);
     $('#finalizarCompra').click(finalizarCompra);
@@ -349,6 +349,7 @@ function logearUsuario(){
                     $('.bordeValidacionLogin').css("display", "none");
                     $('#enlace-login').text(nombreUsuario.value+' está logeado');
                     $('#modal-login').modal('toggle');
+                    $('#logear').css("display", "none");
                     $('#deslogear').css("display", "block");
                 }
                 else{
@@ -383,17 +384,17 @@ function deslogearUsuario(){
             $.ajax({                  
                 type: "POST",
                 url: "./php/logout.php",
-                data: 'asdf',
                 success: function(data) {
                     $('#nombreUsuario').val('');
                     $('#contrasenaUsuario').val('');
                     $('#enlace-login').text('Login');
                     $('#deslogear').css("display", "none");
+                    $('#logear').css("display", "block");
                 }
             });
 }
 
-
+/*
 function nuevoUsuario(event){
     
     var nombreUsuarioNuevo = document.getElementById("nombreUsuarioNuevo");  
@@ -441,7 +442,7 @@ function nuevoUsuario(event){
         //No pasa la validacion.
         //alert("No validado");
     }
-}
+}*/
 
 function finalizarCompra(){
     var recogeCarrito = JSON.stringify(carrito)
@@ -451,8 +452,22 @@ function finalizarCompra(){
         url: './php/finalizar_compra.php',
         data: 'datos='+recogeCarrito,
         success: function(data) {
-            alert(data);
-            vaciarCarrito();
+            if(data=="1"){
+                vaciarCarrito();
+                alert("Pago realizado con éxito");
+            }else{
+                if(data=="UsuarioNoLogeado"){
+                    $('#validacionLogin').css("display", "block");
+                    $('.bordeValidacionLogin').css("display", "block");
+                    $('#validacionLogin').text('Debes estar logeado para poder finalizar una compra.');
+                    $('body').css("padding-right", "0px");
+                    $('#modal-login').modal('toggle');
+                }else{
+                    alert("No hay articulos en el carrito.");
+                }
+
+            }
+
         }
     });
 }

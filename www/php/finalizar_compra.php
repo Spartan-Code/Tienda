@@ -41,27 +41,36 @@ $precioTotal = 0;
     }
     else
     {
-        echo "No hay ningun usuario logeado.";
+        echo "UsuarioNoLogeado";
     }
 
-    if(!empty($objetoCarrito->reservas)){
+    if(!empty($objetoCarrito->reservas) && isset($nombreUsuario)){
+        
+        
         $insertLineaPedido="INSERT INTO pedidos (idUsuario, fechaPedido, precioTotal) VALUES ('$idUsuario', '$fechaPedido', '$precioTotal')";
         $resultInsertPedido = mysql_query($insertLineaPedido) or die('Insert fallida: ' . mysql_error());
         
         mysql_free_result($resultInsertPedido);
         
-        echo "¡Pago realizado con éxito!";
+        echo "1";
     } 
     else
     {
-        echo "¡No hay artículos seleccionados!";
+        if(empty($objetoCarrito->reservas))
+        {
+            echo "¡No hay artículos seleccionados!";
+        }
+        else
+        {
+            //Nada
+        }
     }
 
 
     foreach($objetoCarrito->reservas as $miReserva)
     {
         $nombreArticulo = $miReserva->nombre;
-        $idPedido='(SELECT MAX(idPedido) FROM pedidos)';
+        $idPedido='(SELECT MAX(idPedido) FROM pedidos WHERE idUsuario = "'.$idUsuario.'")';
         $idArticulo='(SELECT idArticulo FROM articulos WHERE nombreArticulo = "'.$nombreArticulo.'")';
         $unidadesArticulo = $miReserva->unidades;
         $precioTotalArticulos = $miReserva->precio*$unidadesArticulo;

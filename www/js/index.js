@@ -1,5 +1,6 @@
 $(document).ready(function() {
     
+    deslogearUsuario();
     cargarCategorias();
     $('#menu-horizontal').on('click', 'a', pedirDatos);
     $('.navbar-brand').click(recargarCarrusel);
@@ -343,14 +344,19 @@ function logearUsuario(){
             type: "POST",
             url: "./php/usuarios.php",
             data: dataString,
-            success: function(data) {
-                if(data==1){
+            success: function(data) {                
+                alert(data);
+                if(data=="usuario"){
                     $('#validacionLogin').css("display", "none");
                     $('.bordeValidacionLogin').css("display", "none");
-                    $('#enlace-login').text(nombreUsuario.value+' está logeado');
+                    $('#enlace-login').text('Bienvenido '+nombreUsuario.value);
                     $('#modal-login').modal('toggle');
                     $('#logear').css("display", "none");
                     $('#deslogear').css("display", "block");
+                }
+                else if(data=="administrador")
+                {
+                   window.location = './php/admin.php';       
                 }
                 else{
                     $('#validacionLogin').css("display", "block");

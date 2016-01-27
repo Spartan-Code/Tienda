@@ -6,17 +6,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Valencia Opera</title>
+        
+                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../lib/jquery/jquery-1.11.3.min.js"></script>
+                        <!-- JQGRID -->
+        <script src="../lib/jqgrid/grid.locale-es.js" type="text/javascript"></script>
+        <script src="../lib/jqgrid/jquery.jqGrid.min.js" type="text/javascript"></script>
+        
         <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="../lib/bootstrap/css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/estilos-index.css" rel="stylesheet">
-        <link href="../css/estilos-modal-anyadir.css" rel="stylesheet">
-        <link href="../css/estilos-modal-carrito.css" rel="stylesheet">
-        <link href="../css/estilos-modal-login.css" rel="stylesheet">
-        <link href="../css/bootstrap-datepicker.min.css" rel="stylesheet">
-        <link href="../css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
-        <link href="../css/bootstrap-datepicker3.min.css" rel="stylesheet">
-        <link href="../css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet">
         <link href="../css/admin.css" rel="stylesheet">
+        
+        <link rel="stylesheet" type="text/css" media="screen" href="../lib/jqgrid/ui.jqgrid-bootstrap.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../lib/jqgrid/ui.jqgrid-bootstrap-ui.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../lib/jqgrid/ui.jqgrid.css" />
+        
+
+        
+        
+        
     </head>
     <body>   
         
@@ -44,8 +53,65 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
+        
+    <section>
+        <div class="cuadroSelector">
+            <div class="selectorCategorias">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="selectores"><a href="#">Usuarios</a></li>
+                    <li><a href="#">Categorías</a></li>
+                    <li><a href="#">Artículos</a></li>
+                    <li><a href="#">Pedidos</a></li>
+                </ul>
+            </div>
+            
+            
+            <script>
+                $.jgrid.defaults.width = 780;
+                $.jgrid.defaults.styleUI = 'Bootstrap';
+            </script>
 
-        <section id="principal">
+            <div class="container-fluid">
+                <table id="jqGrid"></table>
+                <div id="jqGridPager"></div>
+            </div>
+            <script type="text/javascript"> 
+
+
+            $(document).ready(function () {
+
+                    $("#jqGrid").jqGrid({
+                    url: 'pedidos.php',
+                    datatype: "json",
+                     colModel: [
+                        { label: 'ID Pedido', name: 'idPedido', autowidth: true, sorttype: 'integer' },
+                        { label: 'ID Usuario', name: 'idUsuario', autowidth: true, sorttype: 'integer' },
+                        { label: 'Fecha Pedido', name: 'fechaPedido', autowidth: true },
+                        { label: 'Precio Total', name: 'precioTotal', autowidth: true, sorttype: 'integer' },                
+                    ],
+                    viewrecords: true, // show the current page, data rang and total records on the toolbar
+                    autowidth: true,
+                    height: 200,
+                    rowNum: 30,
+                    pager: "#jqGridPager"
+                });
+            });
+
+             </script>
+            
+        </div>
+    </section>
+        
+        
+
+
+
+
+        
+        
+ 
+
+<!--        <section id="principal">
             
             <div class="row text-center" id="menu-admin">
             
@@ -73,8 +139,9 @@
             
             </div>
             
-        </section>
+        </section>-->
 
+        
 
         <footer class="footer text-center">
             <div class="container-fluid">
@@ -118,15 +185,10 @@
             </div>
         </footer>
         
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../lib/jquery/jquery-1.11.3.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
         <!-- Mis archivos javascript -->
-        <script src="../js/carrito.js" type="text/javascript"></script>
-        <script src="../js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-        <script src="../js/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
         <script src="../js/admin.js" type="text/javascript"></script>
-        
+
     </body>
 </html>

@@ -23,10 +23,6 @@
         <link rel="stylesheet" type="text/css" media="screen" href="../lib/jqgrid/ui.jqgrid.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.css" />
         
-
-        
-        
-        
     </head>
     <body>   
         
@@ -55,7 +51,9 @@
             </div>
         </nav>
         
-    <section class="datos">
+<!--    
+//Barra seleccion de categorias
+<section class="datos">
         <div class="cuadroSelector">
             <div class="selectorCategorias">
                 <ul class="nav nav-tabs nav-justified">
@@ -89,16 +87,67 @@
 
             </div>
         </div>
-    </section>
+    </section>-->
         
         
-
-
-
-
         
+         <section class="datos">
+             <div class="centrarDatos">
+            
+            <div class="row">
+                <div class="text-center encabezado">Panel de Administración</div>
+            </div>
+            
+            <div class="row">
+            
+                <div class="col-md-2 text-center" id="menu-lateral">
+                    <div id="sidebar-wrapper">
+                        <ul class="sidebar-nav">
+                            <li>
+                                <a id="articulos" href="#">Artículos</a>
+                            </li>
+                            <li>
+                                <a id="categorias" href="#">Categorias</a>
+                            </li>
+                            <li>
+                                <a id="usuarios" href="#">Usuarios</a>
+                            </li>
+                            <li>
+                                <a id="pedidos" href="#">Pedidos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>    
+
+
+                <div class="col-md-10 text-center" id="tabla-detalle">
+                    <div id="tablaArticulos" class="container-fluid" align="center">
+                        <table id="tArticulos"></table>
+                        <div id="pArticulos"></div>
+                        
+                        <div id="botones-menu">
+                            <button href="#" id="a1" type="button" class="btn">Info</button>
+                            <button href="#" id="a3" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Insertar</button>
+                            <button href="#" id="a2" type="button" class="btn">Borrar</button>
+                        </div>
+                    </div>
+
+                    <div id="tablaUsuarios" class="container-fluid" align="center">
+                        <table id="tUsuarios"></table>
+                        <div id="pagerUsuarios"></div>
+                        
+                        <div id="botones-menu">
+                            <button href="#" id="a1" type="button" class="btn">Info</button>
+                            <button href="#" id="a3" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Insertar</button>
+                            <button href="#" id="a2" type="button" class="btn">Borrar</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+        </section>   
         
- 
 
 <!--        <section id="principal">
             
@@ -178,8 +227,9 @@
         <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
         <!-- Mis archivos javascript -->
         <script src="../js/admin.js" type="text/javascript"></script>
-        <script src="../js/pedidos.js" type="text/javascript"></script>
+        <!--<script src="../js/pedidos.js" type="text/javascript"></script>-->
         <script src="../js/usuarios_back.js" type="text/javascript"></script>
+        <script src="../js/articulos_back.js" type="text/javascript"></script>
         <script src="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
 
     </body>

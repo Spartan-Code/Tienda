@@ -18,6 +18,7 @@ jQuery("#list2").jqGrid({
     sortorder: "desc",
     autowidth: true,
     height: 300,
+    loadonce: true,
     caption:"Simple data manipulation"
 });
 jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false});

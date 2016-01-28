@@ -9,18 +9,25 @@ $(document).ready(function() {
 });
 
 function mostrarUsuarios(){
-    $('#tablaUsuarios').show();
+    cargarUsuarios();
+    $('#tablaArticulos').hide();
     $('#tablaCategorias').hide();
+    $('#tablaUsuarios').show();
+    $('#tablaPedidos').hide();
 }
 
 function mostrarCategorias(){
-    cargarUsuarios();
-    $('#tablaUsuarios').hide();
+    $('#tablaArticulos').hide();
     $('#tablaCategorias').show();
+    $('#tablaUsuarios').hide();
+    $('#tablaPedidos').hide();
 }
 
 function mostrarArticulos(){
-    alert("art");
+    $('#tablaArticulos').show();
+    $('#tablaCategorias').hide();
+    $('#tablaUsuarios').hide();
+    $('#tablaPedidos').hide();
 }
 
 function mostrarPedidos(){

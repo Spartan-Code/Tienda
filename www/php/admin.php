@@ -68,12 +68,12 @@
             
             <div class="tablas">
 
-                <div id="tablaUsuarios" class="container-fluid">
+                <div id="tablaUsuarios" class="container-fluid" align="center">
                     <table id="list2"></table>
                     <div id="pager2"></div>
                 </div>
 
-                <div id="tablaCategorias" class="container-fluid">
+                <div id="tablaCategorias" class="container-fluid" align="center">
                     <table id="list5"></table>
                     <div id="pager5"></div>
                     <br />

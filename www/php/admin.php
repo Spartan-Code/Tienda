@@ -59,36 +59,35 @@
         <div class="cuadroSelector">
             <div class="selectorCategorias">
                 <ul class="nav nav-tabs nav-justified">
-                    <li><a href="#">Usuarios</a></li>
-                    <li><a href="#">Categorías</a></li>
-                    <li><a href="#">Artículos</a></li>
-                    <li><a href="#">Pedidos</a></li>
+                    <li><a id="usuarios" href="#">Usuarios</a></li>
+                    <li><a id="categorias" href="#">Categorías</a></li>
+                    <li><a id="articulos" href="#">Artículos</a></li>
+                    <li><a id="pedidos"ref="#">Pedidos</a></li>
                 </ul>
             </div>
             
-            
+            <div class="tablas">
 
+                <div id="tablaUsuarios" class="container-fluid">
+                    <table id="list2"></table>
+                    <div id="pager2"></div>
+                </div>
 
-<!--            <div class="container-fluid tablas">
-                <table id="list2"></table>
-                <div id="pager2"></div>
-            </div>-->
-            
-            <div class="container-fluid tablas">
-                <table id="list5"></table>
-                <div id="pager5"></div>
-                <br />
-                <a href="#" id="a1">Get data from selected row</a>
-                <br />
-                <a href="#" id="a2">Delete row 2</a>
-                <br />
-                <a href="#" id="a3">Update amounts in row 1</a>
-                <br />
-                <a href="#" id="a4">Add row with id 99</a>
-                <br />
+                <div id="tablaCategorias" class="container-fluid">
+                    <table id="list5"></table>
+                    <div id="pager5"></div>
+                    <br />
+                    <a href="#" id="a1">Get data from selected row</a>
+                    <br />
+                    <a href="#" id="a2">Delete row 2</a>
+                    <br />
+                    <a href="#" id="a3">Update amounts in row 1</a>
+                    <br />
+                    <a href="#" id="a4">Add row with id 99</a>
+                    <br />
+                </div>
+
             </div>
-         
-            
         </div>
     </section>
         
@@ -179,7 +178,7 @@
         <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
         <!-- Mis archivos javascript -->
         <script src="../js/admin.js" type="text/javascript"></script>
-        <!--<script src="../js/pedidos.js" type="text/javascript"></script>-->
+        <script src="../js/pedidos.js" type="text/javascript"></script>
         <script src="../js/usuarios_back.js" type="text/javascript"></script>
         <script src="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
 

@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    
+   function cargarUsuarios(){
+
     jQuery("#list5").jqGrid({        
         url:'usuarios_back.php?q=2',
         datatype: "json",
@@ -50,4 +50,4 @@ $(document).ready(function () {
         if(su) alert("Succes. Write custom code to add data in server"); else alert("Can not update");
     });
 
-});
+};

@@ -1,6 +1,13 @@
 .selectorCategorias{
     background-color: #2E2E2E;
 }
+.nav-tabs.nav-justified>li>a{
+    color: #A9905A;
+}
+
+
+
+
 .cuadroSelector{
     border-radius: 10px;
     background-color: #FFFFFF;
@@ -22,8 +29,24 @@ table{
 }
 
 
+/*-----Tablas------*/
 
-
+#tablaUsuarios
+{
+    display: none;
+}
+#tablaCategorias
+{
+    display: none;
+}
+#tablaArticulos
+{
+    display: none;
+}
+#tablaPedidos
+{
+    display: none;
+}
 
 
 

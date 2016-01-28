@@ -1,10 +1,33 @@
 $(document).ready(function() {
     
-    $('#menu-menuCategorias').on('click', 'a', administrarcategoria);
+    //$('#menu-menuCategorias').on('click', 'a', administrarcategoria);
+    $('#usuarios').click(mostrarUsuarios);
+    $('#categorias').click(mostrarCategorias);
+    $('#articulos').click(mostrarArticulos);
+    $('#pedidos').click(mostrarPedidos);
     
 });
 
-function administrarcategoria(){
+function mostrarUsuarios(){
+    $('#tablaUsuarios').show();
+    $('#tablaCategorias').hide();
+}
+
+function mostrarCategorias(){
+    cargarUsuarios();
+    $('#tablaUsuarios').hide();
+    $('#tablaCategorias').show();
+}
+
+function mostrarArticulos(){
+    alert("art");
+}
+
+function mostrarPedidos(){
+    alert("pedidos");
+}
+
+/*function administrarcategoria(){
     
     $categoria = $(this).text();
     
@@ -24,7 +47,7 @@ function administrarcategoria(){
         case 'pedidos': {
             idCategoria = 4;
         } break;
-    }
+    }*/
     
 /*     $.ajax({                  
         type: 'GET',
@@ -34,6 +57,6 @@ function administrarcategoria(){
         success: function(jsondata) {
             
         }
-     });*/
-}
+     });
+}*/
 

@@ -54,7 +54,7 @@
             </div>
         </nav>
         
-    <section>
+    <section class="datos">
         <div class="cuadroSelector">
             <div class="selectorCategorias">
                 <ul class="nav nav-tabs nav-justified">
@@ -66,38 +66,13 @@
             </div>
             
             
-            <script>
-                $.jgrid.defaults.width = 780;
-                $.jgrid.defaults.styleUI = 'Bootstrap';
-            </script>
+
 
             <div class="container-fluid">
-                <table id="jqGrid"></table>
-                <div id="jqGridPager"></div>
+                <table id="list2"></table>
+                <div id="pager2"></div>
             </div>
-            <script type="text/javascript"> 
-
-
-            $(document).ready(function () {
-
-                    $("#jqGrid").jqGrid({
-                    url: 'pedidos.php',
-                    datatype: "json",
-                     colModel: [
-                        { label: 'ID Pedido', name: 'idPedido', autowidth: true, sorttype: 'integer' },
-                        { label: 'ID Usuario', name: 'idUsuario', autowidth: true, sorttype: 'integer' },
-                        { label: 'Fecha Pedido', name: 'fechaPedido', autowidth: true },
-                        { label: 'Precio Total', name: 'precioTotal', autowidth: true, sorttype: 'integer' },                
-                    ],
-                    viewrecords: true, // show the current page, data rang and total records on the toolbar
-                    autowidth: true,
-                    height: 200,
-                    rowNum: 30,
-                    pager: "#jqGridPager"
-                });
-            });
-
-             </script>
+         
             
         </div>
     </section>
@@ -189,6 +164,7 @@
         <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
         <!-- Mis archivos javascript -->
         <script src="../js/admin.js" type="text/javascript"></script>
+        <script src="../js/pedidos.js" type="text/javascript"></script>
 
     </body>
 </html>

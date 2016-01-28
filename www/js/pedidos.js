@@ -1,14 +1,14 @@
 $(document).ready(function () {
     
 jQuery("#list2").jqGrid({
-   	url:'pedidos.php',
+   	url:'pedidos.php?q=2',
 	datatype: "json",
    	colNames:['ID Pedido','ID Usuario', 'Fecha Pedido', 'Precio Total'],
    	colModel:[
-   		{name:'idPedido',index:'idPedido', autowidth: true, align:"center", sortable: true, sorttype: 'integer'},
-        {name:'idUsuario',index:'idUsuario', autowidth: true, align:"center"},
-        {name:'fechaPedido',index:'fechaPedido', autowidth: true, align:"center"},
-        {name:'precioTotal',index:'precioTotal', autowidth: true, align:"center"}	
+   		{name:'idPedido',index:'idPedido', autowidth: true, align:"center" },
+        {name:'idUsuario',index:'idUsuario', autowidth: true, align:"center" },
+        {name:'fechaPedido',index:'fechaPedido', autowidth: true, align:"center" },
+        {name:'precioTotal',index:'precioTotal', autowidth: true, align:"center" }	
    	],
    	rowNum:10,
    	rowList:[10,20,30],
@@ -18,6 +18,7 @@ jQuery("#list2").jqGrid({
     sortorder: "desc",
     autowidth: true,
     height: 300,
+    caption:"Simple data manipulation"
 });
 jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false});
     

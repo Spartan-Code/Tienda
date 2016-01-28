@@ -1,6 +1,6 @@
 $(document).ready(function() {
     
-    $('.boton-admin').click(administrarcategoria);
+    $('#menu-menuCategorias').on('click', 'a', administrarcategoria);
     
 });
 
@@ -8,22 +8,25 @@ function administrarcategoria(){
     
     $categoria = $(this).text();
     
+    alert($categoria);
+    
     switch ($categoria) {
         case 'Usuarios': {
+            alert("Usuarios");
             idCategoria = 1;
         } break;
-        case 'Categorias': {
+        case 'categorias': {
             idCategoria = 2;
         } break;        
-        case 'Articulos': {
+        case 'articulos': {
             idCategoria = 3;
         } break;      
-        case 'Pedidos': {
+        case 'pedidos': {
             idCategoria = 4;
         } break;
     }
     
-     $.ajax({                  
+/*     $.ajax({                  
         type: 'GET',
         data: {categoria: idCategoria},
         dataType: 'json',
@@ -31,5 +34,6 @@ function administrarcategoria(){
         success: function(jsondata) {
             
         }
-     });
+     });*/
 }
+

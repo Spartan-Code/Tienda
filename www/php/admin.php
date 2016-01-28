@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="../lib/jqgrid/ui.jqgrid-bootstrap.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../lib/jqgrid/ui.jqgrid-bootstrap-ui.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="../lib/jqgrid/ui.jqgrid.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.css" />
         
 
         
@@ -58,7 +59,7 @@
         <div class="cuadroSelector">
             <div class="selectorCategorias">
                 <ul class="nav nav-tabs nav-justified">
-                    <li class="selectores"><a href="#">Usuarios</a></li>
+                    <li><a href="#">Usuarios</a></li>
                     <li><a href="#">Categorías</a></li>
                     <li><a href="#">Artículos</a></li>
                     <li><a href="#">Pedidos</a></li>
@@ -68,9 +69,23 @@
             
 
 
-            <div class="container-fluid">
+<!--            <div class="container-fluid tablas">
                 <table id="list2"></table>
                 <div id="pager2"></div>
+            </div>-->
+            
+            <div class="container-fluid tablas">
+                <table id="list5"></table>
+                <div id="pager5"></div>
+                <br />
+                <a href="#" id="a1">Get data from selected row</a>
+                <br />
+                <a href="#" id="a2">Delete row 2</a>
+                <br />
+                <a href="#" id="a3">Update amounts in row 1</a>
+                <br />
+                <a href="#" id="a4">Add row with id 99</a>
+                <br />
             </div>
          
             
@@ -164,7 +179,9 @@
         <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
         <!-- Mis archivos javascript -->
         <script src="../js/admin.js" type="text/javascript"></script>
-        <script src="../js/pedidos.js" type="text/javascript"></script>
+        <!--<script src="../js/pedidos.js" type="text/javascript"></script>-->
+        <script src="../js/usuarios_back.js" type="text/javascript"></script>
+        <script src="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
 
     </body>
 </html>

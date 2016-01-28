@@ -31,7 +31,7 @@ $responce->records = $count;
 $i=0;
 while($row = mysql_fetch_array($result,MYSQL_ASSOC)) {
     $responce->rows[$i]['id']=$row[id];
-    $responce->rows[$i]['cell']=array($row[idUsuario],$row[idUsuario],$row[fechaPedido],$row[precioTotal]);
+    $responce->rows[$i]['cell']=array($row['idUsuario'],$row['idUsuario'],$row['fechaPedido'],$row['precioTotal']);
     $i++;
 }        
 echo json_encode($responce);

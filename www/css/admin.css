@@ -19,6 +19,13 @@
 
 /*-----------------*/
 
+
+.pull-right {
+  float: right !important;
+}
+
+
+
 #menu-lateral ul li{
     padding: 5px;
 }
@@ -56,9 +63,8 @@ table{
     background-color: #F5F0E5;
 }
 
-#botones-menu{
-    margin-top: 5px !important;
-    float: right;
+.botones-menu{
+    margin: 15px 10px 15px 0 !important;
 }
 
 .btn{

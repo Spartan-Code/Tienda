@@ -5,14 +5,14 @@ $(document).ready(function () {
         datatype: "json",
         colNames:['idArticulo','nombreArticulo', 'descripcionArticulo', 'idCategoria','precioArticulo', 'imagenArticulo', 'codigoArticulo', 'urlArticulo'],
         colModel:[
-            {name:'idArticulo',index:'idUsuario', autowidth: true, align: "center", sortable: true, sorttype: 'integer'},	
-            {name:'nombreArticulo',index:'idUsuario', autowidth: true, align: "center"},
-            {name:'descripcionArticulo',index:'idUsuario', autowidth: true, align: "center"},
-            {name:'idCategoria',index:'idUsuario', autowidth: true, align: "center"},
-            {name:'precioArticulo',index:'idUsuario', autowidth: true, align: "center"},
-            {name:'imagenArticulo',index:'idUsuario', autowidth: true, align: "center"},
-            {name:'codigoArticulo',index:'idUsuario', autowidth: true, align: "center"},
-            {name:'urlArticulo',index:'idUsuario', autowidth: true, align: "center"},
+            {name:'idArticulo',index:'idArticulo', width: 110, align: "center", sorttype: "integer"},	
+            {name:'nombreArticulo',index:'nombreArticulo', autowidth: true, align: "center"},
+            {name:'descripcionArticulo',index:'descripcionArticulo', autowidth: true, align: "center"},
+            {name:'idCategoria',index:'idCategoria', width: 110, align: "center"},
+            {name:'precioArticulo',index:'precioArticulo', width: 110, align: "center"},
+            {name:'imagenArticulo',index:'imagenArticulo', autowidth: true, align: "center"},
+            {name:'codigoArticulo',index:'codigoArticulo', width: 110, align: "center"},
+            {name:'urlArticulo',index:'urlArticulo', autowidth: true, align: "center"},
         ],
         rowNum:10,
         rowList:[10,20,30],
@@ -22,12 +22,13 @@ $(document).ready(function () {
         sortorder: "desc",
         autowidth: true,
         height: 220,
+        //shrinkToFit: false,
         loadonce: true
 
     });
     jQuery("#tArticulos").jqGrid('navGrid','#pArticulos',{edit:false,add:false,del:false});
 
-    jQuery("#a1").click( function(){
+    jQuery("#articuloSelect").click( function(){
         var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
         if (id)	{
             var ret = jQuery("#tArticulos").jqGrid('getRowData',id);
@@ -35,7 +36,7 @@ $(document).ready(function () {
         } else { alert("Please select row");}
     });
 
-    jQuery("#a2").click( function(){
+    jQuery("#articuloDelete").click( function(){
         var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
         if (id)	{
             var ret = jQuery("#tArticulos").jqGrid('getRowData',id);

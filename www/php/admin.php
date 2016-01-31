@@ -125,10 +125,10 @@
                         <table id="tArticulos"></table>
                         <div id="pArticulos"></div>
                         
-                        <div id="botones-menu">
-                            <button href="#" id="a1" type="button" class="btn">Info</button>
+                        <div class="botones-menu" class="">
+                            <button href="#" id="articuloSelect" type="button" class="btn">Info</button>
                             <button href="#" id="a3" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Insertar</button>
-                            <button href="#" id="a2" type="button" class="btn">Borrar</button>
+                            <button href="#" id="articuloDelete" type="button" class="btn">Borrar</button>
                         </div>
                     </div>
 
@@ -136,10 +136,8 @@
                         <table id="tUsuarios"></table>
                         <div id="pagerUsuarios"></div>
                         
-                        <div id="botones-menu">
-                            <button href="#" id="a1" type="button" class="btn">Info</button>
-                            <button href="#" id="a3" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Insertar</button>
-                            <button href="#" id="a2" type="button" class="btn">Borrar</button>
+                        <div class="botones-menu">
+
                         </div>
                     </div>
                 </div>

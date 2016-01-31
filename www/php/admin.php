@@ -59,14 +59,14 @@
                                             
                                             <div class="form-group">
                                                 <label for="categoriaArticulo" class="control-label">Categoría del artículo</label>
-                                                <input type="text" class="form-control" id="categoriaArticulo" name="categoriaArticulo" value="" required="" title="Por favor, introduzca una categoría para el artículo." placeholder="Categoría del artículo">
+                                                <input type="number" class="form-control" id="categoriaArticulo" name="categoriaArticulo" value="" required="" title="Por favor, introduzca una categoría para el artículo." placeholder="Categoría del artículo">
                                                 <span class="help-block"></span>
                                             </div>
                                             
                 
                                             <div class="form-group">
                                                 <label for="precioArticulo" class="control-label">Precio del Artículo</label>
-                                                <input type="text" class="form-control" id="precioArticulo" name="precioArticulo" value="" required="" title="Por favor, introduzca in precio para el artículo." placeholder="Precio del Artículo">
+                                                <input type="number" class="form-control" id="precioArticulo" name="precioArticulo" value="" required="" title="Por favor, introduzca in precio para el artículo." placeholder="Precio del Artículo">
                                                 <span class="help-block"></span>
                                             </div>
                                             
@@ -83,8 +83,8 @@
                                             </div>
   
                                             <div class="form-group">
-                                                <div class="bordeValidacionLogin">
-                                                    <p id="validacionArticulo">asdfasd</p>
+                                                <div class="bordeValidacionArticulos">
+                                                    <p id="validacionArticulos">asdfasd</p>
                                                 </div>
                                             </div>
 

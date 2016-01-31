@@ -8,8 +8,6 @@ $precioArticulo = $_POST['precioArticulo'];
 $imagenArticulo = $_POST['imagenArticulo'];
 $codigoArticulo = $_POST['codigoArticulo'];
 
-echo $nombreArticulo;
-
 session_start();
 $nombreUsuario = $_SESSION["sesionNombreUsuario"];
 
@@ -19,30 +17,29 @@ $nombreUsuario = $_SESSION["sesionNombreUsuario"];
         or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
 
+        //Codigo articulo
+        $queryCodigoArticulo = 'SELECT * FROM articulos WHERE codigoArticulo= "'.$codigoArticulo.'"';
+        $resultCodigoArticulo = mysql_query($queryCodigoArticulo) or die('Consulta fallida: ' . mysql_error());
 
-/*    $queryIdUsuario = 'SELECT * FROM usuarios WHERE nombreUsuario = "'.$nombreUsuario.'"';
-    $resultIdUsuario = mysql_query($queryIdUsuario) or die('Consulta fallida: ' . mysql_error());
-    while ($line = mysql_fetch_array($resultIdUsuario, MYSQL_ASSOC)) {
-            $usuarios[] = $line;
-    }
-    mysql_free_result($resultIdUsuario);
-
-
-    if(count($usuarios)==1)
-    {
-        $idUsuario = $usuarios[0]['idUsuario'];
-    }
-    else
-    {
-        echo "UsuarioNoLogeado";
-    }*/
-     
+        $count=mysql_num_rows($resultCodigoArticulo);
         
+        if($count==1)
+        {   
+            echo true;
+        }
+        else
+        {
         $insertArticulo="INSERT INTO articulos (nombreArticulo, descripcionArticulo, idCategoria, precioArticulo, imagenArticulo, codigoArticulo) VALUES ('$nombreArticulo', '$descripcionArticulo', '$categoriaArticulo', '$precioArticulo', '$imagenArticulo', '$codigoArticulo')";
         $resultInsertArticulo = mysql_query($insertArticulo) or die('Insert fallida: ' . mysql_error());
         
         mysql_free_result($resultInsertArticulo);
+            echo false;
+            
+        }
 
+        mysql_free_result($resultCodigoArticulo);
+     
+        
 
 
    /* foreach($objetoCarrito->reservas as $miReserva)

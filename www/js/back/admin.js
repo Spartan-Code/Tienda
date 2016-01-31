@@ -39,27 +39,51 @@ function mostrarPedidos(){
 
 function insertarArticulo() {
     var formularioInsertArticulo =$('#formularioInsertArticulo').serialize();
-    
-    var jsn = JSON.stringify(formularioInsertArticulo);
 
-    alert(jsn);
+    var nombreArticulo = document.forms["formularioInsertArticulo"]["nombreArticulo"];
+    var descripcionArticulo = document.forms["formularioInsertArticulo"]["descripcionArticulo"];
+    var categoriaArticulo = document.forms["formularioInsertArticulo"]["categoriaArticulo"];
+    var precioArticulo = document.forms["formularioInsertArticulo"]["precioArticulo"];
+    var imagenArticulo = document.forms["formularioInsertArticulo"]["imagenArticulo"];
+    var codigoArticulo = document.forms["formularioInsertArticulo"]["codigoArticulo"];
     
-    $.ajax({                  
-        type: 'POST',
-        url: '../php/back/insertar_articulos_back.php',
-        data: 'datos='+formularioInsertArticulo,
-        success: function(data) {
+    if(nombreArticulo.validity.valid && descripcionArticulo.validity.valid && categoriaArticulo.validity.valid && precioArticulo.validity.valid && imagenArticulo.validity.valid && codigoArticulo.validity.valid){
+        
+        $('#validacionArticulos').css("display", "none");
+        $('.bordeValidacionArticulos').css("display", "none");
+        
+        $.ajax({                  
+            type: 'POST',
+            url: '../php/back/insertar_articulos_back.php',
+            data: 'datos='+formularioInsertArticulo,
+            success: function(data) {
             
-/*            if(data=="1"){
-                alert("ok "+data);
-            }else{
-                alert(data);
+                if(data==true)
+                {
+                    $('#validacionArticulos').css("display", "block");
+                    $('.bordeValidacionArticulos').css("display", "block");
+                    $('#validacionArticulos').text('El articulo ya existe. ');
+                }
+                else
+                {
+                    $('#validacionArticulos').css("display", "none");
+                    $('.bordeValidacionArticulos').css("display", "none");
+                    alert("Insertado correctamente.");
+                 
+/*                  var grid = jQuery("#tArticulos");
+                    grid.trigger("reloadGrid");*/
+                }
+            }
+        });
+    }
+    else{
+        $('#validacionArticulos').css("display", "block");
+        $('.bordeValidacionArticulos').css("display", "block");
+        $('#validacionArticulos').text('Rellene todos los campos antes de insertar. ');
+    }
 
-            }*/
-
-        }
-    });
 }
+
 
 
 /*function administrarcategoria(){

@@ -20,8 +20,7 @@
 }
 #validacionLogin{
     color: red;
-    display: none;
-   
+    display: none; 
 }
 #deslogear{
     display: none;

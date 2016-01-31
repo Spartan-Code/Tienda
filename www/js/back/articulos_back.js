@@ -47,11 +47,26 @@ $(document).ready(function () {
 
     jQuery("#articuloDelete").click( function(){
         var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
-        if (id)	{
-            var ret = jQuery("#tArticulos").jqGrid('getRowData',id);
-        } else { alert("Please select row");}
-        var su=jQuery("#tArticulos").jqGrid('delRowData',ret.idArticulo);
-        if(su) alert("Succes. Write custom code to delete row from server"); else alert("Allready deleted or not in list");
+
+        //if(su) alert("Succes. Write custom code to delete row from server"); else alert("Allready deleted or not in list");
+        
+        var dataString = 'idArticulo='+id;
+        
+        $.ajax({                  
+            type: 'POST',
+            url: '../php/back/borrar_articulos_back.php',
+            data: dataString,
+            success: function(data) {
+                        if (id) {
+                            var ret = jQuery("#tArticulos").jqGrid('getRowData', id);
+                        } else {
+                            alert("Seleccione una fila para borrarla.");
+                        }
+                        var su = jQuery("#tArticulos").jqGrid('delRowData', ret.idArticulo);
+            }
+        });
+        
+        
     });
     
 });

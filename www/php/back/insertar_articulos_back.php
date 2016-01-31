@@ -8,8 +8,10 @@ $precioArticulo = $_POST['precioArticulo'];
 $imagenArticulo = $_POST['imagenArticulo'];
 $codigoArticulo = $_POST['codigoArticulo'];
 
-session_start();
-$nombreUsuario = $_SESSION["sesionNombreUsuario"];
+
+
+/*session_start();
+$nombreUsuario = $_SESSION["sesionNombreUsuario"];*/
 
 
     //Conexion a la BD
@@ -29,33 +31,17 @@ $nombreUsuario = $_SESSION["sesionNombreUsuario"];
         }
         else
         {
+            
         $insertArticulo="INSERT INTO articulos (nombreArticulo, descripcionArticulo, idCategoria, precioArticulo, imagenArticulo, codigoArticulo) VALUES ('$nombreArticulo', '$descripcionArticulo', '$categoriaArticulo', '$precioArticulo', '$imagenArticulo', '$codigoArticulo')";
         $resultInsertArticulo = mysql_query($insertArticulo) or die('Insert fallida: ' . mysql_error());
         
         mysql_free_result($resultInsertArticulo);
-            echo false;
-            
+            //echo false;
+        echo $nombreArticulo;
         }
 
         mysql_free_result($resultCodigoArticulo);
      
-        
-
-
-   /* foreach($objetoCarrito->reservas as $miReserva)
-    {
-        $nombreArticulo = $miReserva->nombre;
-        $idPedido='(SELECT MAX(idPedido) FROM pedidos WHERE idUsuario = "'.$idUsuario.'")';
-        $idArticulo='(SELECT idArticulo FROM articulos WHERE nombreArticulo = "'.$nombreArticulo.'")';
-        $unidadesArticulo = $miReserva->unidades;
-        $precioTotalArticulos = $miReserva->precio*$unidadesArticulo;
-
-        $insertarLineaPedido = "INSERT INTO lineapedidos (idPedido, idArticulo, unidades, precio) VALUES ($idPedido, $idArticulo, $unidadesArticulo, $precioTotalArticulos)";
-        $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert en linea de pedidos fallida: ' . mysql_error());
-
-        mysql_free_result($resultInsertLineaPedido);
-    }
-*/
         // Cerrar la conexión
         mysql_close($connection);
 

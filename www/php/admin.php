@@ -89,7 +89,7 @@
                                             </div>
 
                                             <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
-                                            <button type="button" id="insertarArticulo" class="btn btn-success btn-block">Insertar</button>
+                                            <button type="button" id="insertarActualizarArticulo" class="btn btn-success btn-block">Insertar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                         <div class="botones-menu" class="">
                             <button href="#" id="articuloSelect" type="button" class="btn">Info</button>
                             <button href="#" id="articuloInsert" type="button" class="btn">Insertar</button>
-                            <button href="#" id="" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
+                            <button href="#" id="articuloUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
                             <button href="#" id="articuloDelete" type="button" class="btn">Borrar</button>
                         </div>
                     </div>

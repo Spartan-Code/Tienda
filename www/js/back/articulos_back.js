@@ -29,6 +29,7 @@ $(document).ready(function () {
     });
     jQuery("#tArticulos").jqGrid('navGrid','#pArticulos',{edit:false,add:false,del:false});
 
+    //Select
     jQuery("#articuloSelect").click( function(){
         var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
         if (id)	{
@@ -37,19 +38,44 @@ $(document).ready(function () {
         } else { alert("¡No hay ninguna fila seleccionada!");}
     });
     
+    //Insert
     jQuery("#articuloInsert").click( function(){
         $('#modal-articulos').modal('show');
+        $('#insertarActualizarArticulo').text('Insertar');
+    });
+    
+    //Update
+    jQuery("#articuloUpdate").click( function(){
+        $('#modal-articulos').modal('show');
+        $('#insertarActualizarArticulo').text('Actualizar');
         
-    //	var datarow = {id:"99",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"};
-    //	var su=jQuery("#tArticulos").jqGrid('addRowData',99,datarow);
-    //	if(su) alert("Succes. Write custom code to add data in server"); else alert("Can not update");
+        var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
+        var dataString = 'idArticulo='+id;
+        
+        
+        $.ajax({                  
+            type: 'POST',
+            url: '../php/back/ver_articulos_back.php',
+            data: dataString,
+            success: function(data) {
+                var jsonArticulos = JSON.parse(data);
+
+                document.getElementById('nombreArticulo').value=jsonArticulos[0].nombreArticulo;
+                document.getElementById('descripcionArticulo').value=jsonArticulos[0].descripcionArticulo;
+                document.getElementById('categoriaArticulo').value=jsonArticulos[0].idCategoria;
+                document.getElementById('precioArticulo').value=jsonArticulos[0].precioArticulo;
+                document.getElementById('imagenArticulo').value=jsonArticulos[0].imagenArticulo;
+                document.getElementById('codigoArticulo').value=jsonArticulos[0].codigoArticulo;
+
+            }
+        });
     });
 
+    
+    //Delete
     jQuery("#articuloDelete").click( function(){
         var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
 
-        //if(su) alert("Succes. Write custom code to delete row from server"); else alert("Allready deleted or not in list");
-        
         var dataString = 'idArticulo='+id;
         
         $.ajax({                  

@@ -27,6 +27,82 @@
     <body>   
         
         
+        <!---------------------------------------------Modal articulos-------------------------------------------->
+
+        <div class="modal fade" role="dialog" id="modal-articulos">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Articulos<span id="categoria-articulos"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row>">
+                                <div>
+                                    <span class="texto-descriptivo">Inserte un artículo nuevo</span>
+
+                                    <div class="well">
+                                        <form id="formularioInsertArticulo" action="" method="post">
+                                            
+                                            <div class="form-group">
+                                                <label for="nombreArticulo" class="control-label">Nombre del artículo</label>
+                                                <input type="text" class="form-control" id="nombreArticulo" name="nombreArticulo" value="" required="" title="Por favor, introduzca un nombre para el artículo." placeholder="Nombre del artículo">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="descripcionArticulo" class="control-label">Descripción del artículo</label>
+                                                <input type="text" class="form-control" id="descripcionArticulo" name="descripcionArticulo" value="" required="" title="Por favor, introduzca una descripción para el artículo." placeholder="Descripción del artículo">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="categoriaArticulo" class="control-label">Categoría del artículo</label>
+                                                <input type="text" class="form-control" id="categoriaArticulo" name="categoriaArticulo" value="" required="" title="Por favor, introduzca una categoría para el artículo." placeholder="Categoría del artículo">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                
+                                            <div class="form-group">
+                                                <label for="precioArticulo" class="control-label">Precio del Artículo</label>
+                                                <input type="text" class="form-control" id="precioArticulo" name="precioArticulo" value="" required="" title="Por favor, introduzca in precio para el artículo." placeholder="Precio del Artículo">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="imagenArticulo" class="control-label">Imagen del Artículo</label>
+                                                <input type="text" class="form-control" id="imagenArticulo" name="imagenArticulo" value="" required="" title="Por favor, introduzca una imagen para el artículo." placeholder="Imagen del Artículo">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="codigoArticulo" class="control-label">Código del Artículo</label>
+                                                <input type="text" class="form-control" id="codigoArticulo" name="codigoArticulo" value="" required="" title="Por favor, introduzca código para el artículo." placeholder="Código del Artículo">
+                                                <span class="help-block"></span>
+                                            </div>
+  
+                                            <div class="form-group">
+                                                <div class="bordeValidacionLogin">
+                                                    <p id="validacionArticulo">asdfasd</p>
+                                                </div>
+                                            </div>
+
+                                            <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
+                                            <button type="button" id="insertarArticulo" class="btn btn-success btn-block">Insertar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+<!----------------------------------------------------------- /.modal ---------------------------------------------------------------------->
+        
         
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -127,7 +203,8 @@
                         
                         <div class="botones-menu" class="">
                             <button href="#" id="articuloSelect" type="button" class="btn">Info</button>
-                            <button href="#" id="a3" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Insertar</button>
+                            <button href="#" id="articuloInsert" type="button" class="btn">Insertar</button>
+                            <button href="#" id="" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
                             <button href="#" id="articuloDelete" type="button" class="btn">Borrar</button>
                         </div>
                     </div>
@@ -176,6 +253,7 @@
             </div>
             
         </section>-->
+        
 
         
 
@@ -224,10 +302,10 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
         <!-- Mis archivos javascript -->
-        <script src="../js/admin.js" type="text/javascript"></script>
-        <!--<script src="../js/pedidos.js" type="text/javascript"></script>-->
-        <script src="../js/usuarios_back.js" type="text/javascript"></script>
-        <script src="../js/articulos_back.js" type="text/javascript"></script>
+        <script src="../js/back/admin.js" type="text/javascript"></script>
+        <!--<script src="../js/back/pedidos.js" type="text/javascript"></script>-->
+        <script src="../js/back/usuarios_back.js" type="text/javascript"></script>
+        <script src="../js/back/articulos_back.js" type="text/javascript"></script>
         <script src="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
 
     </body>

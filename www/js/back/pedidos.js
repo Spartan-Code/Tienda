@@ -1,7 +1,7 @@
 $(document).ready(function () {
     
 jQuery("#list2").jqGrid({
-   	url:'pedidos.php?q=2',
+   	url:'back/pedidos.php?q=2',
 	datatype: "json",
    	colNames:['ID Pedido','ID Usuario', 'Fecha Pedido', 'Precio Total'],
    	colModel:[

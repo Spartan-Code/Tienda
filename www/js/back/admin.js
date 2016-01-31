@@ -5,6 +5,8 @@ $(document).ready(function() {
     $('#categorias').click(mostrarCategorias);
     $('#articulos').click(mostrarArticulos);
     $('#pedidos').click(mostrarPedidos);
+
+    $('#insertarArticulo').click(insertarArticulo);
     
 });
 
@@ -33,6 +35,32 @@ function mostrarArticulos(){
 function mostrarPedidos(){
     alert("pedidos");
 }
+
+
+function insertarArticulo() {
+    var formularioInsertArticulo =$('#formularioInsertArticulo').serialize();
+    
+    var jsn = JSON.stringify(formularioInsertArticulo);
+
+    alert(jsn);
+    
+    $.ajax({                  
+        type: 'POST',
+        url: '../php/back/insertar_articulos_back.php',
+        data: 'datos='+formularioInsertArticulo,
+        success: function(data) {
+            
+/*            if(data=="1"){
+                alert("ok "+data);
+            }else{
+                alert(data);
+
+            }*/
+
+        }
+    });
+}
+
 
 /*function administrarcategoria(){
     

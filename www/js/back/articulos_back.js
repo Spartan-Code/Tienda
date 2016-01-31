@@ -1,15 +1,15 @@
 $(document).ready(function () {
 
     jQuery("#tArticulos").jqGrid({
-        url:'articulos_back.php',
+        url:'back/articulos_back.php',
         datatype: "json",
         colNames:['idArticulo','nombreArticulo', 'descripcionArticulo', 'idCategoria','precioArticulo', 'imagenArticulo', 'codigoArticulo', 'urlArticulo'],
         colModel:[
             {name:'idArticulo',index:'idArticulo', width: 110, align: "center", sorttype: "integer"},	
             {name:'nombreArticulo',index:'nombreArticulo', autowidth: true, align: "center"},
             {name:'descripcionArticulo',index:'descripcionArticulo', autowidth: true, align: "center"},
-            {name:'idCategoria',index:'idCategoria', width: 110, align: "center"},
-            {name:'precioArticulo',index:'precioArticulo', width: 110, align: "center"},
+            {name:'idCategoria',index:'idCategoria', width: 120, align: "center"},
+            {name:'precioArticulo',index:'precioArticulo', width: 110, align: "center", sorttype: "integer"},
             {name:'imagenArticulo',index:'imagenArticulo', autowidth: true, align: "center"},
             {name:'codigoArticulo',index:'codigoArticulo', width: 110, align: "center"},
             {name:'urlArticulo',index:'urlArticulo', autowidth: true, align: "center"},
@@ -21,9 +21,10 @@ $(document).ready(function () {
         viewrecords: true,
         sortorder: "desc",
         autowidth: true,
-        height: 220,
+        height: 230,
         //shrinkToFit: false,
-        loadonce: true
+        loadonce: true,
+        caption:"Articulos insertados en la base de datos"
 
     });
     jQuery("#tArticulos").jqGrid('navGrid','#pArticulos',{edit:false,add:false,del:false});
@@ -33,7 +34,15 @@ $(document).ready(function () {
         if (id)	{
             var ret = jQuery("#tArticulos").jqGrid('getRowData',id);
             alert("idArticulo="+ret.idArticulo+" nombreArticulo="+ret.nombreArticulo);
-        } else { alert("Please select row");}
+        } else { alert("¡No hay ninguna fila seleccionada!");}
+    });
+    
+    jQuery("#articuloInsert").click( function(){
+        $('#modal-articulos').modal('show');
+        
+    //	var datarow = {id:"99",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"};
+    //	var su=jQuery("#tArticulos").jqGrid('addRowData',99,datarow);
+    //	if(su) alert("Succes. Write custom code to add data in server"); else alert("Can not update");
     });
 
     jQuery("#articuloDelete").click( function(){
@@ -43,12 +52,6 @@ $(document).ready(function () {
         } else { alert("Please select row");}
         var su=jQuery("#tArticulos").jqGrid('delRowData',ret.idArticulo);
         if(su) alert("Succes. Write custom code to delete row from server"); else alert("Allready deleted or not in list");
-    });
-
-    jQuery("#a3").click( function(){
-    //	var datarow = {id:"99",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"};
-    //	var su=jQuery("#tArticulos").jqGrid('addRowData',99,datarow);
-    //	if(su) alert("Succes. Write custom code to add data in server"); else alert("Can not update");
     });
     
 });

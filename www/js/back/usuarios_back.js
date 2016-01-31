@@ -1,7 +1,7 @@
    function cargarUsuarios(){
 
     jQuery("#tUsuarios").jqGrid({        
-        url:'usuarios_back.php?q=2',
+        url:'back/usuarios_back.php?q=2',
         datatype: "json",
         colNames:['ID Usuario','Date', 'Client', 'Amount','Tax'],
         colModel:[

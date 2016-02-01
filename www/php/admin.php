@@ -103,6 +103,51 @@
         </div>
 <!----------------------------------------------------------- /.modal ---------------------------------------------------------------------->
         
+                <!---------------------------------------------Modal Categorias-------------------------------------------->
+
+        <div class="modal fade" role="dialog" id="modal-categorias">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Categorías<span></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row>">
+                                <div>
+                                    <span class="texto-descriptivo">Inserte una categoría nueva</span>
+
+                                    <div class="well">
+                                        <form id="formularioInsertCategoria" action="" method="post">
+                                            
+                                            <div class="form-group">
+                                                <label for="nombreCategoria" class="control-label">Nombre de la categoría</label>
+                                                <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" value="" required="" title="Por favor, introduzca un nombre para el artículo." placeholder="Nombre del artículo">
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="bordeValidacionCategoria">
+                                                    <p id="validacionCategoria"></p>
+                                                </div>
+                                            </div>
+
+                                            <div id="loginErrorMsg" class="alert alert-error hide">Categoria erronea.</div>
+                                            <button type="button" id="insertarActualizarCategoria" class="btn btn-success btn-block">Insertar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+<!----------------------------------------------------------- /.modal ---------------------------------------------------------------------->
+        
         
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
@@ -207,6 +252,19 @@
                             <button href="#" id="articuloDelete" type="button" class="btn">Borrar</button>
                         </div>
                     </div>
+                    
+                    
+                    <div id="tablaCategorias" class="container-fluid" align="center">
+                        <table id="tCategoria"></table>
+                        <div id="pCategoria"></div>
+                        
+                        <div class="botones-menu" class="">
+                            <button href="#" id="categoriaInsert" type="button" class="btn">Insertar</button>
+                            <button href="#" id="categoriaUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
+                            <button href="#" id="categoriaDelete" type="button" class="btn">Borrar</button>
+                        </div>
+                                            
+                    
 
                     <div id="tablaUsuarios" class="container-fluid" align="center">
                         <table id="tUsuarios"></table>
@@ -305,6 +363,7 @@
         <!--<script src="../js/back/pedidos.js" type="text/javascript"></script>-->
         <script src="../js/back/usuarios_back.js" type="text/javascript"></script>
         <script src="../js/back/articulos_back.js" type="text/javascript"></script>
+        <script src="../js/back/categorias_back.js" type="text/javascript"></script>
         <script src="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
 
     </body>

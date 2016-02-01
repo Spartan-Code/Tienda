@@ -8,7 +8,6 @@
 {
     display: none;
 }
-
 #tablaPedidos
 {
     display: none;
@@ -48,6 +47,22 @@
     margin: 0px;
 }
 #validacionArticulos{
+    color: red;
+    display: none;
+   
+}
+.bordeValidacionCategoria{
+    color: red;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    
+}
+.bordeValidacionCategoria p{
+    margin: 0px;
+}
+#validacionCategorias{
     color: red;
     display: none;
    

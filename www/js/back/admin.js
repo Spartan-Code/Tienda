@@ -7,6 +7,7 @@ $(document).ready(function() {
     $('#pedidos').click(mostrarPedidos);
 
     $('#insertarActualizarArticulo').click(insertarArticulo);
+    $('#insertarActualizarCategoria').click(insertarCategoria);
     
 });
 
@@ -33,7 +34,10 @@ function mostrarArticulos(){
 }
 
 function mostrarPedidos(){
-    alert("pedidos");
+    $('#tablaArticulos').hide();
+    $('#tablaCategorias').hide();
+    $('#tablaUsuarios').hide();
+    $('#tablaPedidos').show();
 }
 
 
@@ -116,39 +120,83 @@ function insertarArticulo() {
 }
 
 
+function insertarCategoria() {
+    var formularioInsertCategoria =$('#formularioInsertCategoria').serialize();
 
+    var nombreCategoria = document.forms["formularioInsertCategoria"]["nombreCategoria"];
+    
+    var tipoAccion = $('#insertarActualizarCategoria').text();
+    
+    alert(formularioInsertCategoria);
+    
+    
+    if(tipoAccion=='Insertar'){
+        
+        if(nombreCategoria.validity.valid){
 
+            $('#validacionCategorias').css("display", "none");
+            $('.bordeValidacionCategoria').css("display", "none");
 
-/*function administrarcategoria(){
-    
-    $categoria = $(this).text();
-    
-    alert($categoria);
-    
-    switch ($categoria) {
-        case 'Usuarios': {
-            alert("Usuarios");
-            idCategoria = 1;
-        } break;
-        case 'categorias': {
-            idCategoria = 2;
-        } break;        
-        case 'articulos': {
-            idCategoria = 3;
-        } break;      
-        case 'pedidos': {
-            idCategoria = 4;
-        } break;
-    }*/
-    
-/*     $.ajax({                  
-        type: 'GET',
-        data: {categoria: idCategoria},
-        dataType: 'json',
-        url: './php/admin-usuarios.php',
-        success: function(jsondata) {
-            
+            $.ajax({                  
+                type: 'POST',
+                url: '../php/back/insertar_categorias_back.php',
+                data: 'datos=&'+formularioInsertCategoria,
+                success: function(data) {
+
+                    if(data==true)
+                    {
+                        $('#validacionCategoria').css("display", "block");
+                        $('.bordeValidacionCategoria').css("display", "block");
+                        $('#validacionCategoria').text('La categoría ya existe. ');
+                    }
+                    else
+                    {
+                        $('#validacionCategoria').css("display", "none");
+                        $('.bordeValidacionCategoria').css("display", "none");
+                        alert("Insertada correctamente.");
+                        alert(data);
+
+                        var grid = jQuery("#tCategorias");
+                        grid.trigger("reloadGrid");
+                    }
+                }
+            });
         }
-     });
-}*/
+        else{
+            $('#validacionCategoria').css("display", "block");
+            $('.bordeValidacionCategoria').css("display", "block");
+            $('#validacionCategoria').text('Rellene todos los campos antes de insertar. ');
+        }
+
+    }
+    else{
+        
+        if(nombreCategoria.validity.valid){
+
+            $('#validacionCategoria').css("display", "none");
+            $('.bordeValidacionCategoria').css("display", "none");
+
+            $.ajax({                  
+                type: 'POST',
+                url: '../php/back/actualizar_categorias_back.php',
+                data: 'datos=&'+formularioInsertCategoria,
+                success: function(data) {
+                    alert(data);
+
+                }
+            });
+        }
+        else{
+            $('#validacionCategoria').css("display", "block");
+            $('.bordeValidacionCategoria').css("display", "block");
+            $('#validacionCategoria').text('Rellene todos los campos antes de insertar. ');
+        }
+    }
+}
+
+
+
+
+
+
 

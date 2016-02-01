@@ -1,50 +1,61 @@
-$(document).ready(function () {
-    
-jQuery("#list2").jqGrid({
-   	url:'back/pedidos.php?q=2',
-	datatype: "json",
-   	colNames:['ID Pedido','ID Usuario', 'Fecha Pedido', 'Precio Total'],
-   	colModel:[
-   		{name:'idPedido',index:'idPedido', autowidth: true, align:"center" },
-        {name:'idUsuario',index:'idUsuario', autowidth: true, align:"center" },
-        {name:'fechaPedido',index:'fechaPedido', autowidth: true, align:"center" },
-        {name:'precioTotal',index:'precioTotal', autowidth: true, align:"center" }	
-   	],
-   	rowNum:10,
-   	rowList:[10,20,30],
-   	pager: '#pager2',
-   	sortname: 'id',
-    viewrecords: true,
-    sortorder: "desc",
-    autowidth: true,
-    height: 300,
-    loadonce: true,
-    caption:"Simple data manipulation"
-});
-jQuery("#list2").jqGrid('navGrid','#pager2',{edit:false,add:false,del:false});
-    
-    
-    
-    
-    
-
-/*$.jgrid.defaults.width = 780;
-$.jgrid.defaults.styleUI = 'Bootstrap';
-
-    $("#jqGrid").jqGrid({
-        url: 'pedidos.php',
+function cargarPedidos() {
+    jQuery("#tPedidos").jqGrid({
+        url:'back/pedidos_back.php',
         datatype: "json",
-         colModel: [
-            { label: 'ID Pedido', name: 'idPedido', autowidth: true, sorttype: 'integer' },
-            { label: 'ID Usuario', name: 'idUsuario', autowidth: true, sorttype: 'integer' },
-            { label: 'Fecha Pedido', name: 'fechaPedido', autowidth: true },
-            { label: 'Precio Total', name: 'precioTotal', autowidth: true, sorttype: 'integer' }              
+        colNames:['ID Pedido','ID Usuario', 'Fecha pedido', 'Precio total'],
+        colModel:[
+            {name:'idPedido',index:'idPedido', autowidth: true, align: "center", sorttype: "integer"},
+            {name:'idUsuario',index:'idUsuario', autowidth: true, align: "center", sorttype: "integer"},
+            {name:'fechaPedido',index:'fechaPedido', autowidth: true, align: "center"},
+            {name:'precioTotal',index:'precioTotal', autowidth: true, align: "center", sorttype: "integer"},
         ],
-        viewrecords: true, // show the current page, data rang and total records on the toolbar
-        autowidth: true,
-        height: 200,
-        rowNum: 4,
-        pager: "#jqGridPager"
-    });*/
-});
+        rowNum:10,
+        rowList:[10,20,30],
+        pager: '#pPedidos',
+        sortname: 'id',
+        viewrecords: true,
+        sortorder: "desc",
+        multiselect: false,
+        caption: "Pedidos",
+        onSelectRow: function(ids) {
+            if(ids == null) {
+                ids=0;
+                if(jQuery("#tPedidos_detail").jqGrid('getGridParam','records') >0 )
+                {
+                    jQuery("#tPedidos_detail").jqGrid('setGridParam',{url:"back/pedidos_detail_back.php?q=1&id="+ids,page:1});
+                    jQuery("#tPedidos_detail").jqGrid('setCaption',"Invoice Detail: "+ids)
+                    .trigger('reloadGrid');
+                }
+            } else {
+                jQuery("#tPedidos_detail").jqGrid('setGridParam',{url:"back/pedidos_detail_back.php?q=1&id="+ids,page:1});
+                jQuery("#tPedidos_detail").jqGrid('setCaption',"Invoice Detail: "+ids)
+                .trigger('reloadGrid');			
+            }
+        }
+    });
+    jQuery("#tPedidos").jqGrid('navGrid','#pPedidos',{add:false,edit:false,del:false});
+    
+    
+
+    jQuery("#tPedidos_detail").jqGrid({
+        height: 100,
+        url:'back/pedidos_detail_back.php?q=1&id=0',
+        datatype: "json",
+        colNames:['ID Pedido','ID Artículo', 'Unidades', 'Precio'],
+        colModel:[
+            {name:'idPedido',index:'idPedido', autowidth: true, align: "center", sorttype: "integer"},
+            {name:'idArticulo',index:'idArticulo', autowidth: true, align: "center", sorttype: "integer"},
+            {name:'unidades',index:'unidades', autowidth: true, align: "center", sorttype: "integer"},
+            {name:'precio',index:'precio', autowidth: true, align: "center", sorttype: "integer"},		
+        ],
+        rowNum:5,
+        rowList:[5,10,20],
+        pager: '#pPedidos_detail',
+        sortname: 'item',
+        viewrecords: true,
+        sortorder: "asc",
+        multiselect: true,
+        caption:"Linea de pedido"
+    }).navGrid('#pPedidos_detail',{add:false,edit:false,del:false});
+}
 

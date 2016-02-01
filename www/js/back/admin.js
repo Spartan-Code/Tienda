@@ -9,6 +9,8 @@ $(document).ready(function() {
     $('#insertarActualizarArticulo').click(insertarArticulo);
     $('#insertarActualizarCategoria').click(insertarCategoria);
     
+    cargarArticulosBack();
+    
 });
 
 function mostrarUsuarios(){
@@ -20,6 +22,7 @@ function mostrarUsuarios(){
 }
 
 function mostrarCategorias(){
+    cargarCategoriasBack();
     $('#tablaArticulos').hide();
     $('#tablaCategorias').show();
     $('#tablaUsuarios').hide();
@@ -34,6 +37,7 @@ function mostrarArticulos(){
 }
 
 function mostrarPedidos(){
+    cargarPedidos();
     $('#tablaArticulos').hide();
     $('#tablaCategorias').hide();
     $('#tablaUsuarios').hide();
@@ -52,9 +56,7 @@ function insertarArticulo() {
     var codigoArticulo = document.forms["formularioInsertArticulo"]["codigoArticulo"];
     
     var tipoAccion = $('#insertarActualizarArticulo').text();
-    
-    alert(formularioInsertArticulo);
-    
+ 
     
     if(tipoAccion=='Insertar'){
         
@@ -80,7 +82,7 @@ function insertarArticulo() {
                         $('#validacionArticulos').css("display", "none");
                         $('.bordeValidacionArticulos').css("display", "none");
                         alert("Insertado correctamente.");
-                        alert(data);
+
 
                         var grid = jQuery("#tArticulos");
                         grid.trigger("reloadGrid");
@@ -127,9 +129,6 @@ function insertarCategoria() {
     
     var tipoAccion = $('#insertarActualizarCategoria').text();
     
-    alert(formularioInsertCategoria);
-    
-    
     if(tipoAccion=='Insertar'){
         
         if(nombreCategoria.validity.valid){
@@ -154,10 +153,9 @@ function insertarCategoria() {
                         $('#validacionCategoria').css("display", "none");
                         $('.bordeValidacionCategoria').css("display", "none");
                         alert("Insertada correctamente.");
-                        alert(data);
 
                         var grid = jQuery("#tCategorias");
-                        grid.trigger("reloadGrid");
+                        grid.trigger('reloadGrid');
                     }
                 }
             });
@@ -181,7 +179,6 @@ function insertarCategoria() {
                 url: '../php/back/actualizar_categorias_back.php',
                 data: 'datos=&'+formularioInsertCategoria,
                 success: function(data) {
-                    alert(data);
 
                 }
             });

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function cargarArticulosBack() {
 
     jQuery("#tArticulos").jqGrid({
         url:'back/articulos_back.php',
@@ -100,4 +100,4 @@ $(document).ready(function () {
         
     });
     
-});
+}

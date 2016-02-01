@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function cargarCategoriasBack() {
 
     jQuery("#tCategoria").jqGrid({
         url:'back/categorias_back.php',
@@ -64,14 +64,13 @@ $(document).ready(function () {
     
     //Delete
     jQuery("#categoriaDelete").click( function(){
-        alert("ava");
         var id = jQuery("#tCategoria").jqGrid('getGridParam','selrow');
 
         var dataString = 'idCategoria='+id;
         
         $.ajax({                  
             type: 'POST',
-            url: '../php/back/borrar_categoria_back.php',
+            url: '../php/back/borrar_categorias_back.php',
             data: dataString,
             success: function(data) {
                         if (id) {
@@ -79,11 +78,11 @@ $(document).ready(function () {
                         } else {
                             alert("Seleccione una fila para borrarla.");
                         }
-                        var su = jQuery("#tCategoria").jqGrid('delRowData', ret.idArticulo);
+                        var su = jQuery("#tCategoria").jqGrid('delRowData', ret.idCategoria);
             }
         });
         
         
     });
     
-});
+}

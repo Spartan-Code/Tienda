@@ -123,7 +123,7 @@
                                             
                                             <div class="form-group">
                                                 <label for="nombreCategoria" class="control-label">Nombre de la categoría</label>
-                                                <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" value="" required="" title="Por favor, introduzca un nombre para el artículo." placeholder="Nombre del artículo">
+                                                <input type="text" class="form-control" id="nombreCategoria" name="nombreCategoria" value="" required="" title="Por favor, introduzca un nombre para el artículo." placeholder="Nombre de la categoría">
                                                 <span class="help-block"></span>
                                             </div>
 
@@ -263,9 +263,9 @@
                             <button href="#" id="categoriaUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
                             <button href="#" id="categoriaDelete" type="button" class="btn">Borrar</button>
                         </div>
-                                            
+                    </div>
                     
-
+                    
                     <div id="tablaUsuarios" class="container-fluid" align="center">
                         <table id="tUsuarios"></table>
                         <div id="pagerUsuarios"></div>
@@ -274,9 +274,18 @@
 
                         </div>
                     </div>
-                </div>
+                    
+                    
+                    <div id="tablaPedidos" class="container-fluid" align="center">
+                        <table id="tPedidos"></table>
+                        <div id="pPedidos"></div>
+                        
+                        <br /><br />
+                        <table id="tPedidos_detail"></table>
+                        <div id="pPedidos_detail"></div>
+                    </div>
                 
-            </div>
+                </div>
             </div>
         </section>   
         
@@ -360,10 +369,10 @@
         <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
         <!-- Mis archivos javascript -->
         <script src="../js/back/admin.js" type="text/javascript"></script>
-        <!--<script src="../js/back/pedidos.js" type="text/javascript"></script>-->
-        <script src="../js/back/usuarios_back.js" type="text/javascript"></script>
         <script src="../js/back/articulos_back.js" type="text/javascript"></script>
         <script src="../js/back/categorias_back.js" type="text/javascript"></script>
+        <script src="../js/back/usuarios_back.js" type="text/javascript"></script>
+        <script src="../js/back/pedidos_back.js" type="text/javascript"></script>
         <script src="../lib/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
 
     </body>

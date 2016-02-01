@@ -202,7 +202,6 @@
                         <div id="pArticulos"></div>
                         
                         <div class="botones-menu" class="">
-                            <button href="#" id="articuloSelect" type="button" class="btn">Info</button>
                             <button href="#" id="articuloInsert" type="button" class="btn">Insertar</button>
                             <button href="#" id="articuloUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
                             <button href="#" id="articuloDelete" type="button" class="btn">Borrar</button>

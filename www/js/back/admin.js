@@ -49,6 +49,9 @@ function insertarArticulo() {
     
     var tipoAccion = $('#insertarActualizarArticulo').text();
     
+    alert(formularioInsertArticulo);
+    
+    
     if(tipoAccion=='Insertar'){
         
         if(nombreArticulo.validity.valid && descripcionArticulo.validity.valid && categoriaArticulo.validity.valid && precioArticulo.validity.valid && imagenArticulo.validity.valid && codigoArticulo.validity.valid){
@@ -59,7 +62,7 @@ function insertarArticulo() {
             $.ajax({                  
                 type: 'POST',
                 url: '../php/back/insertar_articulos_back.php',
-                data: 'datos='+formularioInsertArticulo,
+                data: 'datos=&'+formularioInsertArticulo,
                 success: function(data) {
 
                     if(data==true)
@@ -75,8 +78,8 @@ function insertarArticulo() {
                         alert("Insertado correctamente.");
                         alert(data);
 
-    /*                  var grid = jQuery("#tArticulos");
-                        grid.trigger("reloadGrid");*/
+                        var grid = jQuery("#tArticulos");
+                        grid.trigger("reloadGrid");
                     }
                 }
             });
@@ -89,6 +92,7 @@ function insertarArticulo() {
 
     }
     else{
+        
         if(nombreArticulo.validity.valid && descripcionArticulo.validity.valid && categoriaArticulo.validity.valid && precioArticulo.validity.valid && imagenArticulo.validity.valid && codigoArticulo.validity.valid){
 
             $('#validacionArticulos').css("display", "none");
@@ -97,7 +101,7 @@ function insertarArticulo() {
             $.ajax({                  
                 type: 'POST',
                 url: '../php/back/actualizar_articulos_back.php',
-                data: 'datos='+formularioInsertArticulo,
+                data: 'datos=&'+formularioInsertArticulo,
                 success: function(data) {
 
                 }
@@ -108,11 +112,10 @@ function insertarArticulo() {
             $('.bordeValidacionArticulos').css("display", "block");
             $('#validacionArticulos').text('Rellene todos los campos antes de insertar. ');
         }
-
     }
-
-
 }
+
+
 
 
 

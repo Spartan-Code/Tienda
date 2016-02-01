@@ -9,7 +9,6 @@ $imagenArticulo = $_POST['imagenArticulo'];
 $codigoArticulo = $_POST['codigoArticulo'];
 
 
-
 /*session_start();
 $nombreUsuario = $_SESSION["sesionNombreUsuario"];*/
 

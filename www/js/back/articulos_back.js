@@ -42,6 +42,10 @@ $(document).ready(function () {
     jQuery("#articuloInsert").click( function(){
         $('#modal-articulos').modal('show');
         $('#insertarActualizarArticulo').text('Insertar');
+        $('#codigoArticulo').prop('disabled', false);
+        document.getElementById("formularioInsertArticulo").reset();
+
+        
     });
     
     //Update
@@ -49,10 +53,11 @@ $(document).ready(function () {
         $('#modal-articulos').modal('show');
         $('#insertarActualizarArticulo').text('Actualizar');
         
+        $('#codigoArticulo').prop('disabled', true);
+        
         var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
         var dataString = 'idArticulo='+id;
-        
-        
+          
         $.ajax({                  
             type: 'POST',
             url: '../php/back/ver_articulos_back.php',

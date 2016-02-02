@@ -8,6 +8,8 @@ $precioArticulo = $_POST['precioArticulo'];
 $imagenArticulo = $_POST['imagenArticulo'];
 $codigoArticulo = $_POST['codigoArticulo'];
 
+echo $codigoArticulo;
+
 /*session_start();
 $nombreUsuario = $_SESSION["sesionNombreUsuario"];*/
 
@@ -17,14 +19,10 @@ $nombreUsuario = $_SESSION["sesionNombreUsuario"];*/
         or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
 
-
-    $insertArticulo='UPDATE articulos SET descripcionArticulo= "'.$descripcionArticulo.'" WHERE codigoArticulo= "'.$codigoArticulo.'"';
+    $insertArticulo='UPDATE articulos SET nombreArticulo= "'.$nombreArticulo.'", descripcionArticulo= "'.$descripcionArticulo.'", idCategoria= "'.$categoriaArticulo.'", precioArticulo= "'.$precioArticulo.'", imagenArticulo= "'.$imagenArticulo.'", codigoArticulo= "'.$codigoArticulo.'" WHERE codigoArticulo= "'.$codigoArticulo.'"';
     $resultInsertArticulo = mysql_query($insertArticulo) or die('Insert fallida: ' . mysql_error());
         
     mysql_free_result($resultInsertArticulo);
-
-
-    mysql_free_result($resultCodigoArticulo);
      
 
     // Cerrar la conexión

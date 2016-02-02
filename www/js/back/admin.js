@@ -47,7 +47,12 @@ function mostrarPedidos(){
 
 
 function insertarArticulo() {
+    
+    $('#codigoArticulo').prop("disabled", false);
+    
     var formularioInsertArticulo =$('#formularioInsertArticulo').serialize();
+    
+    $('#codigoArticulo').prop("disabled", true);
 
     var nombreArticulo = document.forms["formularioInsertArticulo"]["nombreArticulo"];
     var descripcionArticulo = document.forms["formularioInsertArticulo"]["descripcionArticulo"];
@@ -112,7 +117,7 @@ function insertarArticulo() {
                 url: '../php/back/actualizar_articulos_back.php',
                 data: 'datos=&'+formularioInsertArticulo,
                 success: function(data) {
-
+                    alert(data);
                 }
             });
         }

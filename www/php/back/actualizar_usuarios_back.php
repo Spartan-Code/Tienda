@@ -19,13 +19,12 @@ $nombreUsuario = $_SESSION["sesionNombreUsuario"];*/
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
 
 
-    $insertArticulo='UPDATE usuarios SET nombreUsuario= "'.$nombreUsuario.'" WHERE idUsuario= "'.$idUsuario.'"';
+    $insertArticulo='UPDATE usuarios SET nombreUsuario= "'.$nombreUsuario.'", emailUsuario= "'.$emailUsuario.'", rolUsuario= "'.$rolUsuario.'", contrasenaUsuario= "'.$contrasenaUsuario.'" WHERE idUsuario= "'.$idUsuario.'"';
     $resultInsertArticulo = mysql_query($insertArticulo) or die('Insert fallida: ' . mysql_error());
+
         
     mysql_free_result($resultInsertArticulo);
 
-
-    mysql_free_result($resultCodigoArticulo);
      
 
     // Cerrar la conexión

@@ -56,7 +56,7 @@ function cargarCategoriasBack() {
             data: dataString,
             success: function(data) {
                 var jsonCategorias = JSON.parse(data);
-                document.getElementById('nombreCategoria').value=jsonCategorias[0].nombreCategoria;
+                $('#nombreCategoria').val(jsonCategorias[0].nombreCategoria);
             }
         });
     });

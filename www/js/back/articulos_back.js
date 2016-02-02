@@ -44,8 +44,24 @@ function cargarArticulosBack() {
         $('#insertarActualizarArticulo').text('Insertar');
         $('#codigoArticulo').prop('disabled', false);
         document.getElementById("formularioInsertArticulo").reset();
-
         
+        //Recoge las categorias
+        $.ajax({                  
+            type: 'POST',
+            url: '../php/back/ver_tipo_categorias.php',
+            success: function(data) {
+                var jsonArticulos = JSON.parse(data);
+                
+                $('#categoriaArticulo').empty().append('whatever');
+                
+                $.each(jsonArticulos, function(i, item) {
+                    $('#categoriaArticulo').append($('<option/>', { 
+                        value: jsonArticulos[i].idCategoria,
+                        text : jsonArticulos[i].nombreCategoria
+                    }));
+                });
+            }
+        });   
     });
     
     //Update
@@ -64,13 +80,29 @@ function cargarArticulosBack() {
             data: dataString,
             success: function(data) {
                 var jsonArticulos = JSON.parse(data);
+                
+                //Recoge las categorias
+                $.ajax({                  
+                    type: 'POST',
+                    url: '../php/back/ver_tipo_categorias.php',
+                    success: function(data) {
+                        var jsonArticulos2 = JSON.parse(data);
 
-                document.getElementById('nombreArticulo').value=jsonArticulos[0].nombreArticulo;
-                document.getElementById('descripcionArticulo').value=jsonArticulos[0].descripcionArticulo;
-                document.getElementById('categoriaArticulo').value=jsonArticulos[0].idCategoria;
-                document.getElementById('precioArticulo').value=jsonArticulos[0].precioArticulo;
-                document.getElementById('imagenArticulo').value=jsonArticulos[0].imagenArticulo;
-                document.getElementById('codigoArticulo').value=jsonArticulos[0].codigoArticulo;
+                        $('#categoriaArticulo').empty().append('whatever');
+
+                        $.each(jsonArticulos2, function(i, item) {
+                            $('#categoriaArticulo').append($('<option/>', { 
+                                value: jsonArticulos2[i].idCategoria,
+                                text : jsonArticulos2[i].nombreCategoria
+                            }));
+                        });
+                        alert(jsonArticulos2[jsonArticulos[0].idCategoria].nombreCategoria);            
+                    }
+                });   
+
+
+
+
 
             }
         });

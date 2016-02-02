@@ -56,6 +56,8 @@ function insertarArticulo() {
     var imagenArticulo = document.forms["formularioInsertArticulo"]["imagenArticulo"];
     var codigoArticulo = document.forms["formularioInsertArticulo"]["codigoArticulo"];
     
+    alert(formularioInsertArticulo);
+    
     var tipoAccion = $('#insertarActualizarArticulo').text();
  
     
@@ -191,6 +193,7 @@ function insertarCategoria() {
         }
     }
 }
+
 
 function insertarUsuario() {
         

@@ -57,11 +57,15 @@
                                                 <span class="help-block"></span>
                                             </div>
                                             
-                                            <div class="form-group">
+                                            <select id="categoriaArticulo" name="categoriaArticulo">
+                                                
+                                            </select>
+                                            
+<!--                                            <div class="form-group">
                                                 <label for="categoriaArticulo" class="control-label">Categoría del artículo</label>
                                                 <input type="number" class="form-control" id="categoriaArticulo" name="categoriaArticulo" value="" required="" title="Por favor, introduzca una categoría para el artículo." placeholder="Categoría del artículo">
                                                 <span class="help-block"></span>
-                                            </div>
+                                            </div>-->
                                             
                 
                                             <div class="form-group">
@@ -186,12 +190,16 @@
                                                 <span class="help-block"></span>
                                             </div>
                                             
+                                            <select id="rolUsuario" name="rolUsuario">
+                                                <option value="usuario">Usuario</option>
+                                                <option value="administrador">Administrador</option>
+                                            </select>
                 
-                                            <div class="form-group">
+<!--                                            <div class="form-group">
                                                 <label for="rolUsuario" class="control-label">Rol del Usuario</label>
                                                 <input type="text" class="form-control" id="rolUsuario" name="rolUsuario" value="" required="" title="Por favor, introduzca in precio para el artículo." placeholder="Rol del Usuario">
                                                 <span class="help-block"></span>
-                                            </div>
+                                            </div>-->
                                             
                                             <div class="form-group">
                                                 <label for="contrasenaUsuario" class="control-label">Contraseña del Usuario</label>

@@ -3,7 +3,7 @@ function cargarCategoriasBack() {
     jQuery("#tCategoria").jqGrid({
         url:'back/categorias_back.php',
         datatype: "json",
-        colNames:['idCategoria','nombreCategoria'],
+        colNames:['ID Categoría','Nombre Categoría'],
         colModel:[
             {name:'idCategoria',index:'idCategoria', autowidth: true, align: "center", sorttype: "integer"},	
             {name:'nombreCategoria',index:'nombreCategoria', autowidth: true, align: "center"},

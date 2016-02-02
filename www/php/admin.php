@@ -149,6 +149,79 @@
 <!----------------------------------------------------------- /.modal ---------------------------------------------------------------------->
         
         
+        
+        <!---------------------------------------------Modal usuarios-------------------------------------------->
+
+        <div class="modal fade" role="dialog" id="modal-usuarios">
+            <div class="modal-dialog modal-login">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Usuarios<span id="categoria-usuarios"></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row>">
+                                <div>
+                                    <span class="texto-descriptivo">Inserte o modifique un usuario</span>
+
+                                    <div class="well">
+                                        <form id="formularioInsertUsuario" action="" method="post">
+                                            
+                                            <div id="bloqueIdUsuario" class="form-group">
+                                                <label for="idUsuario" class="control-label">ID del Usuario</label>
+                                                <input type="number" class="form-control" id="idUsuario" name="idUsuario" disabled value="" required="" title="Por favor, introduzca un nombre para el artículo." placeholder="ID del Usuario">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="nombreUsuario" class="control-label">Nombre del Usuario</label>
+                                                <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" value="" required="" title="Por favor, introduzca una descripción para el artículo." placeholder="Nombre del Usuario">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="emailUsuario" class="control-label">Email del Usuario</label>
+                                                <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" value="" required="" title="Por favor, introduzca una categoría para el artículo." placeholder="Email del Usuario">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                
+                                            <div class="form-group">
+                                                <label for="rolUsuario" class="control-label">Rol del Usuario</label>
+                                                <input type="text" class="form-control" id="rolUsuario" name="rolUsuario" value="" required="" title="Por favor, introduzca in precio para el artículo." placeholder="Rol del Usuario">
+                                                <span class="help-block"></span>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="contrasenaUsuario" class="control-label">Contraseña del Usuario</label>
+                                                <input type="password" class="form-control" id="contrasenaUsuario" name="contrasenaUsuario" value="" required="" title="Por favor, introduzca una imagen para el artículo." placeholder="Contraseña del Usuario">
+                                                <span class="help-block"></span>
+                                            </div>
+  
+                                            <div class="form-group">
+                                                <div class="bordeValidacionUsuarios">
+                                                    <p id="validacionUsuarios">Validación</p>
+                                                </div>
+                                            </div>
+
+                                            <div id="loginErrorMsg" class="alert alert-error hide">Usuario o contraseña erroneos.</div>
+                                            <button type="button" id="insertarActualizarUsuario" class="btn btn-success btn-block">Insertar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+<!----------------------------------------------------------- /.modal ---------------------------------------------------------------------->
+        
+        
+        
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -268,11 +341,14 @@
                     
                     <div id="tablaUsuarios" class="container-fluid" align="center">
                         <table id="tUsuarios"></table>
-                        <div id="pagerUsuarios"></div>
+                        <div id="pUsuarios"></div>
                         
-                        <div class="botones-menu">
-
+                       <div class="botones-menu" class="">
+                            <button href="#" id="usuarioInsert" type="button" class="btn">Insertar</button>
+                            <button href="#" id="usuarioUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
+                            <button href="#" id="usuarioDelete" type="button" class="btn">Borrar</button>
                         </div>
+    
                     </div>
                     
                     

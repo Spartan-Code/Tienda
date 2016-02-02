@@ -68,6 +68,22 @@
     display: none;
    
 }
+.bordeValidacionUsuarios{
+    color: red;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    
+}
+.bordeValidacionUsuarios p{
+    margin: 0px;
+}
+#validacionUsuarios{
+    color: red;
+    display: none;
+}
+
 /*-----------------*/
 
 

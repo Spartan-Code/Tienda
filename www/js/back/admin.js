@@ -8,6 +8,7 @@ $(document).ready(function() {
 
     $('#insertarActualizarArticulo').click(insertarArticulo);
     $('#insertarActualizarCategoria').click(insertarCategoria);
+    $('#insertarActualizarUsuario').click(insertarUsuario);
     
     cargarArticulosBack();
     
@@ -191,7 +192,88 @@ function insertarCategoria() {
     }
 }
 
+function insertarUsuario() {
+        
+    $('#idUsuario').prop("disabled", false);
+    
+    var formularioInsertUsuario =$('#formularioInsertUsuario').serialize();
+    
+    $('#idUsuario').prop("disabled", true);
 
+    var idUsuario = document.forms["formularioInsertUsuario"]["idUsuario"];
+    alert("form: "+formularioInsertUsuario);
+    var nombreUsuario = document.forms["formularioInsertUsuario"]["nombreUsuario"];
+    var emailUsuario = document.forms["formularioInsertUsuario"]["emailUsuario"];
+    var rolUsuario = document.forms["formularioInsertUsuario"]["rolUsuario"];
+    var contrasenaUsuario = document.forms["formularioInsertUsuario"]["contrasenaUsuario"];
+    
+    var tipoAccion = $('#insertarActualizarUsuario').text();
+
+    if(tipoAccion=='Insertar'){
+
+          
+        if(nombreUsuario.validity.valid && emailUsuario.validity.valid && rolUsuario.validity.valid && contrasenaUsuario.validity.valid){
+
+            $('#validacionArticulos').css("display", "none");
+            $('.bordeValidacionUsuarios').css("display", "none");
+
+            $.ajax({                  
+                type: 'POST',
+                url: '../php/back/insertar_usuarios_back.php',
+                data: 'datos=&'+formularioInsertUsuario,
+                success: function(data) {
+
+                    if(data==true)
+                    {
+                        $('#validacionUsuarios').css("display", "block");
+                        $('.bordeValidacionUsuarios').css("display", "block");
+                        $('#validacionUsuarios').text('El articulo ya existe. ');
+                    }
+                    else
+                    {
+                        $('#validacionUsuarios').css("display", "none");
+                        $('.bordeValidacionUsuarios').css("display", "none");
+                        alert("Insertado correctamente.");
+
+
+                        var grid = jQuery("#tArticulos");
+                        grid.trigger("reloadGrid");
+                    }
+                }
+            });
+        }
+        else{
+            $('#validacionUsuarios').css("display", "block");
+            $('.bordeValidacionUsuarios').css("display", "block");
+            $('#validacionUsuarios').text('Rellene todos los campos antes de insertar. ');
+        }
+
+    }
+    else{
+        
+        $('#bloqueIdUsuario').show();
+        
+        if(nombreUsuario.validity.valid && emailUsuario.validity.valid && rolUsuario.validity.valid && contrasenaUsuario.validity.valid){
+
+            $('#validacionUsuarios').css("display", "none");
+            $('.bordeValidacionUsuarios').css("display", "none");
+
+            $.ajax({                  
+                type: 'POST',
+                url: '../php/back/actualizar_usuarios_back.php',
+                data: 'datos=&'+formularioInsertUsuario,
+                success: function(data) {
+                    alert(data);
+                }
+            });
+        }
+        else{
+            $('#validacionUsuarios').css("display", "block");
+            $('.bordeValidacionUsuarios').css("display", "block");
+            $('#validacionUsuarios').text('Rellene todos los campos antes de insertar. ');
+        }
+    }
+}
 
 
 

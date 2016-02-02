@@ -96,7 +96,16 @@ function cargarArticulosBack() {
                                 text : jsonArticulos2[i].nombreCategoria
                             }));
                         });
-                        alert(jsonArticulos2[jsonArticulos[0].idCategoria].nombreCategoria);            
+                        //alert(jsonArticulos[0].idCategoria-1);            
+                        alert(jsonArticulos2[jsonArticulos[0].idCategoria-1].nombreCategoria); 
+                        
+                        $('#nombreArticulo').val(jsonArticulos[0].nombreArticulo);
+                        $('#descripcionArticulo').val(jsonArticulos[0].descripcionArticulo);
+                        $('#categoriaArticulo').val(jsonArticulos2[jsonArticulos[0].idCategoria-1].idCategoria);
+                        $('#precioArticulo').val(jsonArticulos[0].precioArticulo);
+                        $('#imagenArticulo').val(jsonArticulos[0].imagenArticulo);
+                        $('#codigoArticulo').val(jsonArticulos[0].codigoArticulo);
+            
                     }
                 });   
 

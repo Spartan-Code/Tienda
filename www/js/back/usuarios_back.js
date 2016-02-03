@@ -42,29 +42,38 @@ function cargarUsuarios(){
     
     //Update
     jQuery("#usuarioUpdate").click( function(){
-        $('#modal-usuarios').modal('show');
-        $('#insertarActualizarUsuario').text('Actualizar');
-        
-        
-        $('#bloqueIdUsuario').show();
-        
+
         var id = jQuery("#tUsuarios").jqGrid('getGridParam','selrow');
         var dataString = 'idUsuario='+id;
-          
-        $.ajax({                  
-            type: 'POST',
-            url: '../php/back/ver_usuarios_back.php',
-            data: dataString,
-            success: function(data) {
-                var jsonUsuarios = JSON.parse(data);
+        
+        if (id) 
+        {
+            $('#modal-usuarios').modal('show');
+            $('#insertarActualizarUsuario').text('Actualizar');
+        
+            $('#bloqueIdUsuario').show();
+            
+            $.ajax({                  
+                type: 'POST',
+                url: '../php/back/ver_usuarios_back.php',
+                data: dataString,
+                success: function(data) {
+                    var jsonUsuarios = JSON.parse(data);
 
-                document.getElementById('idUsuario').value=jsonUsuarios[0].idUsuario;
-                document.getElementById('nombreUsuario').value=jsonUsuarios[0].nombreUsuario;
-                document.getElementById('emailUsuario').value=jsonUsuarios[0].emailUsuario;
-                document.getElementById('rolUsuario').value=jsonUsuarios[0].rolUsuario;
-                document.getElementById('contrasenaUsuario').value=jsonUsuarios[0].contrasenaUsuario;
-            }
-        });
+                    document.getElementById('idUsuario').value=jsonUsuarios[0].idUsuario;
+                    document.getElementById('nombreUsuario').value=jsonUsuarios[0].nombreUsuario;
+                    document.getElementById('emailUsuario').value=jsonUsuarios[0].emailUsuario;
+                    document.getElementById('rolUsuario').value=jsonUsuarios[0].rolUsuario;
+                    document.getElementById('contrasenaUsuario').value=jsonUsuarios[0].contrasenaUsuario;
+                }
+            });
+        } 
+        else 
+        {
+            alert("Seleccione una fila para borrarla.");
+        }
+          
+
     });
 
     

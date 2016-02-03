@@ -246,8 +246,8 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" id="icono-login" class="login" data-toggle="modal" data-target="#modal-login"><i class="fa fa-sign-in"></i></a></li>
-                        <li><a id="enlace-login" class="login" >Bienvenido <p id="nombreusuario"></p></a></li>
-                        <li><a href="./index.html" id="icono-carrito">Salir <i class="fa fa-sign-out fa-1x"></i></a></li>
+                        <li><a href="#" id="enlace-login-back" class="login" >Bienvenido <p id="nombreusuario"></p></a></li>
+                        <li><a href="../index.html" id="salir-back">Salir <i class="fa fa-sign-out fa-1x"></i></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

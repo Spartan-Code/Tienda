@@ -44,21 +44,31 @@ function cargarCategoriasBack() {
     
     //Update
     jQuery("#categoriaUpdate").click( function(){
-        $('#modal-categorias').modal('show');
-        $('#insertarActualizarCategoria').text('Actualizar');
+
         
         var id = jQuery("#tCategoria").jqGrid('getGridParam','selrow');
         var dataString = 'idCategoria='+id;
-          
-        $.ajax({                  
-            type: 'POST',
-            url: '../php/back/ver_categorias_back.php',
-            data: dataString,
-            success: function(data) {
-                var jsonCategorias = JSON.parse(data);
-                $('#nombreCategoria').val(jsonCategorias[0].nombreCategoria);
-            }
-        });
+        
+        if (id) 
+        {
+            $('#modal-categorias').modal('show');
+            $('#insertarActualizarCategoria').text('Actualizar');
+            
+            $.ajax({                  
+                type: 'POST',
+                url: '../php/back/ver_categorias_back.php',
+                data: dataString,
+                success: function(data) {
+                    var jsonCategorias = JSON.parse(data);
+                    $('#nombreCategoria').val(jsonCategorias[0].nombreCategoria);
+                }
+            });
+        } 
+        else 
+        {
+            alert("Seleccione una fila para borrarla.");
+        }
+        
     });
 
     

@@ -66,47 +66,57 @@ function cargarArticulosBack() {
     
     //Update
     jQuery("#articuloUpdate").click( function(){
-        $('#modal-articulos').modal('show');
-        $('#insertarActualizarArticulo').text('Actualizar');
-        
-        $('#codigoArticulo').prop('disabled', true);
         
         var id = jQuery("#tArticulos").jqGrid('getGridParam','selrow');
         var dataString = 'idArticulo='+id;
-          
-        $.ajax({                  
-            type: 'POST',
-            url: '../php/back/ver_articulos_back.php',
-            data: dataString,
-            success: function(data) {
-                var jsonArticulos = JSON.parse(data);
-                
-                //Recoge las categorias
-                $.ajax({                  
-                    type: 'POST',
-                    url: '../php/back/ver_tipo_categorias.php',
-                    success: function(data) {
-                        var jsonArticulos2 = JSON.parse(data);
+        
+        if (id) 
+        {
+            $('#modal-articulos').modal('show');
+            $('#insertarActualizarArticulo').text('Actualizar');
 
-                        $('#categoriaArticulo').empty().append('whatever');
+            $('#codigoArticulo').prop('disabled', true);
+            
+            $.ajax({                  
+                type: 'POST',
+                url: '../php/back/ver_articulos_back.php',
+                data: dataString,
+                success: function(data) {
+                    var jsonArticulos = JSON.parse(data);
 
-                        $.each(jsonArticulos2, function(i, item) {
-                            $('#categoriaArticulo').append($('<option/>', { 
-                                value: jsonArticulos2[i].idCategoria,
-                                text : jsonArticulos2[i].nombreCategoria
-                            }));
-                        });
-                        
-                        $('#nombreArticulo').val(jsonArticulos[0].nombreArticulo);
-                        $('#descripcionArticulo').val(jsonArticulos[0].descripcionArticulo);
-                        $('#categoriaArticulo').val(jsonArticulos2[jsonArticulos[0].idCategoria-1].idCategoria);
-                        $('#precioArticulo').val(jsonArticulos[0].precioArticulo);
-                        $('#imagenArticulo').val(jsonArticulos[0].imagenArticulo);
-                        $('#codigoArticulo').val(jsonArticulos[0].codigoArticulo);        
-                    }
-                });   
-            }
-        });
+                    //Recoge las categorias
+                    $.ajax({                  
+                        type: 'POST',
+                        url: '../php/back/ver_tipo_categorias.php',
+                        success: function(data) {
+                            var jsonArticulos2 = JSON.parse(data);
+
+                            $('#categoriaArticulo').empty().append('whatever');
+
+                            $.each(jsonArticulos2, function(i, item) {
+                                $('#categoriaArticulo').append($('<option/>', { 
+                                    value: jsonArticulos2[i].idCategoria,
+                                    text : jsonArticulos2[i].nombreCategoria
+                                }));
+                            });
+
+                            $('#nombreArticulo').val(jsonArticulos[0].nombreArticulo);
+                            $('#descripcionArticulo').val(jsonArticulos[0].descripcionArticulo);
+                            $('#categoriaArticulo').val(jsonArticulos2[jsonArticulos[0].idCategoria-1].idCategoria);
+                            $('#precioArticulo').val(jsonArticulos[0].precioArticulo);
+                            $('#imagenArticulo').val(jsonArticulos[0].imagenArticulo);
+                            $('#codigoArticulo').val(jsonArticulos[0].codigoArticulo);        
+                        }
+                    });   
+                }
+            });  
+        } 
+        else 
+        {
+            alert("Seleccione una fila para borrarla.");
+        }
+        
+
     });
 
     

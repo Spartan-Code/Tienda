@@ -16,6 +16,7 @@ function cargarPedidos() {
         viewrecords: true,
         sortorder: "desc",
         multiselect: false,
+        loadonce: true,
         caption: "Pedidos",
         onSelectRow: function(ids) {
             if(ids == null) {
@@ -48,8 +49,8 @@ function cargarPedidos() {
             {name:'unidades',index:'unidades', autowidth: true, align: "center", sorttype: "integer"},
             {name:'precio',index:'precio', autowidth: true, align: "center", sorttype: "integer"},		
         ],
-        rowNum:5,
-        rowList:[5,10,20],
+        rowNum:10,
+        rowList:[10,25,50],
         pager: '#pPedidos_detail',
         sortname: 'item',
         viewrecords: true,

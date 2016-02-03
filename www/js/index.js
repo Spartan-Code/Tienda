@@ -1,7 +1,7 @@
 $(document).ready(function() {
     
-    deslogearUsuario();
     cargarCategorias();
+    loginSession();
     $('#menu-horizontal').on('click', 'a', pedirDatos);
     $('.navbar-brand').click(recargarCarrusel);
     $('section').on('click', '.boton-reservar', mostrarModalAnyadir);
@@ -330,6 +330,29 @@ function eliminarDeCarrito() {
     mostrarModalCarrito();
 }
 
+function loginSession() {
+    
+    $.ajax({                  
+        type: 'POST',
+        url: './php/comprobar_login.php',
+        success: function(data) {
+            if(data=="no_usuario")
+                {
+                    //Nada  
+                }
+            else
+                {
+                    $('#enlace-login').text('Bienvenido '+data); 
+                    $('#logear').css("display", "none");
+                    $('#deslogear').css("display", "block");
+                    $('#grupoNombre').css("display", "none");
+                    $('#grupoContrasena').css("display", "none");
+                }
+            }
+    });                      
+
+}
+
 function logearUsuario(){
     
     var nombreUsuario = document.getElementById("nombreUsuario");   
@@ -345,7 +368,6 @@ function logearUsuario(){
             url: "./php/usuarios.php",
             data: dataString,
             success: function(data) {                
-                alert(data);
                 if(data=="usuario"){
                     $('#validacionLogin').css("display", "none");
                     $('.bordeValidacionLogin').css("display", "none");
@@ -353,6 +375,9 @@ function logearUsuario(){
                     $('#modal-login').modal('toggle');
                     $('#logear').css("display", "none");
                     $('#deslogear').css("display", "block");
+                    $('#grupoNombre').css("display", "none");
+                    $('#grupoContrasena').css("display", "none");
+
                 }
                 else if(data=="administrador")
                 {
@@ -396,6 +421,8 @@ function deslogearUsuario(){
                     $('#enlace-login').text('Login');
                     $('#deslogear').css("display", "none");
                     $('#logear').css("display", "block");
+                    $('#grupoNombre').css("display", "block");
+                    $('#grupoContrasena').css("display", "block");
                 }
             });
 }

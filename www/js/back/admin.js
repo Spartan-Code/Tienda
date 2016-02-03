@@ -1,5 +1,7 @@
 $(document).ready(function() {
     
+    loginSessionBack();
+    
     //$('#menu-menuCategorias').on('click', 'a', administrarcategoria);
     $('#usuarios').click(mostrarUsuarios);
     $('#categorias').click(mostrarCategorias);
@@ -10,12 +12,16 @@ $(document).ready(function() {
     $('#insertarActualizarCategoria').click(insertarCategoria);
     $('#insertarActualizarUsuario').click(insertarUsuario);
     
+    //$('#salir-back').click(deslogearAdministrador);
+
     cargarArticulosBack();
-    
+    cargarCategoriasBack();
+    cargarUsuarios();
+    cargarPedidos();
 });
 
 function mostrarUsuarios(){
-    cargarUsuarios();
+
     $('#tablaArticulos').hide();
     $('#tablaCategorias').hide();
     $('#tablaUsuarios').show();
@@ -23,7 +29,6 @@ function mostrarUsuarios(){
 }
 
 function mostrarCategorias(){
-    cargarCategoriasBack();
     $('#tablaArticulos').hide();
     $('#tablaCategorias').show();
     $('#tablaUsuarios').hide();
@@ -38,7 +43,6 @@ function mostrarArticulos(){
 }
 
 function mostrarPedidos(){
-    cargarPedidos();
     $('#tablaArticulos').hide();
     $('#tablaCategorias').hide();
     $('#tablaUsuarios').hide();
@@ -51,8 +55,6 @@ function insertarArticulo() {
     $('#codigoArticulo').prop("disabled", false);
     
     var formularioInsertArticulo =$('#formularioInsertArticulo').serialize();
-    
-    $('#codigoArticulo').prop("disabled", true);
 
     var nombreArticulo = document.forms["formularioInsertArticulo"]["nombreArticulo"];
     var descripcionArticulo = document.forms["formularioInsertArticulo"]["descripcionArticulo"];
@@ -60,8 +62,6 @@ function insertarArticulo() {
     var precioArticulo = document.forms["formularioInsertArticulo"]["precioArticulo"];
     var imagenArticulo = document.forms["formularioInsertArticulo"]["imagenArticulo"];
     var codigoArticulo = document.forms["formularioInsertArticulo"]["codigoArticulo"];
-    
-    alert(formularioInsertArticulo);
     
     var tipoAccion = $('#insertarActualizarArticulo').text();
  
@@ -89,11 +89,10 @@ function insertarArticulo() {
                     {
                         $('#validacionArticulos').css("display", "none");
                         $('.bordeValidacionArticulos').css("display", "none");
-                        alert("Insertado correctamente.");
 
-
-                        var grid = jQuery("#tArticulos");
-                        grid.trigger("reloadGrid");
+                        $("#tArticulos").setGridParam({datatype:'json', page:1}).trigger('reloadGrid');
+                        
+                        $('#modal-articulos').modal('hide');
                     }
                 }
             });
@@ -106,6 +105,8 @@ function insertarArticulo() {
 
     }
     else{
+        $('#codigoArticulo').prop("disabled", true);
+        
         
         if(nombreArticulo.validity.valid && descripcionArticulo.validity.valid && categoriaArticulo.validity.valid && precioArticulo.validity.valid && imagenArticulo.validity.valid && codigoArticulo.validity.valid){
 
@@ -117,7 +118,9 @@ function insertarArticulo() {
                 url: '../php/back/actualizar_articulos_back.php',
                 data: 'datos=&'+formularioInsertArticulo,
                 success: function(data) {
-                    alert(data);
+                    $('#modal-articulos').modal('hide');
+                    $("#tArticulos").setGridParam({datatype:'json', page:1}).trigger('reloadGrid');
+
                 }
             });
         }
@@ -160,10 +163,10 @@ function insertarCategoria() {
                     {
                         $('#validacionCategoria').css("display", "none");
                         $('.bordeValidacionCategoria').css("display", "none");
-                        alert("Insertada correctamente.");
 
-                        var grid = jQuery("#tCategorias");
-                        grid.trigger('reloadGrid');
+                        $("#tCategoria").setGridParam({datatype:'json', page:1}).trigger('reloadGrid');
+                        
+                        $('#modal-categorias').modal('hide');
                     }
                 }
             });
@@ -187,7 +190,8 @@ function insertarCategoria() {
                 url: '../php/back/actualizar_categorias_back.php',
                 data: 'datos=&'+formularioInsertCategoria,
                 success: function(data) {
-
+                    $("#tCategoria").setGridParam({datatype:'json', page:1}).trigger('reloadGrid');
+                    $('#modal-categorias').modal('hide');
                 }
             });
         }
@@ -209,7 +213,6 @@ function insertarUsuario() {
     $('#idUsuario').prop("disabled", true);
 
     var idUsuario = document.forms["formularioInsertUsuario"]["idUsuario"];
-    alert("form: "+formularioInsertUsuario);
     var nombreUsuario = document.forms["formularioInsertUsuario"]["nombreUsuario"];
     var emailUsuario = document.forms["formularioInsertUsuario"]["emailUsuario"];
     var rolUsuario = document.forms["formularioInsertUsuario"]["rolUsuario"];
@@ -218,37 +221,43 @@ function insertarUsuario() {
     var tipoAccion = $('#insertarActualizarUsuario').text();
 
     if(tipoAccion=='Insertar'){
-
           
-        if(nombreUsuario.validity.valid && emailUsuario.validity.valid && rolUsuario.validity.valid && contrasenaUsuario.validity.valid){
+        if(nombreUsuario.validity.valid  && rolUsuario.validity.valid && contrasenaUsuario.validity.valid){
 
-            $('#validacionArticulos').css("display", "none");
-            $('.bordeValidacionUsuarios').css("display", "none");
+            if(emailUsuario.validity.valid){
+                $('#validacionArticulos').css("display", "none");
+                $('.bordeValidacionUsuarios').css("display", "none");
 
-            $.ajax({                  
-                type: 'POST',
-                url: '../php/back/insertar_usuarios_back.php',
-                data: 'datos=&'+formularioInsertUsuario,
-                success: function(data) {
+                $.ajax({                  
+                    type: 'POST',
+                    url: '../php/back/insertar_usuarios_back.php',
+                    data: 'datos=&'+formularioInsertUsuario,
+                    success: function(data) {
 
-                    if(data==true)
-                    {
-                        $('#validacionUsuarios').css("display", "block");
-                        $('.bordeValidacionUsuarios').css("display", "block");
-                        $('#validacionUsuarios').text('El articulo ya existe. ');
+                        if(data==true)
+                        {
+                            $('#validacionUsuarios').css("display", "block");
+                            $('.bordeValidacionUsuarios').css("display", "block");
+                            $('#validacionUsuarios').text('El articulo ya existe. ');
+                        }
+                        else
+                        {
+                            $('#validacionUsuarios').css("display", "none");
+                            $('.bordeValidacionUsuarios').css("display", "none");
+
+                            $("#tUsuarios").setGridParam({datatype:'json', page:1}).trigger('reloadGrid');
+
+                            $('#modal-usuarios').modal('hide');
+                        }
                     }
-                    else
-                    {
-                        $('#validacionUsuarios').css("display", "none");
-                        $('.bordeValidacionUsuarios').css("display", "none");
-                        alert("Insertado correctamente.");
-
-
-                        var grid = jQuery("#tArticulos");
-                        grid.trigger("reloadGrid");
-                    }
-                }
-            });
+                });              
+            }
+            else
+            {
+                $('#validacionUsuarios').css("display", "block");
+                $('.bordeValidacionUsuarios').css("display", "block");
+                $('#validacionUsuarios').text('Formato de email no valido. ');      
+            }
         }
         else{
             $('#validacionUsuarios').css("display", "block");
@@ -261,19 +270,28 @@ function insertarUsuario() {
         
         $('#bloqueIdUsuario').show();
         
-        if(nombreUsuario.validity.valid && emailUsuario.validity.valid && rolUsuario.validity.valid && contrasenaUsuario.validity.valid){
+        if(nombreUsuario.validity.valid && rolUsuario.validity.valid && contrasenaUsuario.validity.valid){
+            
+            if(emailUsuario.validity.valid){
+                $('#validacionUsuarios').css("display", "none");
+                $('.bordeValidacionUsuarios').css("display", "none");
 
-            $('#validacionUsuarios').css("display", "none");
-            $('.bordeValidacionUsuarios').css("display", "none");
+                $.ajax({                  
+                    type: 'POST',
+                    url: '../php/back/actualizar_usuarios_back.php',
+                    data: 'datos=&'+formularioInsertUsuario,
+                    success: function(data) {
+                        $("#tUsuarios").setGridParam({datatype:'json', page:1}).trigger('reloadGrid');
+                        $('#modal-usuarios').modal('hide');
+                    }
+                });
+            }
+            else{
+                $('#validacionUsuarios').css("display", "block");
+                $('.bordeValidacionUsuarios').css("display", "block");
+                $('#validacionUsuarios').text('Formato de email no valido. ');   
+            }
 
-            $.ajax({                  
-                type: 'POST',
-                url: '../php/back/actualizar_usuarios_back.php',
-                data: 'datos=&'+formularioInsertUsuario,
-                success: function(data) {
-                    alert(data);
-                }
-            });
         }
         else{
             $('#validacionUsuarios').css("display", "block");
@@ -284,6 +302,34 @@ function insertarUsuario() {
 }
 
 
+function loginSessionBack() {
+    
+    $.ajax({                  
+        type: 'POST',
+        url: '../php/comprobar_login.php',
+        success: function(data) {
+            if(data=="no_usuario")
+                {
+                    //Nada  
+                }
+            else
+                {
+                    $('#enlace-login-back').text('Bienvenido '+data); 
+                }
+            }
+    });                      
+
+}
 
 
+function deslogearAdministrador(){
+    alert("asdf");
+            $.ajax({                  
+                type: "POST",
+                url: "../php/logout.php",
+                success: function(data) {
+
+                }
+            });
+}
 

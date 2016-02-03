@@ -336,7 +336,7 @@ function loginSession() {
         type: 'POST',
         url: './php/comprobar_login.php',
         success: function(data) {
-            if(data=="no_usuario")
+            if(data==false)
                 {
                     //Nada  
                 }
@@ -489,14 +489,15 @@ function finalizarCompra(){
                 vaciarCarrito();
                 alert("Pago realizado con éxito");
             }else{
-                if(data=="UsuarioNoLogeado"){
+                if(data=="0"){
                     $('#validacionLogin').css("display", "block");
                     $('.bordeValidacionLogin').css("display", "block");
                     $('#validacionLogin').text('Debes estar logeado para poder finalizar una compra.');
                     $('body').css("padding-right", "0px");
                     $('#modal-login').modal('toggle');
+                    alert("Usuario no logeado.");
                 }else{
-                    alert("No hay articulos en el carrito.");
+                    alert("¡No hay artículos seleccionados!");
                 }
 
             }

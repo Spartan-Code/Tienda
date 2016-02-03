@@ -238,7 +238,7 @@ function insertarUsuario() {
                         {
                             $('#validacionUsuarios').css("display", "block");
                             $('.bordeValidacionUsuarios').css("display", "block");
-                            $('#validacionUsuarios').text('El articulo ya existe. ');
+                            $('#validacionUsuarios').text('El usuario ya existe. ');
                         }
                         else
                         {

@@ -302,7 +302,7 @@
             
             <div class="row">
             
-                <div class="col-md-2 text-center" id="menu-lateral">
+                <div class="col-md-2 text-center col-fluid" id="menu-lateral">
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
                             <li>

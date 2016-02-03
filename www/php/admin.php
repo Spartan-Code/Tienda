@@ -292,8 +292,92 @@
     </section>-->
         
         
+        <section class="datos">
+             <div class="centrarDatos">
+            
+            <div>
+                <div class="text-center encabezado">Panel de Administración</div>
+            </div>
+            
+            <div class="row menu-lateral">
+            
+                <div class="col-md-2 text-center" id="menu-lateral">
+
+                        <ul class="sidebar-nav">
+                            <li>
+                                <a id="articulos" href="#">Artículos</a>
+                            </li>
+                            <li>
+                                <a id="categorias" href="#">Categorias</a>
+                            </li>
+                            <li>
+                                <a id="usuarios" href="#">Usuarios</a>
+                            </li>
+                            <li>
+                                <a id="pedidos" href="#">Pedidos</a>
+                            </li>
+                        </ul>
+
+                </div>    
+
+
+                <div class="col-md-10 text-center" id="tabla-detalle">
+                    <div id="tablaArticulos" class="container-fluid tablas" align="center">
+                        <table id="tArticulos"></table>
+                        <div id="pArticulos"></div>
+                        
+                        <div class="botones-menu" class="">
+                            <button href="#" id="articuloInsert" type="button" class="btn">Insertar</button>
+                            <button href="#" id="articuloUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
+                            <button href="#" id="articuloDelete" type="button" class="btn">Borrar</button>
+                        </div>
+                    </div>
+                    
+                    
+                    <div id="tablaCategorias" class="container-fluid tablas" align="center">
+                        <table id="tCategoria"></table>
+                        <div id="pCategoria"></div>
+                        
+                        <div class="botones-menu" class="">
+                            <button href="#" id="categoriaInsert" type="button" class="btn">Insertar</button>
+                            <button href="#" id="categoriaUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
+                            <button href="#" id="categoriaDelete" type="button" class="btn">Borrar</button>
+                        </div>
+                    </div>
+                    
+                    
+                    <div id="tablaUsuarios" class="container-fluid tablas" align="center">
+                        <table id="tUsuarios"></table>
+                        <div id="pUsuarios"></div>
+                        
+                       <div class="botones-menu" class="">
+                            <button href="#" id="usuarioInsert" type="button" class="btn">Insertar</button>
+                            <button href="#" id="usuarioUpdate" type="button" class="btn" data-toggle="modal" data-target=".modal-anyadir">Actualizar</button>
+                            <button href="#" id="usuarioDelete" type="button" class="btn">Borrar</button>
+                        </div>
+    
+                    </div>
+                    
+                    
+                    <div id="tablaPedidos" class="container-fluid tablas" align="center">
+                        <table id="tPedidos"></table>
+                        <div id="pPedidos"></div>
+                        
+                        <br /><br />
+                        <table id="tPedidos_detail"></table>
+                        <div id="pPedidos_detail"></div>
+                    </div>
+                
+                </div>
+            </div>
+            </div>
+        </section>   
         
-         <section class="datos">
+        
+        
+        
+        
+         <!--<section class="datos">
              <div class="centrarDatos">
             
             <div class="row">
@@ -371,7 +455,7 @@
                 
                 </div>
             </div>
-        </section>   
+        </section>   -->
         
 
 <!--        <section id="principal">

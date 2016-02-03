@@ -10,8 +10,10 @@
 }
 #tablaPedidos
 {
-    margin: 50px;
     display: none;
+}
+.tablas{
+    margin: 30px;
 }
 
 /*-----------------*/
@@ -19,6 +21,15 @@
 
 .pull-right {
   float: right !important;
+}
+.menu-lateral{
+    background-color: #2E2E2E;
+}
+#tabla-detalle{
+background-color: #F5F0E5;
+}
+section .row {
+    margin: 0;
 }
 
 /*--------Estilos Modal---------*/
@@ -170,6 +181,7 @@ table{
     background-color: #2E2E2E;
     color: #A9905A;
     font-size: 32px;
+    max-height: 50px;
 }
 
 #principal{

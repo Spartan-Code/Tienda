@@ -5,7 +5,7 @@ $idUsuario = $_POST['idUsuario'];
 
 
     //Conexion a la BD
-   $connection = mysql_connect('https://tienda-cristiancervera.rhcloud.com/phpmyadmin/', 'admingnLzYYt', 'AtWvu3ijPujK')
+    $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
         or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
 

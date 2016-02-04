@@ -47,13 +47,10 @@ function pedirDatos() {
         success: function(data) {
             var jsonIdCategoria = JSON.parse(data);
             idCategoria=jsonIdCategoria[0].idCategoria;
+            
         }
     });
 
-    
-    
-    
-    
     
     switch ($categoria) {
         case 'Entradas': {
@@ -394,12 +391,14 @@ function logearUsuario(){
                     $('#logear').css("display", "none");
                     $('#deslogear').css("display", "block");
                     $('#grupoNombre').css("display", "none");
-                    $('#grupoContrasena').css("display", "none");
+                    $('#grupoContrasena').css("display", "none"); 
+                    $('#enlace-admin').css("display", "none");
 
                 }
                 else if(data=="administrador")
                 {
-                   window.location = './php/admin.php';       
+                    window.location = './php/admin.php';
+                    $('#enlace-admin').css("display", "block");
                 }
                 else{
                     $('#validacionLogin').css("display", "block");
@@ -441,6 +440,7 @@ function deslogearUsuario(){
                     $('#logear').css("display", "block");
                     $('#grupoNombre').css("display", "block");
                     $('#grupoContrasena').css("display", "block");
+                    $('#enlace-admin').css("display", "none");
                 }
             });
 }

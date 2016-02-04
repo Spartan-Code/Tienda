@@ -38,6 +38,22 @@ function cargarCategorias() {
 
 function pedirDatos() {   
     $categoria = $(this).text();
+    var nombreCategoria = $categoria;
+    
+        $.ajax({                  
+        type: 'POST',
+        url: './php/ver_id_categoria.php',
+        data: 'datos='+nombreCategoria,
+        success: function(data) {
+            var jsonIdCategoria = JSON.parse(data);
+            idCategoria=jsonIdCategoria[0].idCategoria;
+        }
+    });
+
+    
+    
+    
+    
     
     switch ($categoria) {
         case 'Entradas': {

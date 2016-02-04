@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS `articulos` (
   PRIMARY KEY (`idArticulo`),
   KEY `idCategoria_idx` (`idCategoria`),
   CONSTRAINT `idCategoria` FOREIGN KEY (`idCategoria`) REFERENCES `categorias` (`idCategoria`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla tienda.articulos: ~20 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.articulos: ~24 rows (aproximadamente)
 /*!40000 ALTER TABLE `articulos` DISABLE KEYS */;
 INSERT INTO `articulos` (`idArticulo`, `nombreArticulo`, `descripcionArticulo`, `idCategoria`, `precioArticulo`, `imagenArticulo`, `codigoArticulo`, `urlArticulo`) VALUES
 	(1, 'Macbeth', 'Giuseppe Verdi', 1, 100, 'img/entradas/entradas-macbeth.jpg', 'E001', NULL),
@@ -61,9 +61,9 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(45) NOT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla tienda.categorias: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.categorias: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` (`idCategoria`, `nombreCategoria`) VALUES
 	(1, 'Entradas'),
@@ -85,93 +85,8 @@ CREATE TABLE IF NOT EXISTS `lineapedidos` (
   CONSTRAINT `idPedido` FOREIGN KEY (`idPedido`) REFERENCES `pedidos` (`idPedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla tienda.lineapedidos: ~76 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.lineapedidos: ~100 rows (aproximadamente)
 /*!40000 ALTER TABLE `lineapedidos` DISABLE KEYS */;
-INSERT INTO `lineapedidos` (`idPedido`, `idArticulo`, `unidades`, `precio`) VALUES
-	(120, 1, 9, 900),
-	(120, 12, 7, 420),
-	(121, 2, 5, 625),
-	(122, 17, 4, 220),
-	(123, 18, 4, 240),
-	(123, 17, 6, 330),
-	(123, 16, 3, 150),
-	(123, 1, 1, 100),
-	(124, 1, 1, 100),
-	(124, 17, 1, 55),
-	(124, 1, 4, 400),
-	(123, 1, 4, 400),
-	(125, 1, 4, 400),
-	(126, 17, 5, 275),
-	(127, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(128, 6, 3, 300),
-	(123, 16, 1, 50),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(129, 17, 1, 55),
-	(130, 17, 1, 55),
-	(123, 16, 1, 50),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 18, 1, 60),
-	(123, 1, 1, 100),
-	(131, 6, 3, 300),
-	(123, 17, 5, 275),
-	(123, 16, 1, 50),
-	(123, 18, 1, 60),
-	(123, 16, 1, 50),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(132, 17, 1, 55),
-	(133, 17, 1, 55),
-	(134, 17, 1, 55),
-	(135, 17, 1, 55),
-	(136, 17, 1, 55),
-	(137, 18, 1, 60),
-	(138, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 1, 1, 100),
-	(123, 1, 1, 100),
-	(123, 1, 1, 100),
-	(123, 1, 1, 100),
-	(123, 18, 1, 60),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(123, 17, 1, 55),
-	(139, 17, 1, 55),
-	(140, 17, 1, 55),
-	(123, 17, 1, 55),
-	(141, 16, 1, 50),
-	(142, 16, 1, 50),
-	(143, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(123, 16, 1, 50),
-	(144, 17, 1, 55),
-	(123, 17, 1, 55);
 /*!40000 ALTER TABLE `lineapedidos` ENABLE KEYS */;
 
 
@@ -182,36 +97,10 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   `fechaPedido` date DEFAULT NULL,
   `precioTotal` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idPedido`)
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla tienda.pedidos: ~22 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.pedidos: ~30 rows (aproximadamente)
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` (`idPedido`, `idUsuario`, `fechaPedido`, `precioTotal`) VALUES
-	(120, 1, '2016-01-21', 1320),
-	(121, 1, '2016-01-26', 625),
-	(122, 2, '2016-01-26', 220),
-	(123, 0, '2016-01-26', 240),
-	(124, 3, '2016-01-26', 155),
-	(125, 3, '2016-01-26', 400),
-	(126, 2, '2016-01-26', 275),
-	(127, 1, '2016-01-26', 50),
-	(128, 3, '2016-01-26', 300),
-	(129, 3, '2016-01-26', 55),
-	(130, 3, '2016-01-26', 55),
-	(131, 3, '2016-01-26', 300),
-	(132, 3, '2016-01-26', 55),
-	(133, 3, '2016-01-26', 55),
-	(134, 3, '2016-01-26', 55),
-	(135, 3, '2016-01-26', 55),
-	(136, 3, '2016-01-26', 55),
-	(137, 3, '2016-01-26', 60),
-	(138, 3, '2016-01-26', 50),
-	(139, 1, '2016-01-26', 55),
-	(140, 1, '2016-01-26', 55),
-	(141, 3, '2016-01-26', 50),
-	(142, 3, '2016-01-26', 50),
-	(143, 3, '2016-01-26', 50),
-	(144, 3, '2016-01-26', 55);
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 
 
@@ -223,14 +112,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rolUsuario` varchar(45) DEFAULT NULL,
   `contrasenaUsuario` varchar(45) NOT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla tienda.usuarios: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.usuarios: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`idUsuario`, `nombreUsuario`, `emailUsuario`, `rolUsuario`, `contrasenaUsuario`) VALUES
-	(1, 'Cristian', 'cristian@fucker.com', 'administrador', '1234'),
-	(2, 'Kratos', 'tereviento@gmail.com', 'usuario', '1234'),
-	(3, '1', 'tereviento@gmail.com', 'administrador', '1');
+	(17, 'admin', 'admin@gmail.com', 'administrador', 'admin'),
+	(19, 'user', 'user@gmail.com', 'usuario', 'user');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

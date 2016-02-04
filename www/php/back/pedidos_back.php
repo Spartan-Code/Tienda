@@ -7,7 +7,7 @@ $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
 $sord = $_GET['sord']; // get the direction
 if(!$sidx) $sidx =1;
 // connect to the database
-$connection = mysql_connect('localhost', 'root', '')
+$connection = mysql_connect('https://tienda-cristiancervera.rhcloud.com/phpmyadmin/', 'admingnLzYYt', 'AtWvu3ijPujK')
 or die("Connection Error: " . mysql_error());
 
 mysql_select_db('tienda') or die("Error conecting to db.");

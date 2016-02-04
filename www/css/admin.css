@@ -16,8 +16,7 @@
     margin: 30px;
 }
 
-/*-----------------*/
-
+/*--------Menu lateral---------*/
 
 .pull-right {
   float: right !important;
@@ -101,13 +100,8 @@ section .row {
     padding: 5px;
 }
 
-#menu-lateral ul li:hover{
-    background-color: #A9905A;
-    color: #2E2E2E;
-}
 #menu-lateral ul li a:hover{
-    background-color: #A9905A;
-    color: #2E2E2E;
+    color: #F5F0E5;
 }
 
 .selectorCategorias{

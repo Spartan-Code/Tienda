@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('#vaciarCarrito').click(vaciarCarrito);
     $('#finalizarCompra').click(finalizarCompra);
     
-    $('section').on('click', '.boton-mas-info', slideUpDown);
+    $('table').on('click', 'tr', slideUpDown);
 });
 
 $carrusel = $('section').html();
@@ -63,7 +63,7 @@ function pedirDatos() {
             $('section').fadeOut("slow", function() {
                 $('section').html('<div class="container"><div class="row"><div class="col-sm-12"><h2 id="categoria">' + $categoria + '</h2><hr /></div></div><div class="row text-center" id="fila-articulos"></div><div class="row"><div class="col-sm-12"><hr /></div></div></div>');
                 $.each(jsondata, function() {
-                    $('<div class="col-md-4 col-sm-6 hero-feature"><div class="thumbnail"><img src="' + this.imagenArticulo + '" alt="" /><div class="caption"><h4 class="nombre-articulo">' + this.nombreArticulo + '</h4><h5>Desde <span class="precio-articulo">' + this.precioArticulo + '</span> €</h5><p class="descripcion-articulo" hidden>' + this.descripcionArticulo + '</p><h5><a href="#" class="btn btn-primary boton-reservar">Reservar</a> <a class="btn btn-default boton-mas-info">Mas Info</a></h5></div></div>').appendTo('#fila-articulos');
+                    $('<div class="col-md-4 col-sm-6 hero-feature"><div class="thumbnail"><img src="' + this.imagenArticulo + '" alt="" /><div class="caption"><h4 class="nombre-articulo">' + this.nombreArticulo + '</h4><h5>Desde <span class="precio-articulo">' + this.precioArticulo + '</span> €</h5><p class="descripcion-articulo">' + this.descripcionArticulo + '</p><h5><a href="#" class="btn btn-primary boton-reservar">Reservar</a> <a class="btn btn-default boton-mas-info">Mas Info</a></h5></div></div>').appendTo('#fila-articulos');
                 });
                 $('section').fadeIn("slow");
             });
@@ -239,9 +239,9 @@ function mostrarModalCarrito() {
         htmlImagen = '<tr id="reserva' + i + '"><td class="text-center celda-imagen"><div class="thumbnail"><img class="imagen-carrito" src="' + carrito.reservas[i].rutaImagen + '" /></div></td>';
         
         if (carrito.reservas[i].categoria === 'Alojamiento') {
-            htmlDetallesArticulo = '<td class="text-center celda-detalles-articulo"><p>' + carrito.reservas[i].categoria + ' - ' + carrito.reservas[i].nombre + '</p><p>' + carrito.reservas[i].fechaEntrada + ' - ' + carrito.reservas[i].fechaSalida + '</p></td>';
+            htmlDetallesArticulo = '<td class="text-center celda-detalles-articulo"><p>' + carrito.reservas[i].categoria + ' - ' + carrito.reservas[i].nombre + '</p><p>' + carrito.reservas[i].fechaEntrada + ' - ' + carrito.reservas[i].fechaSalida + '</p><p class="descripcion-gdrid-down" hidden>' + carrito.reservas[i].descripcion + '</p></td>';
         } else {
-            htmlDetallesArticulo = '<td class="text-center celda-detalles-articulo"><p>' + carrito.reservas[i].categoria + ' - ' + carrito.reservas[i].nombre + '</p><p>' + carrito.reservas[i].fechaEntrada + ' - ' + carrito.reservas[i].hora + '</p></td>';
+            htmlDetallesArticulo = '<td class="text-center celda-detalles-articulo"><p>' + carrito.reservas[i].categoria + ' - ' + carrito.reservas[i].nombre + '</p><p>' + carrito.reservas[i].fechaEntrada + ' - ' + carrito.reservas[i].hora + '</p><p class="descripcion-gdrid-down" hidden>' + carrito.reservas[i].descripcion + '</p></td>';
         }
         
         if (carrito.reservas[i].categoria === 'Alojamiento') {
@@ -515,8 +515,9 @@ function vaciarCarrito(){
 }
 
 function slideUpDown(){
-
-    $(this).parent().parent().children("p").slideToggle();
+    
+    $(this).parent().children("tr").children("td:nth-child(2)").children("p:nth-child(3)").hide();
+    $(this).children("td:nth-child(2)").children("p:nth-child(3)").slideToggle();
 
     
 }

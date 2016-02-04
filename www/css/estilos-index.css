@@ -13,6 +13,10 @@ li {
 
 /*Estilos cabecera*/
 
+#enlace-admin{
+    display: none;
+}
+
 
 .navbar .navbar-collapse {
     background-color: #141414;

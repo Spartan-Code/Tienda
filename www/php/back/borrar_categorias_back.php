@@ -7,8 +7,8 @@ $idCategoria = $_POST['idCategoria'];
 echo $idCategoria;
 
     //Conexion a la BD
-    $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
-        or die('No se pudo conectar: ' . mysql_error());
+//        $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
+    $connection = mysql_connect('localhost', 'root', '')        or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
 
     //Codigo articulo

@@ -353,11 +353,14 @@ function loginSession() {
         success: function(data) {
             if(data==false)
                 {
-                    //Nada  
+                    // error 
                 }
             else
                 {
-                    $('#enlace-login').text('Bienvenido '+data); 
+                    $('#enlace-login').click(verPerfil);
+                    $('#enlace-login').attr('data-toggle', '');
+                    $('#enlace-login').attr('data-target', '');
+                    $('#enlace-login').text('Bienvenido '+data);
                     $('#logear').css("display", "none");
                     $('#deslogear').css("display", "block");
                     $('#grupoNombre').css("display", "none");
@@ -429,6 +432,7 @@ function logearUsuario(){
 }
 
 function deslogearUsuario(){
+    
             $.ajax({                  
                 type: "POST",
                 url: "./php/logout.php",
@@ -442,6 +446,15 @@ function deslogearUsuario(){
                     $('#grupoContrasena').css("display", "block");
                     $('#enlace-admin').css("display", "none");
                 }
+            });
+}
+
+function verPerfil(){
+    $usuario = $(this).text();
+    
+    $('section').fadeOut("slow", function() {
+                $('section').html('<div class="container"><div class="row"><div class="col-sm-12"><h2 class="text-center" id="categoria">' + $usuario + '</h2><div><button type="button" class="btn btn-danger"><i class="fa fa-power-off"></i></button></div><hr /></div></div><div class="row text-center" id="fila-articulos"></div><div class="row"><div class="col-sm-12"><hr /></div></div></div>');
+                $('section').fadeIn("slow");
             });
 }
 

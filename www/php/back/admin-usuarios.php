@@ -2,8 +2,8 @@
     error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
     $categoria= $_GET['categoria'];  
     // Conectando, seleccionando la base de datos
-    $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
-        or die('No se pudo conectar: ' . mysql_error());
+//        $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
+    $connection = mysql_connect('localhost', 'root', '')        or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
     // Realizar una consulta MySQL
     $query = 'SELECT * FROM '.$categoria.'';

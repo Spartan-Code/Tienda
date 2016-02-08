@@ -230,3 +230,10 @@ section .boton-mas-info {
         margin: 5px auto !important;
     }
 }
+
+.perfil{
+    width: 100%;
+    height: 100%;
+    background-color: #141414;
+    color: #CCCCCC;
+}

@@ -17,23 +17,13 @@
     if(isset($_POST['nombreUsuario']) && isset($_POST['contrasenaUsuario']))
     {
 
-        $queryIdUsuario = 'SELECT * FROM usuarios WHERE nombreUsuario= "'.$nombreUsuario.'" and contrasenaUsuario= "'.$contrasenaUsuario.'"';
+        $queryIdUsuario = 'SELECT * FROM pedidos WHERE idUsuario = (SELECT idUsuario FROM usuarios WHERE nombreUsuario= "'.$nombreUsuario.'" and contrasenaUsuario= "'.$contrasenaUsuario.'")';
         $resultIdUsuario = mysql_query($queryIdUsuario) or die('Consulta fallida: ' . mysql_error());
 
         $count=mysql_num_rows($resultIdUsuario);
-        //$row=mysql_fetch_array($resultIdUsuario,MYSQLI_ASSOC);
-        // If result matched $username and $password, table row  must be 1 row
-        while ($line = mysql_fetch_array($resultIdUsuario, MYSQL_ASSOC)) {
-            $rolUsuario[] = $line;
-        }  
         
-        if($count==1)
-        {   
-            echo $rolUsuario[0]['rolUsuario'];
-        }
-        else
-        {
-            echo '0';
+        while ($line = mysql_fetch_array($resultIdUsuario, MYSQL_ASSOC)) {
+            $pedido[] = $line;
         }
     }
 

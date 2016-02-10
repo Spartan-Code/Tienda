@@ -237,3 +237,75 @@ section .boton-mas-info {
     background-color: #141414;
     color: #CCCCCC;
 }
+
+#logout{
+    background-color: #141414;
+    color: #A9905A;
+    display: none;
+}
+
+.dropdown button{
+    margin-top: 15%;
+    background-color: #141414;
+    color: #A9905A;
+    border: 0px;
+}
+
+.dropdown button:hover{
+    background-color: #141414;
+    color: #A9905A;
+    border: 0px;
+}
+
+.dropdown button:target{
+    background-color: #141414;
+    color: #A9905A;
+    border: 0px;
+}
+
+.dropdown button:active{
+    background-color: #141414;
+    color: #A9905A;
+    border: 0px;
+}
+
+.dropdown:active{
+    background-color: #141414;
+   color: #A9905A;
+}
+
+.dropdown ul{
+   background-color: #141414;
+   color: #A9905A; 
+}
+
+.dropdown li{
+   background-color: #141414;
+   color: #A9905A; 
+}
+
+/*--------Menu lateral---------*/
+
+.pull-right {
+  float: right !important;
+}
+#menu-lateral{
+    background-color: #2E2E2E;
+    color: #A9905A;
+}
+#menu-lateral a{
+    color: #A9905A; 
+}
+#tabla-detalle{
+background-color: #F5F0E5;
+}
+section .row {
+    margin: 0;
+}
+#menu-lateral ul li{
+    padding: 5px;
+}
+
+#menu-lateral ul li a:hover{
+    color: #F5F0E5;
+}

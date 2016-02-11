@@ -484,21 +484,26 @@ function verPerfil(){
 
 function cargarperfil(){
     
-    
-    
     $opcion = $(this).text();
     $('#categoria').text($opcion);
-    $('.menu').html('<div class="modal-body"><div class="container-fluid"><div class="row>"><div><div class="well"><form id="formularioInsertUsuario"><div class="form-group"><label for="nombreUsuario" class="control-label">Nombre del Usuario</label><input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" ></div><div class="form-group"><label for="emailUsuario" class="control-label">Email del Usuario</label><input type="email" class="form-control" id="emailUsuario" name="emailUsuario"></div><div class="form-group"><label for="rolUsuario" class="control-label">Rol</label><input type="text" class="form-control" id="rolUsuario" name="rolUsuario"></div></form></div></div></div></div></div>');
+    $('.menu').html('');
+    
+    $.ajax({                  
+        type: 'POST',
+        url: './php/comprobar_login.php',
+        success: function(data) {
+            
+           $('.menu').html('<div class="modal-body"><div class="container-fluid"><div class="row>"><div><div class="well"><form id="formularioInsertUsuario"><div class="form-group"><label for="nombreUsuario" class="control-label">Nombre del Usuario</label><input type="text" class="form-control text-center" id="nombreUsuario" name="nombreUsuario" value="'+ data +'" readonly="readonly"></div><div class="form-group"><label for="emailUsuario" class="control-label">Email del Usuario</label><input type="email" class="form-control text-center" id="emailUsuario" name="emailUsuario" readonly="readonly"></div><div class="form-group"><label for="rolUsuario" class="control-label">Rol</label><input type="text" class="form-control text-center" id="rolUsuario" name="rolUsuario" readonly="readonly"></div></form></div></div></div></div></div>');
+            
+        }
+    });
+    
 }
 
 function cargarfacturas(){
     $opcion = $(this).text();
     $('#categoria').text($opcion);
-    $('.menu').html('');
-    
-    
-    
-    
+    $('.menu').html('<a href="php/imprimir_facturas.php">todas las facturas</a>');
 }
 
 /*

@@ -503,17 +503,26 @@ function verPerfil(){
     
     $('section').fadeOut("slow", function() {
         
-    $('section').html('<div class="container"><div class="row"><div class="col-sm-12"><h2 class="text-center" id="categoria">' + $seccion + '</h2><hr/></div></div><div class="row text-center" id="fila-articulos"><div class="row"><div class="col-md-2 text-center" id="menu-lateral">Menú<hr><ul class="sidebar-nav"> <li><a id="miperfil" href="#">Mi Perfil</a></li><li><a id="facturas" href="#">Facturas</a></li></ul></div><div class="col-sm-10 menu"></div></div></div><div class="row"><div class="col-sm-12"><hr/></div></div>');
+    $('section').html('<div class="container perfilUsuario"><div class="row cabecera"><div class="col-md-12"><h2 class="text-center" id="categoria">' + $seccion + '</h2><hr/></div></div><div class="row text-center" id="fila-articulos"><div class="row menu-lateral-p"><div class="col-md-2 text-center" id="menu-lateral"><ul class="sidebar-nav"> <li><a id="miperfil" href="#">Mi Perfil</a></li><li><a id="facturas" href="#">Facturas</a></li></ul></div><div class="col-sm-10 menu"></div></div></div><div class="row"><div class="col-sm-12"><hr/></div></div>');
         
     $.ajax({                  
         type: 'POST',
         url: './php/perfil_usuario.php',
-/*        data: 'datos=&'+datosUsuarioLogeado,*/
         success: function(data) {
             
             var datosJson = JSON.parse(data);
             
            $('.menu').html('<div class="modal-body"><div class="container-fluid"><div class="row>"><div><div class="well"><form id="formularioInsertUsuario"><div class="form-group"><label for="nombreUsuario" class="control-label">Nombre del Usuario</label><input type="text" class="form-control text-center" id="nombreUsuario" name="nombreUsuario" value="'+ datosJson[0].nombreUsuario +'" readonly="readonly"></div><div class="form-group"><label for="emailUsuario" class="control-label">Email del Usuario</label><input type="email" class="form-control text-center" id="emailUsuario" name="emailUsuario" value="'+ datosJson[0].emailUsuario +'"readonly="readonly"></div><div class="form-group"><label for="rolUsuario" class="control-label">Rol</label><input type="text" class="form-control text-center" id="rolUsuario" name="rolUsuario" value="'+ datosJson[0].rolUsuario +'" readonly="readonly"></div></form></div></div></div></div></div>');
+          
+/*                       $('.menu').html('<section class="datos"><div class="centrarDatos"><div><div class="text-center encabezado">Panel de Administración</div></div><div class="row menu-lateral"><div class="text-center col-md-2" id="menu-lateral"><ul class="sidebar-nav"><li><a id="articulos" href="#">Artículos</a></li><li><a id="categorias" href="#">Categorias</a></li><li><a id="usuarios" href="#">Usuarios</a></li><li><a id="pedidos" href="#">Pedidos</a></li></ul></div><div class="col-md-10 text-center" id="tabla-detalle"></div></div></div></div></section>');*/
+            
+            
+
+            
+            
+            
+            
+            
             
         }
     });

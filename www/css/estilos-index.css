@@ -316,3 +316,24 @@ section .row {
 #menu-lateral ul li a:hover{
     color: #F5F0E5;
 }
+
+/*--------Menu lateral perfil---------*/
+
+.menu-lateral-p{
+    background-color: #2E2E2E;
+}
+#tabla-detalle{
+background-color: #F5F0E5;
+}
+.sidebar-nav, #menu-lateral{
+    background-color: #2E2E2E;
+    font-size: 22px;
+}
+.cabecera{
+    background-color: #2E2E2E;
+    color: #A9905A;
+}
+.perfilUsuario{
+    margin-top: 30px;
+}
+

@@ -528,35 +528,29 @@ function verPerfil(){
 }
 
 function cargarfacturas(){
-    $opcion = $(this).text();
-    $('#categoria').text($opcion);
     
-        $.ajax({                  
-        type: 'POST',
-        url: './php/facturas/pedidos_factura.php',
-        success: function(data) {
-            var datosJson = JSON.parse(data);
-/*                $.each(datosJson, function() {
-                    alert("sal");
-                    $('.menu').html('<a href="php/imprimir_facturas.php">todas las facturas</a>');
-                });*/
-            
-            
-/*                        $('section').fadeOut("slow", function() {
-                $('.menu').html('<div class="container"><div class="row"><div class="col-sm-12"><h2 id="categoria">' + $categoria + '</h2><hr /></div></div><div class="row text-center" id="fila-articulos"></div><div class="row"><div class="col-sm-12"><hr /></div></div></div>');
-                $.each(datosJson, function() {
-                    alert("asdf");
-                    $('<a href="php/imprimir_facturas.php">todas las facturas</a>').appendTo('#fila-articulos');
-                });
-                $('section').fadeIn("slow");
-            });*/
-            
-            
-            
-            
-            }
-    });
+    $('.menu').fadeOut("slow", function() {    
+        $opcion = $(this).text();
+        $('#categoria').text($opcion);
 
+            $.ajax({                  
+            type: 'POST',
+            url: './php/facturas/pedidos_factura.php',
+            success: function(data) {
+
+                $('.menu').html('<div class="facturas"></div>');
+
+                var datosJson = JSON.parse(data);
+                    $.each(datosJson, function() {
+                        $('<li><a href="php/imprimir_facturas.php?data='+ this.idPedido +'" target="_blank">Pedido número '+ this.idPedido +'</a></li>').appendTo('.facturas');
+                    });
+                }
+                
+
+        });
+    
+        $('.menu').fadeIn("slow");
+    });
 
 }
 

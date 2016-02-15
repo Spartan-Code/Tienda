@@ -336,4 +336,13 @@ background-color: #F5F0E5;
 .perfilUsuario{
     margin-top: 30px;
 }
+.facturas{
+    margin: 10px;
+    padding: 15px;
+    background-color: #F5F0E5;
+}
+.facturas li a{
+    color: #A9905A;  
+    font-size: 22px;
+}
 

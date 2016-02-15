@@ -27,28 +27,51 @@ while ($line = mysql_fetch_array($resultUsuario, MYSQL_ASSOC)) {
 
 $pdf = new FPDF();
 $pdf->AddPage();
-$pdf->SetFont('Arial','B',16);
+$pdf->SetFont('Arial','',16);
 
-$pdf->Cell(40,10,'Desglose del pedido '.$numeroPedido);
+$pdf->Cell(40,20,'Desglose del pedido '.$numeroPedido);
 $pdf->Ln();
 
-$query = 'SELECT * FROM lineaPedidos WHERE idPedido = "'.$numeroPedido.'"';
+$query = 'SELECT idArticulo, unidades, precio FROM lineaPedidos WHERE idPedido = "'.$numeroPedido.'"';
 $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 
 $count=mysql_num_rows($result);
         
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    $pdf->Cell(10, 10, "      idArticulo: " . $line["idArticulo"] . "      unidades: " . $line["unidades"] . "      precio: " . $line["precio"]);
-    $pdf->Ln();
+    
+    $datos[] = $line;
+
+/*    $pdf->Cell(10, 10, "      idArticulo: " . $line["idArticulo"] . "      unidades: " . $line["unidades"] . "      precio: " . $line["precio"]);
+    $pdf->Ln();*/
 }
 
 
+    $header = array('ID Articulo', 'Unidades', 'Precio');
+    // Cabecera
+    $pdf->SetFillColor(169, 144, 90);
+    foreach($header as $col)
+        $pdf->Cell(50,12,$col,1, 0, 'C', True);
+    $pdf->Ln();
 
+    // Datos
+    $i=0;
+    foreach($datos as $row)
+    {
+        if($i%2==0)
+        {
+            $pdf->SetFillColor(255, 255, 255);
+        }
+        else
+        {
+           $pdf->SetFillColor(245, 240, 229); 
+        }        
+        foreach($row as $col)
+        
 
-
-
-
-
+            $pdf->Cell(50,10,$col,1, 0, 'C', True);
+            $pdf->Ln();
+            $i++;
+    }
 
 $pdf->Output('pedido_'.$numeroPedido.'.pdf','I');
 ?>

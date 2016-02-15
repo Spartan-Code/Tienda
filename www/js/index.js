@@ -2,6 +2,7 @@ $(document).ready(function() {
     
     cargarCategorias();
     loginSession();
+    
     $('#menu-horizontal').on('click', 'a', pedirDatos);
     $('.navbar-brand').click(recargarCarrusel);
     $('section').on('click', '.boton-reservar', mostrarModalAnyadir);
@@ -249,7 +250,7 @@ function mostrarModalCarrito() {
     for (i = 0; i < carrito.reservas.length; i++) {
         subtotal = carrito.reservas[i].precio * carrito.reservas[i].unidades;
         
-        htmlImagen = '<tr id="reserva' + i + '"><td class="text-center celda-imagen"><div class="thumbnail"><img class="imagen-carrito" src="' + carrito.reservas[i].rutaImagen + '" /></div></td>';
+        htmlImagen = '<tr id="reserva' + i + '"><td class="text-center celda-imagen"><div class="thumbnail"><img id=img'+i+' class="imagen-carrito" src="' + carrito.reservas[i].rutaImagen + '" draggable="true" ondragstart="evdragstart(event)"/></div></td>';
         
         if (carrito.reservas[i].categoria === 'Alojamiento') {
             htmlDetallesArticulo = '<td class="text-center celda-detalles-articulo"><p>' + carrito.reservas[i].categoria + ' - ' + carrito.reservas[i].nombre + '</p><p>' + carrito.reservas[i].fechaEntrada + ' - ' + carrito.reservas[i].fechaSalida + '</p><p class="descripcion-gdrid-down" hidden>' + carrito.reservas[i].descripcion + '</p></td>';
@@ -269,7 +270,7 @@ function mostrarModalCarrito() {
         
         htmlSubTotal = '<td class="text-center celda-subtotal">' + subtotal + ' €</td>';
         
-        htmlAccion = '<td class="text-center celda-accion"><button type="button" title="" class="btn btn-danger tool-tip" data-original-title="Remove"><i class="fa fa-trash-o"></i></button></td></tr>';
+        htmlAccion = '<td class="text-center celda-accion"><button type="button" title="" class="btn btn-danger tool-tip" data-original-title="Remove" ondragover="evdragover(event)" ondrop="evdrop(event)"><i class="fa fa-trash-o"></i></button></td></tr>';
         
         $(htmlImagen + htmlDetallesArticulo + htmlCantidad + htmlPrecio + htmlSubTotal + htmlAccion).appendTo('#modal-carrito tbody');
         total = total + subtotal;
@@ -644,5 +645,29 @@ function slideUpDown(){
     $(this).parent().children("tr").children("td:nth-child(2)").children("p:nth-child(3)").hide();
     $(this).children("td:nth-child(2)").children("p:nth-child(3)").slideToggle();
 
-    
 }
+
+/*----------Drag & Drop ----------*/
+function evdragstart(ev) {
+    ev.dataTransfer.setData("text",ev.target.id);	 
+}
+
+function evdragover (ev) {
+    ev.preventDefault();
+}
+function evdrop(ev,el) {
+    ev.stopPropagation();
+    ev.preventDefault();
+    //data=ev.dataTransfer.getData("text");
+    //ev.target.appendChild(document.getElementById(data));
+    $filaReserva = $(this).parent().parent();
+    idFilaReserva = $($filaReserva).attr('id');
+    indexReserva = idFilaReserva.substring(7,8);
+    carrito.eliminarReserva(idFilaReserva);
+    $numReservas = parseInt($('#icono-carrito .badge').text());
+    $numReservas--;
+    $('#icono-carrito .badge').text($numReservas);
+    mostrarModalCarrito();
+
+}
+

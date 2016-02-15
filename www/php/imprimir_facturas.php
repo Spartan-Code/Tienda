@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
 
-$nombreUsuario=$_POST['nombreUsuario']; 
-$contrasenaUsuario=$_POST['contrasenaUsuario'];
+$nombreUsuario='user'; 
+$contrasenaUsuario='user';
 
 require('../lib/fpdf181/fpdf.php');
 
@@ -38,6 +38,8 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $pdf->Ln();
 }
 
+echo $count;
 
-$pdf->Output('prueba.pdf','D');
+
+//$pdf->Output('prueba.pdf','D');
 ?>

@@ -345,7 +345,7 @@ function eliminarDeCarrito() {
     mostrarModalCarrito();
 }
 
-function loginSession() {
+/*function loginSession() {
     
     $.ajax({                  
         type: 'POST',
@@ -367,7 +367,50 @@ function loginSession() {
             }
     });                      
 
+}*/
+
+
+
+function loginSession() {
+   
+   $.ajax({                  
+       type: 'POST',
+       url: './php/comprobar_login.php',
+       success: function(data) {
+           if(data==false)
+               {
+                   // error 
+               }
+           else
+               {
+                   $('#enlace-login').text('Bienvenido '+data);
+                   $('#logear').css("display", "none");
+                   $('#deslogear').css("display", "block");
+                   $('#grupoNombre').css("display", "none");
+                   $('#grupoContrasena').css("display", "none");
+                   
+                   
+                   $('#enlace-login').attr('data-toggle', '');
+                   $('#enlace-login').attr('data-target', '');
+                   $('#user').html('<div class="dropdown"><button id="enlace-login" class="btn dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#" id="ver-perfil">Mi Perfil</a></li><li><a href="#" id="cerrar-sesion">Cerrar Sesión</a></li></ul></div>');
+                   $('#validacionLogin').css("display", "none");
+                   $('.bordeValidacionLogin').css("display", "none");
+                   $('#enlace-login').text('Bienvenido '+data);
+                   $('#logear').css("display", "none");
+                   $('#deslogear').css("display", "block");
+                   $('#grupoNombre').css("display", "none");
+                   $('#grupoContrasena').css("display", "none"); 
+                   $('#enlace-admin').css("display", "none");
+                   $('#ver-perfil').click(verPerfil);
+                   $('#cerrar-sesion').click(deslogearUsuario);
+               }
+           }
+   });                      
+
 }
+
+
+
 
 function logearUsuario(){
     
@@ -456,47 +499,32 @@ function deslogearUsuario(){
 }
 
 function verPerfil(){
-    $usuario = $(this).text();
+    $seccion = $(this).text();
     
     $('section').fadeOut("slow", function() {
         
-    $('section').html('<div class="container"><div class="row"><div class="col-sm-12"><h2 class="text-center" id="categoria">' + $usuario + '</h2><hr/></div></div><div class="row text-center" id="fila-articulos"><div class="row"><div class="col-md-2 text-center" id="menu-lateral">Menú<hr><ul class="sidebar-nav"> <li><a id="miperfil" href="#">Mi Perfil</a></li><li><a id="facturas" href="#">Facturas</a></li></ul></div><div class="col-sm-10 menu"></div></div></div><div class="row"><div class="col-sm-12"><hr/></div></div>');
+    $('section').html('<div class="container"><div class="row"><div class="col-sm-12"><h2 class="text-center" id="categoria">' + $seccion + '</h2><hr/></div></div><div class="row text-center" id="fila-articulos"><div class="row"><div class="col-md-2 text-center" id="menu-lateral">Menú<hr><ul class="sidebar-nav"> <li><a id="miperfil" href="#">Mi Perfil</a></li><li><a id="facturas" href="#">Facturas</a></li></ul></div><div class="col-sm-10 menu"></div></div></div><div class="row"><div class="col-sm-12"><hr/></div></div>');
         
     $.ajax({                  
         type: 'POST',
-        url: './php/comprobar_login.php',
+        url: './php/perfil_usuario.php',
+/*        data: 'datos=&'+datosUsuarioLogeado,*/
         success: function(data) {
             
-           $('.menu').html('<div class="modal-body"><div class="container-fluid"><div class="row>"><div><div class="well"><form id="formularioInsertUsuario"><div class="form-group"><label for="nombreUsuario" class="control-label">Nombre del Usuario</label><input type="text" class="form-control text-center" id="nombreUsuario" name="nombreUsuario" value="'+ data +'" readonly="readonly"></div><div class="form-group"><label for="emailUsuario" class="control-label">Email del Usuario</label><input type="email" class="form-control text-center" id="emailUsuario" name="emailUsuario" readonly="readonly"></div><div class="form-group"><label for="rolUsuario" class="control-label">Rol</label><input type="text" class="form-control text-center" id="rolUsuario" name="rolUsuario" readonly="readonly"></div></form></div></div></div></div></div>');
+            var datosJson = JSON.parse(data);
+            
+           $('.menu').html('<div class="modal-body"><div class="container-fluid"><div class="row>"><div><div class="well"><form id="formularioInsertUsuario"><div class="form-group"><label for="nombreUsuario" class="control-label">Nombre del Usuario</label><input type="text" class="form-control text-center" id="nombreUsuario" name="nombreUsuario" value="'+ datosJson[0].nombreUsuario +'" readonly="readonly"></div><div class="form-group"><label for="emailUsuario" class="control-label">Email del Usuario</label><input type="email" class="form-control text-center" id="emailUsuario" name="emailUsuario" value="'+ datosJson[0].emailUsuario +'"readonly="readonly"></div><div class="form-group"><label for="rolUsuario" class="control-label">Rol</label><input type="text" class="form-control text-center" id="rolUsuario" name="rolUsuario" value="'+ datosJson[0].rolUsuario +'" readonly="readonly"></div></form></div></div></div></div></div>');
             
         }
     });
         
     
     $('section').fadeIn("slow");
-    $('#miperfil').click(cargarperfil);
+    $('#miperfil').click(verPerfil);
     $('#facturas').click(cargarfacturas);
         
     });
     
-    
-}
-
-function cargarperfil(){
-    
-    $opcion = $(this).text();
-    $('#categoria').text($opcion);
-    $('.menu').html('');
-    
-    $.ajax({                  
-        type: 'POST',
-        url: './php/comprobar_login.php',
-        success: function(data) {
-            
-           $('.menu').html('<div class="modal-body"><div class="container-fluid"><div class="row>"><div><div class="well"><form id="formularioInsertUsuario"><div class="form-group"><label for="nombreUsuario" class="control-label">Nombre del Usuario</label><input type="text" class="form-control text-center" id="nombreUsuario" name="nombreUsuario" value="'+ data +'" readonly="readonly"></div><div class="form-group"><label for="emailUsuario" class="control-label">Email del Usuario</label><input type="email" class="form-control text-center" id="emailUsuario" name="emailUsuario" readonly="readonly"></div><div class="form-group"><label for="rolUsuario" class="control-label">Rol</label><input type="text" class="form-control text-center" id="rolUsuario" name="rolUsuario" readonly="readonly"></div></form></div></div></div></div></div>');
-            
-        }
-    });
     
 }
 

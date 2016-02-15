@@ -244,6 +244,13 @@ section .boton-mas-info {
     display: none;
 }
 
+button#enlace-login.btn.dropdown-toggle{
+   margin-top: 15%;
+   background-color: #141414;
+   color: #A9905A;
+   border: 0px;
+}
+
 .dropdown button{
     margin-top: 15%;
     background-color: #141414;

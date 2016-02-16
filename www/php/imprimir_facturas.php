@@ -29,7 +29,8 @@ $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',16);
 
-$pdf->Cell(40,20,'Desglose del pedido '.$numeroPedido);
+$pdf->Image('../img/opera_valencia_logo.png',10,10, -150);
+$pdf->Cell(85,20,'Desglose del pedido '.$numeroPedido, 0, 0, 'R');
 $pdf->Ln();
 
 $query = 'SELECT idArticulo, unidades, precio FROM lineaPedidos WHERE idPedido = "'.$numeroPedido.'"';
@@ -44,6 +45,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 /*    $pdf->Cell(10, 10, "      idArticulo: " . $line["idArticulo"] . "      unidades: " . $line["unidades"] . "      precio: " . $line["precio"]);
     $pdf->Ln();*/
 }
+
 
 
     $header = array('ID Articulo', 'Unidades', 'Precio');

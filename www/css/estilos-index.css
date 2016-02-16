@@ -97,6 +97,13 @@ section .boton-mas-info {
     margin: 0 auto;
     padding-bottom: 20px;
 }
+#quienesSomos1{
+    background-color: #282828;
+    color: #A9905A;
+}
+#quienesSomos1, h4{
+    padding: 30px;
+}
 #flotante{
     z-index: 1;
     position: fixed;
@@ -129,7 +136,7 @@ section .boton-mas-info {
     color: red;
 }
 .productos{
-    background-color: #CCCCCC;
+    background-color: #F5F0E5;
     padding: 10px;
 }
 #papelera{

@@ -60,10 +60,11 @@ $precioTotal = 0;
                     $nombreArticulo = $miReserva->nombre;
                     $idPedido='(SELECT MAX(idPedido) FROM pedidos WHERE idUsuario = "'.$idUsuario.'")';
                     $idArticulo='(SELECT idArticulo FROM articulos WHERE nombreArticulo = "'.$nombreArticulo.'")';
+                    $art='(SELECT nombreArticulo FROM articulos WHERE nombreArticulo = "'.$nombreArticulo.'")';
                     $unidadesArticulo = $miReserva->unidades;
                     $precioTotalArticulos = $miReserva->precio*$unidadesArticulo;
 
-                    $insertarLineaPedido = "INSERT INTO lineapedidos (idPedido, idArticulo, unidades, precio) VALUES ($idPedido, $idArticulo, $unidadesArticulo, $precioTotalArticulos)";
+                    $insertarLineaPedido = "INSERT INTO lineapedidos (idPedido, idArticulo, nombreArticulo, unidades, precio) VALUES ($idPedido, $idArticulo, $art, $unidadesArticulo, $precioTotalArticulos)";
                     $resultInsertLineaPedido = mysql_query($insertarLineaPedido) or die('Insert en linea de pedidos fallida: ' . mysql_error());
 
                     mysql_free_result($resultInsertLineaPedido);

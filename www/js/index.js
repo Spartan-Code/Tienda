@@ -3,6 +3,8 @@ $(document).ready(function() {
     cargarCategorias();
     loginSession();
     
+    scroll();
+    
     $('#menu-horizontal').on('click', 'a', pedirDatos);
     $('.navbar-brand').click(recargarCarrusel);
     $('section').on('click', '.boton-reservar', mostrarModalAnyadir);
@@ -250,7 +252,7 @@ function mostrarModalCarrito() {
     for (i = 0; i < carrito.reservas.length; i++) {
         subtotal = carrito.reservas[i].precio * carrito.reservas[i].unidades;
         
-        htmlImagen = '<tr id="reserva' + i + '"><td class="text-center celda-imagen"><div class="thumbnail"><img id=img'+i+' class="imagen-carrito" src="' + carrito.reservas[i].rutaImagen + '" draggable="true" ondragstart="evdragstart(event)"/></div></td>';
+        htmlImagen = '<tr id="reserva' + i + '"><td class="text-center celda-imagen"><div class="thumbnail"><img id=img|'+i+' class="imagen-carrito" src="' + carrito.reservas[i].rutaImagen + '" draggable="true" ondragstart="evdragstart(event)"/></div></td>';
         
         if (carrito.reservas[i].categoria === 'Alojamiento') {
             htmlDetallesArticulo = '<td class="text-center celda-detalles-articulo"><p>' + carrito.reservas[i].categoria + ' - ' + carrito.reservas[i].nombre + '</p><p>' + carrito.reservas[i].fechaEntrada + ' - ' + carrito.reservas[i].fechaSalida + '</p><p class="descripcion-gdrid-down" hidden>' + carrito.reservas[i].descripcion + '</p></td>';
@@ -270,7 +272,7 @@ function mostrarModalCarrito() {
         
         htmlSubTotal = '<td class="text-center celda-subtotal">' + subtotal + ' €</td>';
         
-        htmlAccion = '<td class="text-center celda-accion"><button type="button" title="" class="btn btn-danger tool-tip" data-original-title="Remove" ondragover="evdragover(event)" ondrop="evdrop(event)"><i class="fa fa-trash-o"></i></button></td></tr>';
+        htmlAccion = '<td class="text-center celda-accion"><button type="button" title="" class="btn btn-danger tool-tip" data-original-title="Remove"><i class="fa fa-trash-o"></i></button></td></tr>';
         
         $(htmlImagen + htmlDetallesArticulo + htmlCantidad + htmlPrecio + htmlSubTotal + htmlAccion).appendTo('#modal-carrito tbody');
         total = total + subtotal;
@@ -625,6 +627,7 @@ function finalizarCompra(){
                     $('#modal-login').modal('toggle');
                     alert("Usuario no logeado.");
                 }else{
+                    alert(data);
                     alert("¡No hay artículos seleccionados!");
                 }
 
@@ -658,16 +661,62 @@ function evdragover (ev) {
 function evdrop(ev,el) {
     ev.stopPropagation();
     ev.preventDefault();
-    //data=ev.dataTransfer.getData("text");
-    //ev.target.appendChild(document.getElementById(data));
-    $filaReserva = $(this).parent().parent();
-    idFilaReserva = $($filaReserva).attr('id');
-    indexReserva = idFilaReserva.substring(7,8);
-    carrito.eliminarReserva(idFilaReserva);
+
+    data=ev.dataTransfer.getData("text");
+    var productodatos = data.split("|");
+    var comprobacion=productodatos[0];
+    var numero=productodatos[1];
+    //carrito.reservas.splice(numero, 1);
+    carrito.eliminarReserva(numero);
     $numReservas = parseInt($('#icono-carrito .badge').text());
     $numReservas--;
     $('#icono-carrito .badge').text($numReservas);
     mostrarModalCarrito();
+
+}
+
+function scroll(){
+    // hide #arriba y #abajo first
+	$("#arriba").hide();
+	//$("#abajo").hide();
+
+	// fade in #arriba
+	$(function () {
+        var altura = $(document).height();
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#arriba').fadeIn();
+			} else {
+				$('#arriba').fadeOut();
+			};
+	
+            if ($(this).scrollTop() + $(this).height() == altura) {
+				$('#abajo').fadeOut();
+			} else {
+				$('#abajo').fadeIn();
+			};
+		});
+        
+        
+		// scroll body to 0px on click
+		$('#arriba').click(function () {
+            var marco = Math.floor($(window).scrollTop() / 400);
+            marco = (marco -1) *400;
+			$('body,html').animate({
+				scrollTop: marco+"px"
+			}, 800);
+			return false;
+		});
+
+        $('#abajo').click(function () {
+            var marco = Math.floor($(window).scrollTop() / 400);
+            marco = (marco + 1) *400;
+			$('body,html').animate({
+				scrollTop: marco+"px"
+			}, 800);
+			return false;
+		});
+	});
 
 }
 

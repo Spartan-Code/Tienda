@@ -33,7 +33,7 @@ $pdf->Image('../img/opera_valencia_logo.png',10,10, -150);
 $pdf->Cell(85,20,'Desglose del pedido '.$numeroPedido, 0, 0, 'R');
 $pdf->Ln();
 
-$query = 'SELECT idArticulo, unidades, precio FROM lineaPedidos WHERE idPedido = "'.$numeroPedido.'"';
+$query = 'SELECT idArticulo, nombreArticulo, unidades, precio FROM lineaPedidos WHERE idPedido = "'.$numeroPedido.'"';
 $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 
 $count=mysql_num_rows($result);
@@ -48,17 +48,19 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 
 
-    $header = array('ID Articulo', 'Unidades', 'Precio');
+    $header = array('ID Articulo', 'Nombre', 'Unidades', 'Precio');
     // Cabecera
     $pdf->SetFillColor(169, 144, 90);
     foreach($header as $col)
-        $pdf->Cell(50,12,$col,1, 0, 'C', True);
+        $pdf->Cell(45,12,$col,1, 0, 'C', True);
     $pdf->Ln();
 
     // Datos
-    $i=0;
+    $widthCeldas=array(10, 50, 40, 80);
+
     foreach($datos as $row)
     {
+        $i=0;
         if($i%2==0)
         {
             $pdf->SetFillColor(255, 255, 255);
@@ -69,8 +71,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
         }        
         foreach($row as $col)
         
-
-            $pdf->Cell(50,10,$col,1, 0, 'C', True);
+            $pdf->Cell(45,10,$col,1, 0, 'C', True);
             $pdf->Ln();
             $i++;
     }

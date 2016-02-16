@@ -92,9 +92,53 @@ section .boton-mas-info {
     background-color: #D9D9D9;
 }
 
+/*Estilos landing*/
+#quienesSomosImg{
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+#flotante{
+    z-index: 1;
+    position: fixed;
+      width:200px;
+  display:inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin:0px auto;
+  border:1px red solid;
+    margin-bottom: 20px;
+    bottom: 0;
+       right: 0;
+}
+#arriba {
+    width: 36px;
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    margin-right: 10px;
+    z-index: 100;
+    color: red;
+}
+#abajo {
+    width: 36px;
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    margin-right: 10px;
+    z-index: 100;
+    color: red;
+}
+.productos{
+    background-color: #CCCCCC;
+    padding: 10px;
+}
+#papelera{
+    width: 36px;
+    margin-right: 10px;
+}
+
 
 /*Estilos pies*/
-
 
 #pie1 {
     color: #A9905A;

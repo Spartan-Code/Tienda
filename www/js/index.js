@@ -534,7 +534,7 @@ function cargarfacturas(){
     
     $('.menu').fadeOut("slow", function() {    
         $opcion = $(this).text();
-        $('#categoria').text($opcion);
+        $('#categoria').text("Facturas");
 
             $.ajax({                  
             type: 'POST',

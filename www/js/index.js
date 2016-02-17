@@ -545,7 +545,7 @@ function cargarfacturas(){
 
                 var datosJson = JSON.parse(data);
                     $.each(datosJson, function() {
-                        $('<li><a href="php/imprimir_facturas.php?data='+ this.idPedido +'" target="_blank">Pedido número '+ this.idPedido +'</a></li>').appendTo('.facturas');
+                        $('<li><a href="php/imprimir_facturas.php?data='+ this.idPedido +'">Pedido número '+ this.idPedido +'</a></li>').appendTo('.facturas');
                     });
                 }
                 

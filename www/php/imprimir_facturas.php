@@ -89,5 +89,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
     $pdf->Cell(180 ,20,'Precio Total: '.$preciototal, 0, 0, 'R');
 
-$pdf->Output('pedido_'.$numeroPedido.'.pdf','D');
+//$pdf->Output('pedido_'.$numeroPedido.'.pdf','D');
+$pdf->Output();
+
 ?>

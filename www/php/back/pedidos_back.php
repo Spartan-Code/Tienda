@@ -7,8 +7,8 @@ $sidx = $_GET['sidx']; // get index row - i.e. user click to sort
 $sord = $_GET['sord']; // get the direction
 if(!$sidx) $sidx =1;
 // connect to the database
-//        $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
-    $connection = mysql_connect('localhost', 'root', '')or die("Connection Error: " . mysql_error());
+        $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
+//    $connection = mysql_connect('localhost', 'root', '')or die("Connection Error: " . mysql_error());
 
 mysql_select_db('tienda') or die("Error conecting to db.");
 $result = mysql_query("SELECT COUNT(*) AS count FROM pedidos");

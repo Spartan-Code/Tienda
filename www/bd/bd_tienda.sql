@@ -9,28 +9,7 @@
 /*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
--- Volcando estructura de base de datos para tienda
-CREATE DATABASE IF NOT EXISTS `tienda` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `tienda`;
-
-
--- Volcando estructura para tabla tienda.articulos
-CREATE TABLE IF NOT EXISTS `articulos` (
-  `idArticulo` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreArticulo` varchar(45) NOT NULL,
-  `descripcionArticulo` varchar(250) NOT NULL,
-  `idCategoria` int(11) NOT NULL,
-  `precioArticulo` int(11) NOT NULL,
-  `imagenArticulo` varchar(250) NOT NULL,
-  `codigoArticulo` varchar(45) NOT NULL,
-  `urlArticulo` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idArticulo`),
-  KEY `idCategoria_idx` (`idCategoria`),
-  CONSTRAINT `idCategoria` FOREIGN KEY (`idCategoria`) REFERENCES `categorias` (`idCategoria`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla tienda.articulos: ~24 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.articulos: ~20 rows (aproximadamente)
 /*!40000 ALTER TABLE `articulos` DISABLE KEYS */;
 INSERT INTO `articulos` (`idArticulo`, `nombreArticulo`, `descripcionArticulo`, `idCategoria`, `precioArticulo`, `imagenArticulo`, `codigoArticulo`, `urlArticulo`) VALUES
 	(1, 'Macbeth', 'Giuseppe Verdi', 1, 100, 'img/entradas/entradas-macbeth.jpg', 'E001', NULL),
@@ -55,15 +34,7 @@ INSERT INTO `articulos` (`idArticulo`, `nombreArticulo`, `descripcionArticulo`, 
 	(20, 'Tour Vinicola', 'Un recorrido por la region de Utiel-Requena para amantes del vino', 4, 70, 'img/actividades/actividad-vinicola.jpg', 'T005', NULL);
 /*!40000 ALTER TABLE `articulos` ENABLE KEYS */;
 
-
--- Volcando estructura para tabla tienda.categorias
-CREATE TABLE IF NOT EXISTS `categorias` (
-  `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreCategoria` varchar(45) NOT NULL,
-  PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla tienda.categorias: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.categorias: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` (`idCategoria`, `nombreCategoria`) VALUES
 	(1, 'Entradas'),
@@ -72,53 +43,19 @@ INSERT INTO `categorias` (`idCategoria`, `nombreCategoria`) VALUES
 	(4, 'Tours y Actividades');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
-
--- Volcando estructura para tabla tienda.lineapedidos
-CREATE TABLE IF NOT EXISTS `lineapedidos` (
-  `idPedido` int(11) NOT NULL,
-  `idArticulo` int(11) NOT NULL,
-  `unidades` int(11) DEFAULT NULL,
-  `precio` bigint(20) DEFAULT NULL,
-  KEY `idPedido` (`idPedido`),
-  KEY `idArticulo` (`idArticulo`),
-  CONSTRAINT `FK_lineapedidos_articulos` FOREIGN KEY (`idArticulo`) REFERENCES `articulos` (`idArticulo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idPedido` FOREIGN KEY (`idPedido`) REFERENCES `pedidos` (`idPedido`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla tienda.lineapedidos: ~100 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.lineapedidos: ~94 rows (aproximadamente)
 /*!40000 ALTER TABLE `lineapedidos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `lineapedidos` ENABLE KEYS */;
 
-
--- Volcando estructura para tabla tienda.pedidos
-CREATE TABLE IF NOT EXISTS `pedidos` (
-  `idPedido` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsuario` int(11) NOT NULL DEFAULT '0',
-  `fechaPedido` date DEFAULT NULL,
-  `precioTotal` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idPedido`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla tienda.pedidos: ~30 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.pedidos: ~32 rows (aproximadamente)
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 
-
--- Volcando estructura para tabla tienda.usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreUsuario` varchar(45) DEFAULT NULL,
-  `emailUsuario` varchar(100) DEFAULT NULL,
-  `rolUsuario` varchar(45) DEFAULT NULL,
-  `contrasenaUsuario` varchar(45) NOT NULL,
-  PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla tienda.usuarios: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla tienda.usuarios: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`idUsuario`, `nombreUsuario`, `emailUsuario`, `rolUsuario`, `contrasenaUsuario`) VALUES
-	(17, 'admin', 'admin@gmail.com', 'administrador', 'admin'),
-	(19, 'user', 'user@gmail.com', 'usuario', 'user');
+	(4, 'user', 'user@user.com', 'usuario', 'user'),
+	(5, 'admin', 'admin@admin.com', 'administrador', 'admin');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

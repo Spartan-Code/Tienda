@@ -67,22 +67,22 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     foreach($datos as $row)
     {
         $i=0;
-        $x=0;
-        
-        if($x%2==0)
-        {
-            $pdf->SetFillColor(0, 255, 255);
-        }
-        else
-        {
-           $pdf->SetFillColor(245, 240, 229); 
-        }        
+//        $x=0;
+//        
+//        if($x%2==0)
+//        {
+//            $pdf->SetFillColor(0, 255, 255);
+//        }
+//        else
+//        {
+//           $pdf->SetFillColor(245, 240, 229); 
+//        }        
         foreach($row as $col){
             $pdf->Cell($w[$i],10,$col,1, 0, 'C');
             $i++;
         }
             $pdf->Ln();
-        $x++;
+//        $x++;
     }
 
 

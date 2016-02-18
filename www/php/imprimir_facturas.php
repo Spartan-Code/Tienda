@@ -24,7 +24,7 @@ while ($line = mysql_fetch_array($resultUsuario, MYSQL_ASSOC)) {
 
 
 // --------------------------------------------
-
+echo "hola";
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',16);

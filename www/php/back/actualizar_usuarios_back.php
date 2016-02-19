@@ -14,8 +14,8 @@ $nombreUsuario = $_SESSION["sesionNombreUsuario"];*/
 
 
     //Conexion a la BD
-//        $connection = mysql_connect('127.2.128.130', 'admingnLzYYt', 'AtWvu3ijPujK')
-    $connection = mysql_connect('localhost', 'root', '')        
+     $connection = mysql_connect('127.12.158.130', 'adminURet2Ls', 'sE3NqrMGJSYT')
+    //$connection = mysql_connect('localhost', 'root', '')        
         or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('tienda') or die('No se pudo seleccionar la base de datos');
 

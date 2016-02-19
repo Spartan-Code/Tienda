@@ -608,38 +608,59 @@ function nuevoUsuario(event){
 }*/
 
 function finalizarCompra(){
-    var recogeCarrito = JSON.stringify(carrito)
-
-    $.ajax({                  
-        type: 'POST',
-        url: './php/finalizar_compra.php',
-        data: 'datos='+recogeCarrito,
-        success: function(data) {
-            if(data=="1"){
-                vaciarCarrito();
-                alert("Pago realizado con éxito");
-            }else{
-                if(data=="0"){
-                    $('#validacionLogin').css("display", "block");
-                    $('.bordeValidacionLogin').css("display", "block");
-                    $('#validacionLogin').text('Debes estar logeado para poder finalizar una compra.');
-                    $('body').css("padding-right", "0px");
-                    $('#modal-login').modal('toggle');
-                    alert("Usuario no logeado.");
-                }else{
-                    alert(data);
-                    alert("¡No hay artículos seleccionados!");
-                }
-
-            }
-
+    if(carrito.importe!=0) {
+        
+        var ccc = prompt("Por favor, para finalizar la compra, introduce tu numero de Cuenta Corriente");
+        if (ccc != null) {
+            carrito.ccc = ccc;
         }
-    });
+        var recogeCarrito = JSON.stringify(carrito);
+        $.ajax({                  
+            type: 'POST',
+            url: './php/transaccion.php',
+            data: 'datos='+recogeCarrito,
+            success: function(data) {
+                if (data === "204") {
+                
+            
+                $.ajax({                  
+                    type: 'POST',
+                    url: './php/finalizar_compra.php',
+                    data: 'datos='+recogeCarrito,
+                    success: function(data) {
+                        if(data=="1"){
+                            vaciarCarrito();
+                            alert("Pago realizado con éxito");
+                        }else{
+                            if(data=="0"){
+                                $('#validacionLogin').css("display", "block");
+                                $('.bordeValidacionLogin').css("display", "block");
+                                $('#validacionLogin').text('Debes estar logeado para poder finalizar una compra.');
+                                $('body').css("padding-right", "0px");
+                                $('#modal-login').modal('toggle');
+                                alert("Usuario no logeado.");
+                            }else{
+                                alert(data);
+                                alert("¡No hay artículos seleccionados!");
+                            }
+
+                        }
+                            
+                    }
+                });} else {
+                        alert("Error en la transacción");
+                    }
+            }
+        });
+    } else {
+        alert("¡No hay artículos seleccionados!");
+    }
 }
 
 function vaciarCarrito(){
     
     carrito.reservas=[];
+    carrito.importe=0;
     $('#icono-carrito .badge').text(0);
 }
 

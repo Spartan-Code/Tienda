@@ -12,6 +12,8 @@ function Reserva(nombre, categoria, descripcion, fechaEntrada, fechaSalida, hora
 
 function Carrito() {
     this.reservas = new Array();
+    this.importe = 0;
+    this.ccc="";
 }
 
 Carrito.prototype.ponerReserva = function(reserva) {
@@ -29,11 +31,15 @@ Carrito.prototype.ponerReserva = function(reserva) {
     if (!repetida) {
         this.reservas.push(reserva);
     }
+    this.importe = this.importe + reserva.precio * reserva.unidades;
     return repetida;
 }
 
 Carrito.prototype.eliminarReserva = function(indexReserva) {
+    precioReserva = this.reservas[indexReserva].precio;
+    unidadesReserva = this.reservas[indexReserva].unidades;
     this.reservas.splice(indexReserva, 1);
+    this.importe = this.importe - precioReserva * unidadesReserva;
 }
 
 Carrito.prototype.verReservas = function() {
